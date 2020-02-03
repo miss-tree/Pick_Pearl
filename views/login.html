@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <link href="../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../static/css/animate.css" rel="stylesheet">
+    <link href="../static/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+<div class="middle-box text-center loginscreen  animated fadeInDown" id="app">
+    <div>
+        <div class="login-logo">
+            <h1 class="logo-name" style="margin-left: -40px;">LWY</h1>
+        </div>
+        <h3>欢迎观看个人笔记</h3>
+        <div class="m-t common-form-style">
+            <div class="form-group">
+                <i class="fa fa-user"></i>
+				<input type="text" class="form-control" placeholder="请输入用户名(随意填)" id="username" v-model="user">
+            </div>
+            <div class="form-group">
+                <i class="fa fa-meetup"></i>
+				<input type="password" class="form-control" placeholder="请输入密码(随意填)" id="password" v-model="password">
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b" @click="goToHome()">登 录</button>
+            <!-- <p class="text-muted text-center"> <a href="login.html#"><small>忘记密码了？</small></a></p> -->
+        </div>
+    </div>
+</div>
+<script src="../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var app=new Vue({
+		el:"#app",
+		data:function(){
+			return {
+				user:'',
+				password:'',
+			}
+		},
+		methods:{
+			goToHome(e){
+				console.log(this.user,this.password)
+				if(this.user==''){
+					alert('请输入姓名')
+					return false
+				}
+				if(this.password==''){
+					alert('请输入密码')
+					return false
+				}
+				location.href='./index.html'
+			}
+		}
+	})
+</script>
+</body>
+
+</html>
