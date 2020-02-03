@@ -1,0 +1,64 @@
+html, body {
+    height: 100%;
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #676a6c;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+.col_5{
+	width: 5%;
+}
+.col_10{
+	width: 10%;
+}
+.col_20{
+	width: 20%;
+}
+.col_30{
+	width: 30%;
+}
+.col_40{
+	width: 40%;
+}
+.col_50{
+	width: 50%;
+}
+.col_60{
+	width: 60%;
+}
+.col_70{
+	width: 70%;
+}
+.col_80{
+	width: 80%;
+}
+.col_100{
+	width: 100%;
+}
+.col_15{
+	width: 15%;
+}.col_25{
+	width: 25%;
+}
+.flex{
+	display: flex;
+}
+
+.nowrap{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
+

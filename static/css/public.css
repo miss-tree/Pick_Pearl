@@ -1,0 +1,270 @@
+@charset "utf-8";
+
+/*其他杂项修改 */
+@import url("global.css");
+
+
+.Title{
+	position: absolute;
+    width: 300px;
+    z-index: 9999;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    color: #777;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.betweenFlex{
+	display: flex;
+	justify-content: space-between;
+}
+
+.main{
+	padding: 15px;
+	height: 100%;
+	background-color: #f3f3f4;
+}
+
+.shadow{
+	box-shadow: 0 0 5px #ddd;
+	background-color: #fff;
+	padding: 10px 10px 20px 10px;
+}
+
+.margin_top{
+	margin-top: 15px;
+}
+
+.refresh{
+	position: absolute;
+    z-index: 2;
+    right: 140px;
+    width: 50px;
+    padding: 0;
+    text-align: center;
+    top: 0;
+    border-left: solid 1px #eee;
+    background-color: #fff;
+}
+.nulldate{
+	height: 500px;
+	width: 100%;
+	position: relative;
+}
+.nulldate >img{
+	display: block;	
+	position: absolute;
+	width: 380px;
+	height: 180px;
+	left: 50%;
+	top: 50%;
+	transform: translate3d(-50%,-50%,0);
+}
+.red{
+	color: red;
+}
+.pink{
+	color: #F581B1;
+}
+.yellow{
+	color: #f0ad4e;
+}
+.blue{
+	color: #01AAED;
+}
+.green{
+	color: #5FB878;
+}
+.initBtn{
+	padding: 0 8px;
+}
+.margin_top{
+	margin-top: 5px;
+}
+.delBtn{
+	border: 1px;
+	background-color: #ed5565;
+    color: #FFFFFF;
+    padding: 3px 5px;
+    border-radius: 2px;
+}
+.EditButton{
+	border: 1px;
+	background-color: #1c84c6;
+    color: #FFFFFF;
+    padding: 3px 5px;
+    border-radius: 2px;
+    margin-left: 15px;
+}
+::-webkit-scrollbar{
+   display:none;
+} 
+.Frozen{
+	background-color: #1ab394;
+	color: #fff;
+}
+.tableDiv{
+	border: 1px solid #E6E6E6;
+	max-height: 500px;
+}
+.tableDiv>div{
+	display: flex;
+	border-bottom: 1px solid #E6E6E6;
+}
+.tableDiv>div:last-child{
+	border-bottom:0;
+}
+.tableDiv>div:last-child>div:last-child .col_70{
+	border-right: 1px solid #E6E6E6;
+}
+.trDiv{
+	text-align: center;
+	border-left: 1px solid #E6E6E6;
+	width: 25%;
+	display: flex;
+}
+.trDiv>div{
+	height: 25px;
+	font-size: 13px;
+	line-height: 25px;
+}
+.trDiv>.col_30{
+	border-right: 1px solid #E6E6E6;
+}
+.trDiv:first-of-type{
+	border-left: 0;
+}
+
+
+
+/*左侧菜单栏修改*/
+.S_slider{
+	width: 100%;
+}
+.S_slider .J_menuItem{
+	padding-left: 72px;
+}
+	
+
+
+
+
+
+
+
+
+/* PEACE 进度条*/
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.pace-inactive {
+    display: none;
+}
+
+.pace .pace-progress {
+    background: #1ab394;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    width: 100%;
+    height: 2px;
+}
+
+.pace-inactive {
+    display: none;
+}
+
+/*修改layui*/
+.layui-form-select dl dd.layui-this{
+	background-color: #737980;
+}
+.layui-input, .layui-select, .layui-textarea{
+	height: 30px;
+}
+.layui-table-tool-self{
+	top: 0;
+}
+.layui-table-tool{
+	min-height: 32px;
+	padding: 0;
+}
+.layui-btn-container .layui-btn{
+	margin-bottom: 0;
+}
+.layui-table-view .layui-table td, .layui-table-view .layui-table th{
+	padding: 0;
+}
+.layui-layer .layui-anim .layui-layer-iframe .layui-layer-title{
+	font-weight: bold;
+	color: #676a6c;
+}
+.layui-form-label{
+	width: 100px;
+}
+.layui-layer-title{
+	font-size: 15px;
+	font-weight: bold;
+}
+.dtree-theme-icon{
+	display: none;
+}
+.dtree-theme-choose{
+	color: #23c6c8!important;
+}
+.layui-form-item{
+	margin-bottom: 5px;
+}
+.layui-tab-title{
+	background-color: #f2f2f2;
+}
+.layui-tab-title .layui-this{
+	background-color: #fff;
+}
+.layui-tab-content{
+	padding:10px 0;
+}
+.layui-form-label{
+	font-weight: 700;
+}
+.lightGreen{
+	background-color: #1ab394;
+	color: #fff;
+}
+
+
+
+
+/*修改原左侧宽度*/
+body.fixed-sidebar.mini-navbar .navbar-static-side {
+    /*width: 30px;*/
+   width: 0px;
+}
+body.mini-navbar .navbar-default .nav > li > a {
+    padding: 5px;
+}
+body.fixed-sidebar.mini-navbar #page-wrapper {
+    /*margin: 0 0 0 30px;*/
+    margin: 0;
+}
+
+
+/*修改bootsrap*/
+.form-control{
+	box-shadow: initial;
+	border-radius: 2px;
+}
+.form-control:focus{
+	border-color: #ccc;
+	box-shadow: initial;
+}
