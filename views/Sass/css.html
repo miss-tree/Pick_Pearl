@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h3>css基础</h3>
+				<p>基础的就看去哪儿网前端工程师杜瑶网站
+				<a href="http://css.doyoe.com/" target="_blank">http://css.doyoe.com/</a>
+				感谢他的资源。
+				也可以下载.chm文件，项目已经下载，用系统转好文件了，在Sass下的css(2018-05).chm和
+				css文件夹
+				<div class="code">
+					hh -decompile F:\XX\css F:\XXX\css(2018-05).chm <span>hh &nbsp;&nbsp;-decompile &nbsp;&nbsp; 要转的文件夹&nbsp;&nbsp;&nbsp; 要转的文件</span>
+				</div>
+				</p>
+			</div>
+			<div>
+				<h4>css选择器</h4>
+				<p>在css中尽量不要使用 !important,否则在其他地方改不了，大量相同的地方使用类名，
+				单独特殊的使用id 不要在行内使用样式，至于权重：</p>
+				<div class="code">
+					!important &nbsp;>  &nbsp;行内 &nbsp; > &nbsp; id &nbsp; > &nbsp; calss | 伪类 | 属性 &nbsp; > &nbsp; 标签 | 伪元素<span></span>
+				</div>
+				<pre>
+	子代选择符div>p
+	div>p{background-color: green;}
+	
+	后代选择符div p	
+	div p{color: white;}	
+			
+	相邻选择符	 div+p	 p+p（p的上家是div  或p的上级是p）
+	div+p{background-color: orangered;}		
+	
+	兄弟选择符 div~p
+	div~p{background-color: pink;}
+				</pre>
+			</div>
+			<div>
+				<h4>块级元素和行内元素的区别</h4>
+				<ul>
+					<li>1.   块级元素会独占一行，其宽度自动填满其父元素宽度
+						  行内元素不会独占一行，相邻的行内元素会排列在同一行里，
+						  知道一行排不下，才会换行，其宽度随元素的内容 而变化
+					</li>
+					<li>块级元素可以设置 width, height属性，行内元素设置width,  
+					height无效。【注意：块级元素即使设置了宽度，仍然是独占一行的】
+					</li>
+					<li>
+						3.  块级元素可以设置margin 和 padding.  行内元素的水平方向的padding-left,
+						padding-right,margin-left,margin-right 都产生边距效果，
+						但是竖直方向的padding-top,padding-bottom,margin-top,
+						margin-bottom都不会产生边距效果。（水平方向有效，竖直方向无效）
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

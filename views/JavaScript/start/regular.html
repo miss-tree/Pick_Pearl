@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>正则匹配</h4>
+				<p>参考地址：
+				<a href="http://www.cnblogs.com/tugenhua0707/p/5037811.html" target="_blank">
+					http://www.cnblogs.com/tugenhua0707/p/5037811.html
+				</a>,参考前辈的文章</p>
+			</div>
+			<div>
+				<h4>RegExp对象方法</h4>
+				<pre>
+	1. test()方法基本语法：RegExpObject.test(str);
+	
+	2. exec()方法基本语法：RegExpObject.exec(string)
+					
+	3. search()方法基本语法：stringObject.search(regexp);
+	
+	4. match()方法基本语法： stringObject.match(searchValue) 或者stringObject.match(regexp)
+	
+	5. replace()方法 基本语法：stringObject.replace(regexp/substr,replacement);
+	
+	6. split()方法:基本语法如：stringObject.split(separator,howmany);
+				</pre>
+				<pre>
+	1.匹配中文/[\u4E00-\u9FA5\uf900-\ufa2d]/g
+	
+	2.匹配手机号
+	/(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$/
+	
+	3.匹配微信号（1）5位以上（2）只能数字和英文（3）下划线
+	/^[a-zA-Z\d_]{5,}$/
+	
+	4.匹配QQ号第一位1-9之间的数字，第二位0-9之间的数字，数字范围4-14个之间  
+	/^[1-9][0-9]{4,14}$/				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

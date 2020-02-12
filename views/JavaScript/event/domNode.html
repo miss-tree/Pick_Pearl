@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>获取dom节点</h4>
+				<pre>
+	querySelector()：通过传入合法的CSS选择器，即可获取符合条件的第一个元素	
+	document.querySelector("#test"); //返回id为test的首个div
+	
+	querySelectorAll()：通过传入合法的CSS选择器，即可获取所有符合条件的元素，返回对象数组
+	document.querySelectorAll("div.foo")；//返回所有带foo类样式的div元素对象
+	
+	getElementById()：这个方法返回一个与给定id属性值的元素节点相对应的对象
+	document.getElementById("box");
+	
+	getElementsByTagName()：这个方法返回一个对象数组。每个对象分别对应着文档里给定标签的一个元素
+	document.getElementsByTagName("li");
+	
+	getElementsByName() :通过 name 获取一个对象数组
+	document.getElementsByTagName("name");
+				</pre>
+			</div>
+			<div>
+				<h4>操作属性节点</h4>
+				<pre>
+	设置属性：setAttribute(属性名，属性值)
+	var div  = document.querySelector("#test"); //返回id为test的首个div
+	div. setAttribute("class","testDiv");//设置class属性为testDiv
+					
+	获取属性：getAttribute(属性名)
+	var div  = document.querySelector("#test"); //返回id为test的首个div
+	div.getAttribute("class");//获取class属性的值
+	
+	针对繁杂的CSS样式属性，我们可以使用:dom.style来进行控制
+	var div  = document.querySelector("#test"); //返回id为test的首个div 		
+	div.style.opacity = ".5";//设置透明度	
+	div.style.width = "100px";//显示设置	
+	div.style.cssText ="background:red;border:1px solid blue";//一次性增加多个样式
+				</pre>
+			</div>	
+			<div>
+				<h4>操作文本节点</h4>
+				<pre>
+	1.获取文本节点（包括子元素）：dom.innerHTML
+	var div  = document.querySelector("#test"); //返回id为test的首个div	
+	alert(div. innerHTML);//获取div里的结构和内容
+	
+	2.获取文本节点（单纯文本）：dom.textContent
+	var div  = document.querySelector("#test"); //返回id为test的首个div	
+	alert(div. textContent);//获取div里的纯文本内容
+	
+	3.设置文本节点（包括子元素）：dom.innerHTML
+	var div  = document.querySelector("#test"); //返回id为test的首个div	
+	div. innerHTML= "<span>子元素span</span>";//给div添加了一个子元素span
+	
+	4.设置文本节点（单纯文本）：dom.textContent
+	var div  = document.querySelector("#test"); //返回id为test的首个div	
+	div. textContent= "我是一个div";//设置div里的内容				
+				</pre>
+			</div>
+			<div>
+				<h4>访问dom节点</h4>
+				<p>
+		1.引用子节点	每个节点都有一个childNodes集合属性，类型是数组对象，
+		表示该节点的所有子节点的集合。这些子节点按照其在文档中出现的顺序排列，
+		因此可以通过索引来依次访问各个子节点。			
+				</p>
+				<pre>
+	document.childNodes[0];			//引用文档的根节点	
+	document.childNodes[0].childNodes[0]	//引用&lt;head&gt;节点		
+	document.childNodes[0].childNodes[1]	//引用&lt;body&gt;节点		
+	
+	element.firstChild;		//访问第一个节点
+	element.lastChild;		//访问最后一个节点
+				</pre>
+				<div>
+		(同级)节点之间如何互相访问(依赖于当前DOM)
+			访问下一个(next)节点  nextSibling
+				</div>
+				<div>
+			访问下一个元素节点  nextElementSibling  后面跟着元素节点时才有值,如果是换行了,或者没有元素,值为null
+				</div>
+				<pre>
+	var lis=document.getElementsByTagName("li");
+	访问上一个(previous)节点  previousSibling
+	lis[1].previousSibling				
+	访问上一个元素节点  previousElementSibling 				
+	lis[1].previousElementSibling
+					
+	element.nextSibling;       //引用下一个兄弟节点				
+					
+	访问上级节点	parentNode
+	lis[1].parentNode
+	访问上级元素节点	parentElement
+	lis[1].parentElement				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

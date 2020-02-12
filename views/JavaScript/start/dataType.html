@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h3>数据类型</h3>
+			</div>
+			<div>
+				<h4>字符串(String)</h4>
+				<p>字符串由零个或多个字符构成，字符包括字母，数字，标点符号和空格;
+					字符串必须放在引号里（单引号或双引号）;计算机不解析，直接输出</p>
+				<div>
+					var   string  =  "hello  horld"
+				</div>
+				<pre>
+	转为字符串之间的类型:toString()
+	var bool=true;
+	console.log("bool.tostring()",bool.toString());=>'true'
+	var num=10;
+	console.log("num.tostring()",num.toString());=>'10'
+				</pre>
+			</div>
+			<div>
+				<h4>数值(number)</h4>
+				<div>
+					var age = 25;	var price = 33.25;
+				</div>
+				<pre>
+	转为数值之间的类型:parseInt()(转化为整数)、parseFloat()(转化为浮点数)
+	var str_number="100";
+	console.log(parseInt(str_number));=>100
+	console.log(parseFloat(str_number));=>100
+	var n="0912m0abc";
+	console.log(parseInt(n,16));=>2322 (转化为16进制)
+	console.log(parseFloat(n));=>912
+				</pre>
+			</div>
+			<div>
+				<h4>布尔类型 (boolean)</h4>
+				<p>布尔型数据只能有两种种值 true 和 false;没有引号， 'false' 和 false 
+				是两回事。true 和 false 用数值代替是 0 和 1 .
+				</p>
+				<div>
+					var married = true;	var married = false;
+				</div>
+			</div>
+			<div>
+				<h4>对象(object)</h4>
+				<p>Javascript是一种面向对象的语言，
+				因此可以使用面向对象的思想来进行对象
+				就是由一些彼此相关的属性和方法集合在一起而构成的一个数据实体。
+				访问对象里面的（静态)属性通过"." 来访问，
+				若使用"变量"来动态访问对象,则使用"[]"来访问。
+				</p>
+				<pre>
+	var obj= {} ,  abc = new Object()
+	
+	var stt={
+		sex:"男",
+		age:18,
+		height:156,
+		isSingle:false,
+	};
+	console.log(stt.age,stt['height'],stt[3])
+	=> 18, 156 ,undefind
+				</pre>
+			</div>
+			<div>
+				<h4>Array 数组(object))</h4>
+				<p>我们的变量一般都只能存储一个内容 
+				所以它其实是一个单一的容器我们的数组一般可以存一个或者是多个值 ，
+				所以数组是一个大的容器
+				</p>
+				<p>
+					组成部分: 数组其实是由多个 (键-值) 所组成的一个多容器 数组的索引 默认是从0开始的
+				</p>
+				<pre>
+	var arr = new Array(23,23,45,56,435);
+	  var arr2 = [23,34,546];
+	  var arr3 = new Array();
+	  arr3[0] = 234;
+	  arr3[1] = 234;
+	console.log(arr,arr2,arr3)		
+	=> [23,23,45,56,435],[23,34,546],[234,234]		  
+				</pre>
+				<p>类数组：只有数组的length属性，没有数组的所有方法，
+				js获取所有ul下的li得到数组和参数组成的数组的是伪数组，
+				获取元素得到的都是伪数组。须下面方法转化；</p>
+				<pre>
+	hdList={'1':"gg",'2':"love",'4':"mm",length:5}
+		
+	let list = Array.from(hdList);	//推荐使用ES6方法
+	
+	Array.prototype.join.call(hdList)	
+	
+	let list = [...hdList];//用[ ...elems ]方法转化为数组并用list接收
+			
+	Array.prototype.forEach.apply(hdList,[callback])	
+		
+	Array.prototype.forEach.call(hdList,callback)	
+	
+	Array.prototype.forEach.bind(hdList)([callback])	
+	
+				</pre>
+			</div>
+			<div>
+				<h4>null 和 undefind</h4>
+				<p>
+					null 表示什么都没有，null是一个只有一个值的特殊类型，表示一个空对象引用。
+					undefind  在JavaScript 中, undefined 是一个没有设置值的变量，但是不知道是什么。就像人妖不知道性别一样。
+				</p>
+				<pre>
+	var arr = null ;   //清空对象		 
+	var person = undefined;    你可以设置为 undefined 来清空对象: 
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

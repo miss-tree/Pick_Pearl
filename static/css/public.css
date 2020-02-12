@@ -1,8 +1,6 @@
 @charset "utf-8";
-
 /*其他杂项修改 */
 @import url("global.css");
-
 
 .Title{
 	position: absolute;
@@ -51,20 +49,6 @@
     border-left: solid 1px #eee;
     background-color: #fff;
 }
-.nulldate{
-	height: 500px;
-	width: 100%;
-	position: relative;
-}
-.nulldate >img{
-	display: block;	
-	position: absolute;
-	width: 380px;
-	height: 180px;
-	left: 50%;
-	top: 50%;
-	transform: translate3d(-50%,-50%,0);
-}
 .red{
 	color: red;
 }
@@ -86,59 +70,11 @@
 .margin_top{
 	margin-top: 5px;
 }
-.delBtn{
-	border: 1px;
-	background-color: #ed5565;
-    color: #FFFFFF;
-    padding: 3px 5px;
-    border-radius: 2px;
-}
-.EditButton{
-	border: 1px;
-	background-color: #1c84c6;
-    color: #FFFFFF;
-    padding: 3px 5px;
-    border-radius: 2px;
-    margin-left: 15px;
-}
 ::-webkit-scrollbar{
    display:none;
 } 
-.Frozen{
-	background-color: #1ab394;
-	color: #fff;
-}
-.tableDiv{
-	border: 1px solid #E6E6E6;
-	max-height: 500px;
-}
-.tableDiv>div{
-	display: flex;
-	border-bottom: 1px solid #E6E6E6;
-}
-.tableDiv>div:last-child{
-	border-bottom:0;
-}
-.tableDiv>div:last-child>div:last-child .col_70{
-	border-right: 1px solid #E6E6E6;
-}
-.trDiv{
-	text-align: center;
-	border-left: 1px solid #E6E6E6;
-	width: 25%;
-	display: flex;
-}
-.trDiv>div{
-	height: 25px;
-	font-size: 13px;
-	line-height: 25px;
-}
-.trDiv>.col_30{
-	border-right: 1px solid #E6E6E6;
-}
-.trDiv:first-of-type{
-	border-left: 0;
-}
+
+
 
 
 
@@ -148,8 +84,8 @@
 }
 .S_slider .J_menuItem{
 	padding-left: 72px;
+	color: #fff;
 }
-	
 
 
 

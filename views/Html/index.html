@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h3>Html基础</h3>
+				<pre>
+&lt;!--声明文档类型,html对大小写不敏感--&gt;
+&lt;!DOCTYPE html&gt;
+&lt;!--&lt;起始标签名&gt;要显示的内容&lt;/结束标签名&gt;--&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;!--元数据--&gt;
+		&lt;!--声明页面的"编码格式"--&gt;
+		&lt;!--单标签--&gt;
+		&lt;meta charset="utf-8" /&gt;
+		&lt;title&gt;标题&lt;/title&gt;
+		&lt;meta name="viewport" 
+			content="
+			width=device-width,     //--布局窗口宽度等于设备物理像素 兼容ios，主流安卓机
+			inintal-scale=1,        //--初始放大系数 兼容旧的安卓机 
+			minimum-scale=1,        //--最小的放大系数 
+			maximum-scale=1,         //-- 最大的放大系数 
+			user-scalable=no"/&gt;
+			移动端开发，响应式
+			//&lt; meta name="viewport" 
+			content="width=200,inintal-scale=1,minimum-scale=1,maximum-scale=1,             
+			user-scalable=no"/&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;a href="html/dizhi/相对地址.html"&gt;回到相对地址.html&lt;/a&gt;
+		&lt;!--标签是可以嵌套的--&gt;
+		&lt;!--图片类标签--&gt;
+		&lt;!--img标签 src 将外部资源引用到当前页面--&gt;
+		&lt;!--alt 当资源引用失败的时，显示的文本--&gt;
+		&lt;!--title 当你的鼠标悬停在图片上，显示的文本--&gt;
+		&lt;!--设置图片宽度 width
+		设置图片高度 height
+		将下面图片设置宽和高为300px--&gt;
+		&lt;img src="https://www.baidu.com/img/bd_logo1.png" alt="https://www.baidu.com/img/bd_logo1.png"
+			title="百度logo" width="300" /&gt;
+		&lt;!--超链接标签 a--&gt;
+		&lt;!--target属性 指定链接打开方式
+				  _self,_blank--&gt;
+		&lt;a href="http://baidu.com" target="_self"&gt;点我去百度&lt;/a&gt;
+		&lt;!--鼠标悬停在文字上时，显示"这是链接"--&gt;
+		&lt;a href="http://baidu.com" target="_blank" title="这是链接" &gt;
+			&lt;!--标签是可以嵌套的--&gt;
+			&lt;img src="https://www.baidu.com/img/bd_logo1.png" alt="https://www.baidu.com/img/bd_logo1.png"
+			title="百度logo" width="300" /&gt;
+			点我去百度
+		&lt;/a&gt;
+	&lt;/body&gt;
+&lt;/html&gt;				
+				</pre>
+				<p>
+					表单，下述表单的显示需要实体显示，否则会被浏览器解析
+				</p>
+				<div class="code">
+					& lt; <span>代替 < (&后没有空格，现在是分开，合在一起会被解析)</span>
+				</div>
+				<div class="code">
+					& gt; <span>代替 > (&后没有空格，现在是分开，合在一起会被解析)</span>
+				</div>
+				<div class="code">
+					& nbsp; <span>代替 空格 (&后没有空格，现在是分开，合在一起会被解析)</span>
+				</div>
+				<div class="code">
+					& reg; <span>代替 注册商标(®) (&后没有空格，现在是分开，合在一起会被解析)</span>
+				</div>
+				<div class="code">
+					& copy; <span>代替 版权(© ) (&后没有空格，现在是分开，合在一起会被解析)</span>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+
+</body>
+
+</html>

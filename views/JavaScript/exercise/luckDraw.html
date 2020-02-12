@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./css/luckDraw.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>九宫格抽奖</h4>
+				<pre>
+	&lt;div id="container"&gt;
+		&lt;ul id="oUl"&gt;
+			&lt;li&gt;&lt;img src="images/1.jpg"/&gt;&lt;div class="mask"&gt;&lt;/div&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;img src="images/2.jpg"/&gt;&lt;div class="mask"&gt;&lt;/div&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;img src="images/3.png"/&gt;&lt;div class="mask"&gt;&lt;/div&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;img src="images/4.jpg"/&gt;&lt;div class="mask"&gt;&lt;/div&gt;&lt;/li&gt;
+			&lt;a&gt;开始&lt;/a&gt;
+			&lt;li&gt;&lt;img src="images/5.jpg"/&gt;&lt;div class="mask"&gt;&lt;/div&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;img src="images/6.jpg"/&gt;&lt;div class="mask"&gt;&lt;/div&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;img src="images/7.jpg"/&gt;&lt;div class="mask"&gt;&lt;/div&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;img src="images/8.jpg"/&gt;&lt;div class="mask"&gt;&lt;/div&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;div id="page"&gt;&lt;/div&gt;
+	&lt;/div&gt;
+					
+	var container = document.getElementById('container'),
+		li = container.getElementsByTagName('li'),
+		aa = container.getElementsByTagName('a')[0],
+		page = document.getElementById('page'),
+		timer = null;
+		bReady = false;
+	var order = [0,1,2,4,7,6,5,3];
+	function start(num,str) {
+		var i = 0;
+		var t =60;
+		var round = 10;
+		var rNum = round*8;
+		timer = setTimeout(setFreq, t);
+		function setFreq() {
+			for(var j = 0; j < li.length; j++) {
+				li[j].className = '';
+			}
+			var ord = order[i%li.length];
+			li[ord].className = "active";
+			i++;
+			if(i<rNum){
+				timer = setTimeout(setFreq, t);
+			}else if(i>= rNum-8 && i< rNum+num){
+				t+=(i-rNum+8)*5;
+				timer = setTimeout(setFreq, t);
+			}
+			if( i >= rNum+num){
+				page.innerHTML="恭喜你中了" + num + str +"" ;
+				var timer2 = null;
+				timer2 = setTimeout(function(){
+					page.style.display="block";
+					clearTimeout(timer2);
+				},1000);
+				bReady = false;
+				clearTimeout(timer);
+			}
+		}
+	}
+	var num = 0;
+	aa.onclick = function() {
+		/*'1-8'*/
+		if(bReady) return false;
+		page.style.display="none";
+		bReady = true;
+		num = random(1,9)
+		console.log(num)
+		start(num,"000万现金大礼包");
+	}
+	function random(n, m) {
+		return parseInt((m - n) * Math.random() + n);
+	}				
+				</pre>
+			</div>
+			<div id="container">
+				<ul id="oUl">
+					<li><img src="images/1.jpg"/><div class="mask"></div></li>
+					<li><img src="images/2.jpg"/><div class="mask"></div></li>
+					<li><img src="images/3.png"/><div class="mask"></div></li>
+					<li><img src="images/4.jpg"/><div class="mask"></div></li>
+					<a>开始</a>
+					<li><img src="images/5.jpg"/><div class="mask"></div></li>
+					<li><img src="images/6.jpg"/><div class="mask"></div></li>
+					<li><img src="images/7.jpg"/><div class="mask"></div></li>
+					<li><img src="images/8.jpg"/><div class="mask"></div></li>
+				</ul>
+				<div id="page"></div>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+	<script type="text/javascript">
+		var container = document.getElementById('container'),
+			li = container.getElementsByTagName('li'),
+			aa = container.getElementsByTagName('a')[0],
+			page = document.getElementById('page'),
+			timer = null;
+			bReady = false;
+		
+		var order = [0,1,2,4,7,6,5,3];
+		function start(num,str) {
+			var i = 0;
+			var t =60;
+			var round = 10;
+			var rNum = round*8;
+			
+			timer = setTimeout(setFreq, t);
+			function setFreq() {
+				for(var j = 0; j < li.length; j++) {
+					li[j].className = '';
+				}
+				var ord = order[i%li.length];
+				li[ord].className = "active";
+				i++;
+				if(i<rNum){
+					timer = setTimeout(setFreq, t);
+				}else if(i>= rNum-8 && i< rNum+num){
+					t+=(i-rNum+8)*5;
+					timer = setTimeout(setFreq, t);
+				}
+				if( i >= rNum+num){
+					alert("恭喜你中了" + num + str +"" )
+					// page.innerHTML="恭喜你中了" + num + str +"" ;
+					var timer2 = null;
+					timer2 = setTimeout(function(){
+						// page.style.display="block";
+						clearTimeout(timer2);
+					},1000);
+					bReady = false;
+					clearTimeout(timer);
+				}
+			}
+		}
+		var num = 0;
+		aa.onclick = function() {
+			/*'1-8'*/
+			if(bReady) return false;
+			page.style.display="none";
+			bReady = true;
+			num = random(1,9)
+			console.log(num)
+			start(num,"000万现金大礼包");
+		}
+		
+		function random(n, m) {
+			return parseInt((m - n) * Math.random() + n);
+		}
+	</script>
+</body>
+
+</html>

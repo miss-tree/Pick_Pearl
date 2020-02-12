@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>Date 日期对象</h4>
+				<pre>
+	var myDate = new Date();
+	myDate.getFullYear();    					//获取完整的年份(4位,1970-????)
+	myDate.getMonth();       					//获取当前月份(0-11,0代表1月)
+	myDate.getDate();        					//获取当前日(1-31)
+	myDate.getDay();         					//获取当前星期X(0-6,0代表星期天)
+	myDate.getTime();        					//获取当前时间(从1970.1.1开始的毫秒数)
+	myDate.getHours();       					//获取当前小时数(0-23)
+	myDate.getMinutes();    					//获取当前分钟数(0-59)
+	myDate.getSeconds();     					//获取当前秒数(0-59)
+	myDate.getMilliseconds();    					//获取当前毫秒数(0-999)
+	myDate.toLocaleDateString();     				//获取当前日期
+	var mytime=myDate.toLocaleTimeString();     			//获取当前时间
+	myDate.toLocaleString();        				//获取日期与时间				
+				</pre>
+			</div>
+			<div>
+				<h4>计算距离时间</h4>
+				<pre>
+	&lt;input type="text" name="" id="t" value="" /&gt;				
+					
+	function calculateTime(){
+		var now = Date.now();
+		var holiday = new Date("2020-10-01 00:00:00").getTime();
+		var time = Math.floor((holiday-now)/1000);
+		var day = Math.floor(time/(60*60*24));
+		var hour = Math.floor(time%(60*60*24)/3600);
+		var min = Math.floor((time/60)%60);
+		var sec = Math.floor(time%60);
+		t.value=day+"天"+hour+"时"+min+"分"+sec+"秒";
+	}	
+	setInterval(calculateTime,1000);//设置每秒更新			
+				</pre>
+	<input type="text" name="" id="t" value="" />			
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script type="text/javascript">
+		function calculateTime(){
+			var now = Date.now();
+			var holiday = new Date("2020-10-01 00:00:00").getTime();
+			var time = Math.floor((holiday-now)/1000);
+			var day = Math.floor(time/(60*60*24));
+			var hour = Math.floor(time%(60*60*24)/3600);
+			var min = Math.floor((time/60)%60);
+			var sec = Math.floor(time%60);
+			t.value=day+"天"+hour+"时"+min+"分"+sec+"秒";
+		}
+		setInterval(calculateTime,1000);//设置每秒更新
+	</script>
+</body>
+
+</html>

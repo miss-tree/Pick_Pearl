@@ -1,8 +1,6 @@
 /*
- *
  *   H+ - 后台主题UI框架
  *   version 4.9
- *
 */
 
 h1,
@@ -3722,7 +3720,7 @@ nav.page-tabs .page-tabs-content {
 }
 
 #content-main {
-    height: calc(100% - 140px);
+    height: calc(100% - 100px);
     overflow: hidden;
 }
 

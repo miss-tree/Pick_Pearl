@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>变量声明</h4>
+				<p>JS作为一种弱类型语言,ES5之前有一个特点
+			允许变量"重复声明";变量声明提前,在声明前使用变量只会报"undefined",</p>
+				<pre>
+	console.log(a)		=>undefined
+	var a="hello world";
+	console.log(a)		=>"hello world"
+				</pre>
+				<div>
+					ES6 推出 const let 关键字声明变量
+			   </div>
+				<div class="code">const <span>声明一个定值(固定值/常量),不存在声明提前</span></div>
+				<div class="code">let <span>声明一个变量,不存在声明提前</span></div>
+				<pre>
+	console.log(a,b)	// 报错	Uncaught ReferenceError: Cannot access 'a' before initialization
+	let a="hello";
+	const b="world";
+	console.log(a,b)				
+				</pre>
+				<p>提前使用就会报错，也不可以重复声明。
+				尤其是 const 声明一个常量，若是Arrary、string和number类型就不可以更改，
+				若是对象类型不可以更改原先设置，可以添加另外的属性.这就是ES6中的改变，不可以重复声明</p>
+				<pre>
+	const 	obj={name:"hello"};
+	console.log(obj)	
+			obj.sex="男"
+	console.log(obj)	
+	若		obj.name="world"
+	console.log(obj) =>Uncaught SyntaxError: Identifier 'obj' has already been declared
+				</pre>
+			</div>
+			<div>
+				<h4>函数声明</h4>
+				<p>声明一个函数使用function 关键字
+			函数声明式  (可以随时随地调用)
+			使用相同的代码块,执行的值不同的职责，
+			就可以通过函数传参的方式进行使用</p>
+			<pre>
+	var f1=function(){
+		alert("我是f1")
+	}
+	console.log(f1);
+	f1() 	//..函数调用
+			</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

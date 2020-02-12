@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>Math 对象</h4>
+				<pre>
+	Math 对象用来处理复杂的数学运算。
+	Math对象是javascript的一个全局对象，不需要用new 创建
+	
+	Math.abs(-2);           该方法可返回一个数的绝对值。
+	
+	Math.round(5.5);      该方法可把一个数字舍入为最接近的整数。
+	Math.floor(1.6);       floor() 方法返回小于等于x的最大整数。（取小整）
+	~~(5.8) =>5
+	
+	Math.random();      该方法可返回介于 0（包含） ~ 1（不包含） 之间的一个随机数。
+	Math.random()*7;      该方法可返回介于 0（包含） ~ 7（不包含） 之间的一个随机数。
+	Math.random()*7+10;      该方法可返回介于 10（包含） ~ 17（不包含） 之间的一个随机数。
+	
+	Math.ceil(1.4);         ceil()   方法返回大于等于x的最小整数。（取大整）
+	
+	Math.pow(4,3);        pow() 方法返回 x 的 y 次幂。  （4的3次方）				
+				</pre>
+			</div>
+			<div>
+				<h4>取5个随机整数</h4>
+				<pre>
+	输出从小到大排序好的五个不重复的随机整数,范围[10-23)
+	function random(){ 
+		var number_arr=[]
+		for(var j=10;j<23;j++){
+			number_arr.push(j)
+		}
+		var tmp_arr=[]//装载5个随机数的数组
+		,rand_num//随机数;
+		for(var i=0;i<5;i++){
+			rand_num=~~(Math.random()*number_arr.length);
+			tmp_arr.push(number_arr.splice(rand_num,1)[0]);
+		}
+		return tmp_arr.sort((a,b)=>{return a-b;});
+	}				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

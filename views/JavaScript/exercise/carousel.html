@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./css/carousel.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>轮播图</h4>
+				<div>思路：将轮播图片并排，通过修改位置展现图片</div>
+				<div>其实还可以通过类名显示的方式和 position 方式控制，但是效果不好看</div>
+				<pre>
+	li{
+		list-style: none;
+	}
+	.carousel{
+		width: 520px;
+		margin: 0 auto;
+		overflow: hidden;
+		position: relative;
+	}
+	ul{
+		width: 100%;
+		white-space: nowrap;
+		font-size: 0;
+		transition: all 0.5s;
+		-webkit-transform: translate3d(0,0,0);
+		transform: translate3d(0,0,0);
+	}
+	ul li{
+		display: inline-block;
+		width: 100%;
+		height: 200px;
+	}
+	.carousel ul li img{
+		display: block;
+		width: 100%;
+	}
+	.arrow{
+		position:absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: 30px;
+		color: white;
+		cursor: pointer;
+		background: rgba(0,0,0,.5);
+	}
+	.left{
+		left: 0;
+	}
+	.right{
+		right: 0;
+	}
+	.dots{
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		width: 100%;
+		text-align: center;
+	}
+	.dian{
+		text-align: center;
+		display:inline-block;
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		background:#fff ;
+		cursor: pointer;
+		margin: 2px;
+	}
+	.active{
+		background: green;
+	}		
+			
+	&lt;div class="carousel"&gt;
+		&lt;!--滑动内容--&gt;
+		&lt;ul class="picWrap"&gt;
+			&lt;li&gt;&lt;a href="#"&gt;&lt;img src="https://img.alicdn.com/tfs/TB1myaXX7voK1RjSZFDXXXY3pXa-520-280.jpg_q90_.webp"/&gt;&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;&lt;img src="https://aecpm.alicdn.com/simba/img/TB183NQapLM8KJjSZFBSutJHVXa.jpg"/&gt;&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;&lt;img src="https://aecpm.alicdn.com/simba/img/TB1JNHwKFXXXXafXVXXSutbFXXX.jpg"/&gt;&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;&lt;img src="https://aecpm.alicdn.com/simba/img/TB1XotJXQfb_uJkSnhJSuvdDVXa.jpg"/&gt;&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;&lt;img src="https://img.alicdn.com/tfs/TB1fnebXQvoK1RjSZFwXXciCFXa-520-280.jpg_q90_.webp"/&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;!--左右箭头--&gt;
+		&lt;span class="arrow left"&gt;&lt;&lt;/span&gt;
+		&lt;span class="arrow right"&gt;&gt;&lt;/span&gt;
+		&lt;!--加点--&gt;
+		&lt;div class="dots"&gt;
+			&lt;div class="dian active"&gt;&lt;/div&gt;
+			&lt;div class="dian"&gt;&lt;/div&gt;
+			&lt;div class="dian"&gt;&lt;/div&gt;
+			&lt;div class="dian"&gt;&lt;/div&gt;
+			&lt;div class="dian"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;	
+		
+	var dians=document.querySelectorAll(".dian");
+	dians=Array.from(dians)
+	dians.forEach(function(ele,index){
+		ele.onclick=function(){
+			sum=-1*index*100+"%";
+			ul.style.transform="translate3d("+sum+",0,0)";
+			//去除黑点,更新激活类
+			var d=document.querySelector(".active");
+			var str=d.getAttribute("class");
+			//使用字符串replace方法 将字符串"active"替换为" " 
+			str=str.replace(/active/g,"");
+			 d.setAttribute("class",str);
+			var className=ele.getAttribute("class");
+			className+=" active";
+			ele.setAttribute("class",className);
+		}
+	})
+
+	//难点：处理边界问题
+	var  ul=document.querySelector("ul");
+	var lis=document.querySelectorAll("li");
+	var arrowRight=document.querySelector(".right")
+	var arrowleft=document.querySelector(".left")
+	var curIndex=0;//当前轮播图的下标
+	var sum=0;//总滑动距离
+	
+	arrowRight.onclick=function(){
+		curIndex=curIndex>=lis.length-1?0:curIndex+1;
+		sum=-1*curIndex*100+"%";
+		ul.style.transform="translate3d("+sum+",0,0)";
+		//ul.style.webkitTransform="translate3d("+sum+"%,0,0)";
+		setClass(curIndex)
+	}
+	arrowleft.onclick=function(){
+		curIndex=curIndex<=0?lis.length-1:curIndex-1;
+		sum=-1*curIndex*100+"%";
+		ul.style.transform="translate3d("+sum+",0,0)";
+		setClass(curIndex)
+	 }
+	function setClass(num){
+		dians.forEach((el,index)=>{
+			str=el.getAttribute("class")
+			str=str.replace(/active/g,"");
+			el.setAttribute("class",str);
+		})
+		dians[curIndex].setAttribute("class","dian active")
+	}	
+				</pre>
+			</div>
+			<div class="carousel">
+				<!--滑动内容-->
+				<ul class="picWrap">
+					<li><a href="#"><img src="./img/01.webp"/></a></li>
+					<li><a href="#"><img src="./img/02.jpg"/></a></li>
+					<li><a href="#"><img src="./img/03.jpg"/></a></li>
+					<li><a href="#"><img src="./img/04.jpg"/></a></li>
+					<li><a href="#"><img src="./img/05.webp"/></a></li>
+				</ul>
+				<!--左右箭头-->
+				<span class="arrow left">&lt;</span>
+				<span class="arrow right">&gt;</span>
+				<!--加点-->
+				<div class="dots">
+					<div class="dian active"></div>
+					<div class="dian"></div>
+					<div class="dian"></div>
+					<div class="dian"></div>
+					<div class="dian"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+	<script type="text/javascript">
+		var dians=document.querySelectorAll(".dian");
+		dians=Array.from(dians)
+		dians.forEach(function(ele,index){
+			ele.onclick=function(){
+				sum=-1*index*100+"%";
+				ul.style.transform="translate3d("+sum+",0,0)";
+				//去除黑点,更新激活类
+				var d=document.querySelector(".active");
+				var str=d.getAttribute("class");
+				//使用字符串replace方法 将字符串"active"替换为" " 
+				str=str.replace(/active/g,"");
+				 d.setAttribute("class",str);
+				var className=ele.getAttribute("class");
+				className+=" active";
+				ele.setAttribute("class",className);
+			}
+		})
+
+		//难点：处理边界问题
+		var  ul=document.querySelector("ul");
+		var lis=document.querySelectorAll("li");
+		var arrowRight=document.querySelector(".right")
+		var arrowleft=document.querySelector(".left")
+		var curIndex=0;//当前轮播图的下标
+		var sum=0;//总滑动距离
+		
+		arrowRight.onclick=function(){
+			curIndex=curIndex>=lis.length-1?0:curIndex+1;
+			sum=-1*curIndex*100+"%";
+			ul.style.transform="translate3d("+sum+",0,0)";
+			//ul.style.webkitTransform="translate3d("+sum+"%,0,0)";
+			setClass(curIndex)
+		}
+		arrowleft.onclick=function(){
+			curIndex=curIndex<=0?lis.length-1:curIndex-1;
+			sum=-1*curIndex*100+"%";
+			ul.style.transform="translate3d("+sum+",0,0)";
+			setClass(curIndex)
+		 }
+		function setClass(num){
+			dians.forEach((el,index)=>{
+				str=el.getAttribute("class")
+				str=str.replace(/active/g,"");
+				el.setAttribute("class",str);
+			})
+			dians[curIndex].setAttribute("class","dian active")
+		}
+	</script>
+</body>
+
+</html>

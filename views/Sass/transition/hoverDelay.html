@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<link href="../../../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h3>触碰移动和旋转</h3>
+				<pre>
+	&lt;style type="text/css"&gt;
+		.fl{
+			float: left;
+		}
+		.baba{
+			width: 200px;
+			height: 200px;
+			background: skyblue;
+			transition: transform 2s;
+		}
+		.baba:hover{
+			/*变换- 平移translate*/
+			/*translateX(100%);*/
+			/*是基于自身宽度进行计算*/
+			/*translateY(100%);*/
+			/*是基于自身高度进行计算*/
+			transform: translateX(100%);
+			/*transform: translate(100% ,100%);*/
+			/*scale*/
+			/*scale缩放因子&lt;1缩小, =1保持原样,>1放大*/
+			/*-webkit-transform: scale(1.3);*/
+			/*transform: scale(1.3);*/
+			/*rotate旋转*/
+			/*transform:rotatex(90deg)*/
+			/*skew倾斜*/
+			/*transform:skew(45deg) ;*/
+		}	
+		.wang{
+			width: 200px;
+			height: 200px;
+			background: greenyellow;
+			transition: transform 10s;
+		}
+		.wang:hover{
+			transform:rotate(9000deg)
+		}	
+	&lt;/style&gt;	
+	&lt;div class="baba fl"&gt; &lt;/div&gt;
+	&lt;div class="wang fl"&gt; &lt;/div&gt;			
+	<style type="text/css">
+		.fl{
+			float: left;
+		}
+		.baba{
+			width: 200px;
+			height: 200px;
+			background: skyblue;
+			transition: transform 2s;
+		}
+		.baba:hover{
+			transform: translateX(100%);
+		}	
+		.wang{
+			width: 200px;
+			height: 200px;
+			background: greenyellow;
+			transition: transform 10s;
+		}
+		.wang:hover{
+			transform:rotate(9000deg)
+		}	
+	</style>
+				</pre>
+			</div>
+			<div>
+				<div class="baba fl"></div>
+				<div class="wang fl"></div>
+			</div>
+		</div> 
+	</div>
+	<!--第三方插件-->
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

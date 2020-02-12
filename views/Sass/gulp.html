@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<link href="../../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h3>使用gulp</h3>
+				<p></p>
+				<div class="code">
+					npm install gulp -g<span>全局安装gulp</span>
+				</div>
+				<div class="code">
+					npm install --save-dev gulp-autoprefixer<span>将scss编译成css</span>
+				</div>
+				<div class="code">npm install gulp-clean-css --save-dev
+					npm i gulp-plumber -D<span>自动加前缀</span>
+				</div>
+				<div class="code">
+					npm i browser-sync -D<span>自动刷新、缓存</span>
+				</div>
+				<div class="code">
+					npm install gulp-clean-css --save-dev<span>压缩css代码</span>
+				</div>
+			</div>	
+			<div>
+				<h4>gulp配置</h4>
+				<pre>
+	//引入gulp
+	const gulp = require("gulp");
+	//压缩css代码
+	const CleanCss = require("gulp-clean-css");
+	//压缩css文件，减小文件大小，并给引用url添加版本号避免缓存
+	gulp.task("copy-html",function(){
+	//	html文件导入进来
+		gulp.src("src/*.html")
+			.pipe(gulp.dest("dist/"))
+	})
+	gulp.task("minify-css",function(){
+	//		要处理的css文件,导入进来
+			gulp.src("src/css/*.css")
+	//		压缩css代码
+			.pipe(CleanCss({compatibility:'ie8'}))
+			.pipe(gulp.dest("dist/css"))
+	})
+	
+	//引入gulp-sass
+	const sass = require("gulp-sass");
+	//抑制错误
+	const plumber=require("gulp-plumber")
+	//自动加前缀
+	const autoprefixer=require("gulp-autoprefixer")
+	//将scss编程成css
+	gulp.task("sass",function(){
+		gulp.src("src/scss/*.scss")
+		    .pipe(plumber())
+			.pipe(sass())
+	//		自动加前缀
+			.pipe(autoprefixer({
+	//			重要配置详见下面,兼容旧版本浏览器
+				browsers:['since 2010'],
+	//			是否美化属性值
+				cascade:false          
+			}))
+			.pipe(plumber.stop())
+			.pipe(gulp.dest("src/css/"))
+	})
+	
+	gulp.task("default",function(){
+		console.log("default");
+	})
+	//定义一个任务
+	gulp.task("hi",function(){
+		console.log("hello");
+	})
+	//自动添加前缀
+	//const autoprefixer = require('gulp-autoprefixer');
+	
+	//var gulp        = require('gulp');
+	var browserSync = require('browser-sync').create();
+	// 静态服务器
+	gulp.task('browser-sync', function() {
+	    browserSync.init({
+	        server: {
+	            baseDir: "./"
+	        },
+	        port:8000
+	    });
+	    gulp.watch(["src/*.html"],browserSync.reload).on("change",browserSync.reload)
+	//  热更新,监听html的变化,如果有变化就进行重载
+		gulp.watch("src/scss/*.scss",[sass]).on("change",browserSync.reload)
+		//热更新，监听scss的变化，如果有变化就执行sass命令
+	});
+				</pre>
+			</div>
+		</div> 
+	</div>
+	<!--第三方插件-->
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

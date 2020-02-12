@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>伪数组</h4>
+				<div>伪数组只有数组的属性，而没有方法，先转化再使用数组方法</div>
+				<pre>
+	传入三个数字，进行大到小的排序，返回一个数组
+	function fun(a,b,c){
+		//1.将arguments（类数组）转为数组
+		var arr="";
+		arr=Array.prototype.slice.call(arguments);
+		
+		//ES6 方法  Array.from 将类数字转为数组
+		arr=Array.from(arguments);
+		
+		//2.调用数组sort方法，快速排序
+		return arr.sort(function(a,b){
+			return b-a;
+		/* 方法二：return arr.sort((a,b)=>{return a-b;});*/
+		})
+	}
+	console.log(fun(2,20,16));	//output: [20, 16, 2]				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<!--定义数据-->
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

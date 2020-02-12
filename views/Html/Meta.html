@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h3>Meta大全</h3>
+			</div>
+			<div>
+				<h4>PC端</h4>
+				<pre>
+	声明文档使用的字符编码
+	&lt;meta http-equiv="content-type" content="text/html; " /&gt;
+	&lt;meta charset="utf-8"&gt;
+	
+	声明页面刷新或跳转
+	&lt;meta http-equiv="refresh" content="10" /&gt;
+	&lt;meta http-equiv="refresh" content="10; url=http://www.doyoe.com" /&gt;
+	该声明用来指定页面自刷新或者跳转到其它页面，其中的时间单位是s。该声明用来指定页面自刷新或者跳转到其它页面，其中的时间单位是s。
+	
+	声明页面过期时间
+	&lt;meta http-equiv="expires" content="0" /&gt;
+	&lt;meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" /&gt;
+	
+	声明页面是否缓存
+	&lt;meta http-equiv="pragma" content="no-cache" /&gt;
+	&lt;meta http-equiv="cache-control" content="no-cache" /&gt;
+	
+	声明作者信息
+	&lt;meta name="author" content="joy, dooyoe@gmail.com" /&gt;
+	
+	声明文档关键字
+	&lt;meta name="keywords" content="CSS, HTML, JavaScript, 前端" /&gt;
+	多关键字之间以半角逗号分隔
+	
+	声明文档描述
+	&lt;meta name="description" content="这是一份meta列表" /&gt;
+	
+	声明使用的浏览器及版本
+	&lt;meta http-equiv="x-ua-compatible" content="IE=7" /&gt;
+	&lt;meta http-equiv="x-ua-compatible" content="IE=50" /&gt;
+	&lt;meta http-equiv="x-ua-compatible" content="IE=EmulateIE7" /&gt;
+	&lt;meta http-equiv="x-ua-compatible" content="IE=Edge" /&gt;
+	&lt;meta http-equiv="x-ua-compatible" content="IE=7, 10, 11" /&gt;
+	&lt;meta http-equiv="x-ua-compatible" content="IE=Edge, chrome=1" /&gt;
+	
+	声明搜索引擎抓取方式
+	&lt;meta name="robots" content="index" /&gt;
+	
+	声明搜索引擎抓取间隔
+	&lt;meta name="revisit-after" content="10 days" /&gt;
+				</pre>
+			</div>
+			<div>
+				<h4>移动端</h4>
+				<pre>
+	声明viewport视口
+	&lt;meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" /&gt;
+	
+	声明添加到主屏幕的Web App标题
+	&lt;meta name="apple-mobile-web-app-title" content="Web App名称" /&gt;
+	但如果你想要网页标题和App名字不一样的话，那就只有iOS才行。
+	
+	声明添加到主屏幕时隐藏地址栏和状态栏（即全屏）
+	&lt;meta name="apple-mobile-web-app-capable" content="yes" /&gt;
+	
+	声明添加到主屏幕时设置系统顶栏颜色
+	&lt;meta name="apple-mobile-web-app-capable" content="yes" /&gt;
+	有了这个前提，你可以通过下面的方式来进行定义：
+	&lt;meta name="apple-mobile-web-app-status-bar-style" content="black" /&gt;
+	只有3个固定值可选：default | black | black-translucent
+	
+	电话号码识别
+	&lt;meta name="format-detection" content="telephone=no" /&gt;
+	
+	邮箱地址识别
+	&lt;meta name="format-detection" content="email=no" /&gt;				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

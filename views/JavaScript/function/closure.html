@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>闭包</h4>
+				<p>调用函数时,会产生一个"执行环境"
+			闭包closure:有权访问外部变量或函数的执行环境
+				有权访问外部变量的函数
+			函数b对_a变量始终保持引用</p>
+			<pre>
+	function a(){
+		var _a=10;
+		console.log(g);
+		function b(){
+			var b_b="b函数内的变量";
+		}
+		console.log(b_b); //报错
+	}
+	a();			
+			</pre>
+			<br/>
+				<pre>
+	var lis=document.querySelectorAll("li");
+	for(var i=0;i<lis.length;i++){
+		(function(k){//立刻执行函数，形成一个闭包ES5
+			lis[i].addEventListener("click",function(){
+				alert(k);
+			})	
+		})(i);
+	}
+	for循环结束后,在内存里形成了3个闭包Closure
+	滥用闭包,可能会出现内存泄漏的问题
+	等价下面的方法
+	for(let i=0;i<lis.length;i++){
+		lis[i].addEventListener("click",function(){
+			alert(k);
+		})	
+	}
+				</pre>
+				<p>for循环用 var 声明只能执行最后一个，用立即函数的方法解决作用域的问题，
+				就是让循环每次都执行for里面的代码在执行下一次。用 let 声明定义了作用域，
+				每个 i 都能执行逐次执行，互不影响</p>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>第一</h4>
+				<pre>
+	document.write("&lt;table border=1&gt;");
+	for(var j=1;j&lt;=9;j++){
+		document.write("&lt;tr&gt;");
+		for(var i=1;i&lt;=9;i++){
+			if(i&gt;j){
+				document.write("&lt;td&gt;&lt;/td&gt;")
+			}else{
+				document.write("&lt;td&gt;"+i+"*"+j+"="+i*j+"&lt;/td&gt;");
+			}
+		};
+		document.write("&lt;/tr&gt;");
+	}
+	document.write("&lt;/table&gt;");		
+	<img src="./img/table01.jpg" alt="">		
+				</pre>
+			</div>
+			<div>
+				<h4>第二</h4>
+				<pre>
+	document.write('&lt;table border="1"&gt;');
+	for(var a = 9; a &gt; 0; a--) {
+		document.write('&lt;tr&gt;');
+		for(var b = 1; b &lt;= 9; b++) {
+			document.write('&lt;td &gt;');
+			if(b &lt;= a) {
+				document.write(b + '*' + a + '=' + a * b);
+			} else {
+				document.write('');
+			}
+			document.write('&lt;/td&gt;');
+		}
+		document.write('&lt;/tr&gt;');
+	}
+	document.write('&lt;/table&gt;');
+	<img src="./img/table02.jpg" alt="">				
+				</pre>
+			</div>
+			<div>
+				<h4>第三</h4>
+				<pre>
+	document.write('&lt;table border="1"&gt;');
+	for(var a = 1; a &lt;= 9; a++) {
+		document.write('&lt;tr&gt;');
+		for(var b = 9; b &gt; 0; b--) {
+			document.write('&lt;td &gt;');
+			if(b &lt;= a) {
+				document.write(b + '*' + a + '=' + a * b);
+			} else {
+				document.write('')
+			}
+			document.write('&lt;/td&gt;');
+		}
+		document.write('&lt;/tr&gt;');
+	}
+	document.write('&lt;/table&gt;');
+	<img src="./img/table03.jpg" alt="">					
+				</pre>
+			</div>
+			<div>
+				<h4>第四</h4>
+				<pre>
+	document.write('&lt;table border="1"&gt;');
+	for(var a = 9; a &gt; 0; a--) {
+		document.write('&lt;tr&gt;');
+		for(var b = 9; b &gt; 0; b--) {
+			document.write('&lt;td &gt;');
+			if(b &lt;= a) {
+				document.write(b + '*' + a + '=' + a * b);
+			}
+			document.write('&lt;/td&gt;');
+		}
+		document.write('&lt;/tr&gt;');
+	}
+	document.write('&lt;/table&gt;');
+	<img src="./img/table04.jpg" alt="">		
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

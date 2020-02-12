@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>有一分数序列：2/1，3/2，5/3，8/5，13/8，21/13...求出这个数列的前20项之和。</h4>
+				<pre>
+	var fenzi = 2,
+		fenmu = 1,
+		sum = 0;
+	for(var i = 0; i < 20; i++) {
+		sum += fenzi / fenmu;
+		var tmp = fenmu
+		fenmu = fenzi;
+		fenzi = tmp + fenzi;
+	}		
+	=>前20项之和是：32.66026079864164	
+				</pre>
+			</div>
+			<div>
+				<h4>有一座桥，当你身上钱大于30000时，
+				每过一次桥支付3000元。当钱小于或等于30000时，
+				每过一次桥支付你身上10%的钱。
+				已知你有33000元，问过这座桥多少次之后，身上的钱会少于100块?。</h4>
+				<pre>
+	var total = 33000,
+		i = 0;
+	while(total >= 100) {
+		if(total > 30000) {
+			total -= 3000;
+		} else {
+			total *= .9;
+		}
+		i++;
+	}		
+	=>能过这座桥56次	
+				</pre>
+			</div>
+			<div>
+				<h4>黑白棋   奇数行 && 奇数列 || 偶数行 && 偶数列</h4>
+				<pre>
+	function chess(a) {
+		document.write('<table cellspacing=0px;>');
+		for(var i = 1; i <= a; i++) {
+			document.write('&lt;tr&gt;');
+			for(var j = 1; j <= a; j++) {
+				if(i % 2 != 0 && j % 2 != 0 || i % 2 == 0 && j % 2 == 0) {
+					document.write('&lt;td class="heise" &gt;&lt;/td&gt;');
+				} else { document.write('&lt;td class="huise"&gt;&lt;/td&gt;'); }
+			}
+			document.write('&lt;/tr&gt;');
+		}
+		document.write('&lt;/table&gt;');
+	}
+	chess(8);
+	<img src="./img/ddl.jpg" alt="">
+				</pre>
+			</div>
+			<div>
+				<h4>将100元整钞换成20元、10元、5元、2元、1元零钱，要求零钱总张数为30张，求有多少种换法？
+				假如要求每种纸币必须至少有一张，又有多少种换法呢？</h4>
+				<pre>
+	var s, w, e, y, x, count = 0;
+	for(s = 0; s <= 100; s++) {
+		for(w = 0; w <= 50; w++) {
+			for(e = 0; e <= 20; e++) {
+				for(y = 0; y <= 10; y++) {
+					for(x = 0; x <= 5; x++) {
+						if(s * 1 + w * 2 + e * 5 + y * 10 + x * 20 == 100 && s + w + e + y + x == 30) {
+							count++;
+						}
+					}
+				}
+			}
+		}
+	}
+	=>不限制纸币种类的话，总共有96种换法
+	var s, w, e, y, x, count = 0;
+	for(s = 1; s <= 100; s++) {
+		for(w = 1; w <= 50; w++) {
+			for(e = 1; e <= 20; e++) {
+				for(y = 1; y <= 10; y++) {
+					for(x = 1; x <= 5; x++) {
+						if(s * 1 + w * 2 + e * 5 + y * 10 + x * 20 == 100 && s + w + e + y + x == 30) {
+							count++;
+						}
+					}
+				}
+
+			}
+		}
+	}
+	=>每种纸币只有一张，有30种换法
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

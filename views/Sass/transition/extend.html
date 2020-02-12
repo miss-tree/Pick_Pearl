@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<link href="../../../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h4>延伸</h4>
+				<pre>
+	&lt;style type="text/css"&gt;
+		.baba{
+			width: 200px;
+			height: 200px;
+			background: skyblue;
+			transition: border-color 1s linear; 
+			/*(显示)过渡的动画属性
+			多个值用,号隔开*/
+			transition-property:width,opacity ;
+			/*动画持续的时间*/
+			transition-duration: 10s,2s;
+			/*动画播放速率*/
+			transition-timing-function:ease-in ;
+			/*动画延迟播放时间*/
+			/*transition-delay: 3s;*/
+			/*transition: background-color 1s ease-in 2s width; 0.5s ease-out;*/
+		}
+		.baba:hover{
+			width: 500px;
+			/*background: red;*/
+			opacity: 0.5;
+		}	
+	&lt;/style&gt;	
+	&lt;div class="baba"&gt; &lt;/div&gt;
+	<style type="text/css">
+		.baba{
+			width: 200px;
+			height: 200px;
+			background: skyblue;
+			transition: border-color 1s linear; 
+			transition-property:width,opacity ;
+			transition-duration: 10s,2s;
+			transition-timing-function:ease-in ;
+		}
+		.baba:hover{
+			width: 500px;
+			opacity: 0.5;
+		}
+	</style>
+				</pre>
+			</div>
+			<div>
+				<div class="baba"></div>
+			</div>
+		</div> 
+	</div>
+	<!--第三方插件-->
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

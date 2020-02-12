@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h3>判断数据类型</h3>
+				<p>判断数据类型常用的方式是 typeof ,但是对于数组和 null 的判断不准。</p>
+			</div>
+			<div>
+				<h4>typeof</h4>
+				<pre>
+	typeof 　　undefined　　		'undefined'
+	typeof 　　null 　　　　 	'object'
+	typeof 　　true 　　　　 	'boolean'
+	typeof 　　123 　　　　　	'number'
+	typeof 　　"abc" 　　　　	'string'
+	typeof 　　function(){} 	'function'
+	typeof 　　{} 　　　　　　	'object'
+	typeof 　　[] 　　　　　　	'object'
+				</pre>
+			</div>
+			<div>
+				<h4>判断数组</h4>
+				<pre>
+	1、Array.isArray()  //ES6方法
+	var a = [];
+	Array.isArray(a); // true
+	
+	2、constructor属性
+	var a = [];
+	a.constructor === Array // true
+	
+	3、instanceof (可判断 Arrray、Object。不推荐)
+	var a =[];
+	a instanceof Array // true
+	
+	4、$.isPlainObject() 
+	var a = {}; // 或 var a = new Object();
+	$.isPlainObject(a) // true
+	
+	5、Object.prototype.toString.call()   (推荐)
+	var arr= []
+	console.log( Object.prototype.toString.call(arr));=>"[object Array]"
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

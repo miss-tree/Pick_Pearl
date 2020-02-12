@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<link href="../../../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h3>缩放</h3>
+				<pre>
+	&lt;style type="text/css"&gt;
+		.baba{
+			width: 100px;
+			height: 100px;
+			background-color: skyblue;
+			/*动画名(番号)*/
+			animation-name: animatetions;
+			/*动画播放时间 duration*/
+			animation-duration: 2s;
+			/*动画播放次数  infinite(无限);*/
+			animation-iteration-count: 10;
+			/*动画播放以外的状态         
+			 * forwards   动画结束后的状态
+			 * backwards  动画开始前的状态           */
+			animation-fill-mode: forwards;
+			/*动画播放"方向"*/
+			/*reverse 反转"结局"->"第一集"*/
+			/*alternate 正反转  "第一集"->"结局"->"第一集"*/
+			animation-direction: reverse;
+		}
+		.baba:hover{
+			 /*paused  暂停动画      running 播放动画*/
+			animation-play-state: paused;
+		}
+		/*@-webkit-keyframes animatetions{
+			0%{
+				-webkit-transform: translate(0px,0px);
+				transform: translate(0px ,0px);
+			}
+			50%{
+				-webkit-transform: translate(50px,100px);
+				transform: translate(50px,100px);
+				
+			}
+			100%{
+				-webkit-transform: translate(100px,0px);
+				transform: translate(100px,0px);
+				
+			}
+		}*/
+		@keyframes animatetions{
+			from{
+				/*-webkit-transform: translate(0px ,0px);*/
+				transform: translate(0px,0px);
+				transform: scale(1);
+			}
+			50%{
+				/*-webkit-transform: translate(50px,100px);*/
+				transform: translate(50px,100px);
+				transform: scale(0.2);
+			}
+			to{
+				/*-webkit-transform: translate(100px,0px);*/
+				transform: translate(100px,0px);
+				transform: scale(0.5);
+			}
+		}	
+	&lt;/style&gt;	
+	&lt;div class="baba fl"&gt; &lt;/div&gt;
+	&lt;div class="wang fl"&gt; &lt;/div&gt;			
+	<style type="text/css">
+		.baba{
+			width: 100px;
+			height: 100px;
+			background-color: skyblue;
+			animation-name: animatetions;
+			animation-duration: 2s;
+			animation-iteration-count: 10;
+			animation-fill-mode: forwards;
+			animation-direction: reverse;
+		}
+		.baba:hover{
+			animation-play-state: paused;
+		}
+		@keyframes animatetions{
+			from{
+				transform: translate(0px,0px);
+				transform: scale(1);
+			}
+			50%{
+				transform: translate(50px,100px);
+				transform: scale(0.2);
+			}
+			to{
+				transform: translate(100px,0px);
+				transform: scale(0.5);
+			}
+		}	
+	</style>
+				</pre>
+			</div>
+			<div>
+				<div class="baba"></div>
+			</div>
+		</div> 
+	</div>
+	<!--第三方插件-->
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

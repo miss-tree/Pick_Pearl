@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>动态操作DOM</h4>
+				<pre>
+	var ul =document.getElementsByTagName("ul");
+	var oli =document.createElement("li");	//创建节点
+	
+	添加到页面(容器的尾部) appendChild()
+	ul.appendChild(oli);
+	
+	头部添加
+	ul.prepend(oli); 
+	insertBefore() 放在头部	第一个参数为元素，第二个为添加的位置
+	ul.insertBefore(sli,ul.childNodes[0])
+	
+	删除节点		removeChild()
+	ul.removeChild()
+	
+	克隆节点		如果想克隆容器里面的属性和方法,则需要深拷贝
+	var cli=ul.cloneNode(true);
+	ul.appendChild(cli)				
+				</pre>
+			</div>
+			<div>
+				<h4>操作类名</h4>
+				<div>能操控类名就不要使用行内样式,减少js对浏览器的损耗</div>
+				<pre>
+	add()  添加
+	classList.add("active")		
+			
+	remove()  删除
+	classList.remove("abc")
+	
+	contains() 判断是否包含元素，有责删除，没有就添加
+	this.classList.contains("active")?this.classList.remove("active"):this.classList.add("active");
+	toggle 针对单个元素进行使用	只传一个参数的时候和contains()性质差不多，但是加入第二个参数只有true和false，
+	true是增加类名，false是去掉类名
+	this.classList.toggle("active")
+				</pre>
+			</div>
+			<div>
+				<h4>classList与从className</h4>
+				<div>classList是从className发展出来的,className：可以单个类名的添加，classList：可以多个类名添加，往下看adds()方法</div>
+				<pre>
+	item() 支持一个参数，为类名的索引，返回对应的类名
+	document.body.classList.item(0)
+		body的第一个类名是..... 当item(i)下标超出个数时，返回null
+	
+	add() 支持一个类名字符串参数。表示往类名列表中新增一个类名；如果之前类名存在，则添加忽略
+	
+	remove() 支持一个类名字符串参数。表示往类名列表中移除该类名
+	
+	toggle() 支持一个类名字符串参数。无则加勉，有则移除之意。若类名列表中有此类名，移除之，并返回false; 
+	如果没有，则添加该类名，并返回true.
+	
+	contains() 支持一个类名字符串参数。表示往类名列表中是否包含该类名。
+	有点对应jQuery中的hasClass方法，注意，这里的是contains而不是contain，后面有个s哦！
+	
+	adds方法，可以一次添加多个类名，多个类名以空格分隔：
+		classList.adds("child1 child2 child3").toString(); // "a b c child1 child2 child3"
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<!--定义数据-->
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

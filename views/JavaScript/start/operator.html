@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>算术运算符( + - * / %)</h4>
+				<pre>
+	加、减、乘、除、求余，其中%是求余运算	
+	var total = (1 + 4) * 5;	
+	var i = 100;	
+	var temp = (i – 20) / 2;		
+	alert(“10”+ 20)		//return 1020;	
+	alert(10 + 20)		//return 30;					
+				</pre>
+			</div>
+			<div>
+				<h4>后增量/后减量运算符 ++ ,--</h4>
+				<pre>
+	var i = 10;	
+	var a = i++;		
+	alert(a);	=>10			
+				</pre>
+			</div>
+			<div>
+				<h4>比较运算符 ( >, <, >=, <=, ==, !=，===,!== )</h4>
+				<pre>
+	alert ( 10 > 5 );	//outputs	 true		
+	var i = 100;	var n = 100;	
+	alert(i == n);	//outputs true;	
+	alert(i != n);	//outputs false;          
+	alert(i === n)         //数据类型，值相等 				
+				</pre>
+			</div>
+			<div>
+				<h4>逻辑运算符( &&, || , !)</h4>
+				<pre>
+	&& ： 逻辑与	   	一个为真,则为true
+	|| : 逻辑或		全部为真,才为true
+	！ ：逻辑非		对现有结果进行取反
+	var i = 8;	
+	alert ( i<5 && i<10);		//outputs false	
+	alert ( i > 100 || i < 10);   	//outputs true	
+	alert(!(10 > 5));		//outputs false				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>
