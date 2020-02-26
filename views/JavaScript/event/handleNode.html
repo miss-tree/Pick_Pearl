@@ -34,6 +34,33 @@
 				</pre>
 			</div>
 			<div>
+				<h4>操作样式</h4>
+				<pre>
+	用js的style属性可以获得html标签的样式，但是不能获取非行间样式。
+		解决方法：
+	
+		1.在IE下可以用currentStyle;
+		2.在FF下用getComputedStyle;	
+		3.然而，为了让其兼容，解决方法，封装成getStyle事件：
+		//封装一个兼容性的获取元素样式的函数
+	    //分析:哪个元素,哪个样式
+	function getStyle(obj,attr){
+		if(obj.currentStyle){
+　　　　　　//IE
+			return obj.currentStyle[attr];
+		}else{
+　　　　　　//FF
+			return getComputedStyle(obj,false)[attr];
+		}	
+	}
+	
+	简写==>
+	function getStyle(obj,arrt) {
+		return obj.currentStyle ? obj.currentStyle[arrt] : getComputedStyle(obj,null)[arrt];
+	}				
+				</pre>
+			</div>
+			<div>
 				<h4>操作类名</h4>
 				<div>能操控类名就不要使用行内样式,减少js对浏览器的损耗</div>
 				<pre>

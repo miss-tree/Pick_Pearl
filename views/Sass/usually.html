@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<div>
+					<div class="Table">
+						<div class="TableRow" v-for="(el,index) in list">
+							<a class="RowRight" :href="'#'+el.id">{{el.name}}</a>
+						</div>
+					</div>	
+				</div>
+				<div>
+					<div>
+						<h4 id="copy">如何禁止保存或拷贝图像</h4>
+						<pre>
+	img {-webkit-touch-callout: none;}
+						</pre>
+					</div>
+					<div>
+						<h4 id="scroll">iOS 滑动不流畅</h4>
+						<pre>
+	.wrapper { -webkit-overflow-scrolling: touch;}
+	
+	body {overflow-y: hidden;}
+	.wrapper {overflow-y: auto;}
+						</pre>
+					</div>
+					<div>
+						<h4 id="replace">ios 日期转换 NAN 的问题</h4>
+						<pre>
+	'yyyy-MM-dd'.replace(/-/g, '/')
+						</pre>
+					</div>
+					<div>
+						<h4  id="bfscrolltop">IOS 键盘收起时页面没用回落，底部会留白</h4>
+						<pre>
+	window.addEventListener('focusout', function() {
+	  window.scrollTo(0, 0)
+	})
+	
+	//input输入框弹起软键盘的解决方案。
+	var bfscrolltop = document.body.scrollTop
+	$('input')
+		.focus(function() {
+			document.body.scrollTop = document.body.scrollHeight
+			//console.log(document.body.scrollTop);
+		})
+		.blur(function() {
+			document.body.scrollTop = bfscrolltop
+			//console.log(document.body.scrollTop);
+	})
+						</pre>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"如何禁止保存或拷贝图像",id:"copy"},
+						{name:"iOS 滑动不流畅",id:"scroll"},
+						{name:"ios 日期转换 NAN 的问题",id:"replace"},
+						{name:"IOS 键盘收起时页面没用回落，底部会留白",id:"bfscrolltop"},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>
