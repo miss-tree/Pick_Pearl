@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<div>
+					<div class="Table">
+						<div class="TableRow" v-for="(el,index) in list">
+							<a class="RowRight" :href="'#'+el.id">{{el.name}}</a>
+						</div>
+					</div>	
+				</div>
+				<div>
+					<div>
+						<h4  id="form">form表单提交</h4>
+						<pre>
+	/**
+	 * 下载文件
+	 * @param {String} path - 请求的地址
+	 * @param {String} fileName - 文件名
+	 */
+	function downloadFile (downloadUrl, fileName) {
+	    // 创建表单
+	    const formObj = document.createElement('form');
+	    formObj.action = downloadUrl;
+	    formObj.method = 'get';
+	    formObj.style.display = 'none';
+	    // 创建input，主要是起传参作用
+	    const formItem = document.createElement('input');
+	    formItem.value = fileName; // 传参的值
+	    formItem.name = 'fileName'; // 传参的字段名
+	    formObj.appendChild(formItem);// 插入到网页中
+	    document.body.appendChild(formObj);
+	    formObj.submit(); // 发送请求
+	    document.body.removeChild(formObj); // 发送完清除掉
+	}
+
+						</pre>
+						<ul>
+							<li>传统方式，兼容性好，不会出现URL长度限制问题</li>
+							<li>无法知道下载的进度</li>
+							<li>无法直接下载浏览器可直接预览的文件类型（如txt/png等）</li>
+						</ul>
+					</div>
+					<div>
+						<h4  id="open">open或location.href</h4>
+						<pre>
+	window.open('downloadFile.zip');
+	
+	location.href = 'downloadFile.zip';
+							
+						</pre>
+						<ul>
+							<li>简单方便直接</li>
+							<li>会出现URL长度限制问题</li>
+							<li>需要注意url编码问题</li>
+							<li>浏览器可直接浏览的文件类型是不提供下载的，如txt、png、jpg、gif等</li>
+							<li>不能添加header，也就不能进行鉴权</li>
+							<li>无法知道下载的进度</li>
+						</ul>
+					</div>
+					<div>
+						<h4  id="download">a标签的download</h4>
+						<pre>
+	&lt;a href="downloadFile.zip" &gt;点击下载&lt;/a&gt;						
+
+	解决图片文件不下载问题：加download="test"，下载名为test
+	&lt;a href="example.jpg" download="test"&gt;点击下载&lt;/a&gt;
+						</pre>
+						<ul>
+							<li>能解决不能直接下载浏览器可浏览的文件</li>
+							<li>得已知下载文件地址</li>
+							<li>不能下载跨域下的浏览器可浏览的文件</li>
+							<li>有兼容性问题，特别是IE</li>
+							<li>不能进行鉴权</li>
+						</ul>
+					</div>
+					<div>
+						<h4  id="Blob">利用Blob对象</h4>
+						<pre>
+	/**
+	 * 下载文件
+	 * @param {String} path - 下载地址/下载请求地址。
+	 * @param {String} name - 下载文件的名字/重命名（考虑到兼容性问题，最好加上后缀名）
+	 */
+	downloadFile (path, name) {
+	    const xhr = new XMLHttpRequest();
+	    xhr.open('get', path);
+	    xhr.responseType = 'blob';
+	    xhr.send();
+	    xhr.onload = function () {
+	        if (this.status === 200 || this.status === 304) {
+	            // const blob = new Blob([this.response], { type: xhr.getResponseHeader('Content-Type') });
+	            // const url = URL.createObjectURL(blob);
+	            const url = URL.createObjectURL(this.response);
+	            const a = document.createElement('a');
+	            a.style.display = 'none';
+	            a.href = url;
+	            a.download = name;
+	            document.body.appendChild(a);
+	            a.click();
+	            document.body.removeChild(a);
+	            URL.revokeObjectURL(url);
+	        }
+	    };
+	}
+						</pre>
+						<ul>
+							<li>能解决不能直接下载浏览器可浏览的文件</li>
+							<li>可设置header，也就可添加鉴权信息</li>
+							<li>兼容性问题，IE10以下不可用；Safari浏览器可以留意下使用情况</li>
+						</ul>
+					</div>
+					<div>
+						<h4  id="base64">利用base64</h4>
+						<pre>
+	/**
+	 * 下载文件
+	 * @param {String} path - 下载地址/下载请求地址。
+	 * @param {String} name - 下载文件的名字（考虑到兼容性问题，最好加上后缀名）
+	 */
+	downloadFile (path, name) {
+	    const xhr = new XMLHttpRequest();
+	    xhr.open('get', path);
+	    xhr.responseType = 'blob';
+	    xhr.send();
+	    xhr.onload = function () {
+	        if (this.status === 200 || this.status === 304) {
+	            const fileReader = new FileReader();
+	            fileReader.readAsDataURL(this.response);
+	            fileReader.onload = function () {
+	                const a = document.createElement('a');
+	                a.style.display = 'none';
+	                a.href = this.result;
+	                a.download = name;
+	                document.body.appendChild(a);
+	                a.click();
+	                document.body.removeChild(a);
+	            };
+	        }
+	    };
+	}
+	
+	这里额外提供个方法，该方法作用是，当你知道文件的全名（含后缀名），想要重命名，但是得后缀名一样，来获取后缀名。
+	function findType (name) {
+	    const index = name.lastIndexOf('.');
+	    return name.substring(index + 1);
+	}
+						</pre>
+						<ul>
+							<li>能解决不能直接下载浏览器可浏览的文件</li>
+							<li>可设置header，也就可添加鉴权信息</li>
+							<li>兼容性问题，IE10以下不可用</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"form表单提交",id:"form"},
+						{name:"open或location.href",id:"open"},
+						{name:"a标签的download",id:"download"},
+						{name:"利用Blob对象",id:"Blob"},
+						{name:"利用base64",id:"base64"},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

@@ -55,6 +55,12 @@
 	var str1="abc123";
 	str1=str1.replace("b","B");
 	console.log(str1);=>"aBc123"
+	
+	去除空格
+	str=str.replace(/\s*/g,'') 	=>去除所有
+	str=str.replace(/^\s*/g,'') 	=>去除左边
+	str=str.replace(/(\s*$)/g,'') 	=>去除右边
+	str=str.trim() 	=>去除两边
 				</pre>
 			</div>
 			<div>

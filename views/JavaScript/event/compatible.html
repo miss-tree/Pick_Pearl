@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>事件兼容</h4>
+				<pre>
+		var EvenUtil={
+			addEventListener:function(element,type,hand){
+				if(element.addEventListener){
+					element.addEventListener(type,hander)
+				}else if(element.attachEvent){
+					element.attachEvent("on"+type,hander)
+				}else{
+					element["on"+type]=hander
+				}
+			}
+		}
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>
