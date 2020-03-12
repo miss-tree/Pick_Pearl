@@ -4,9 +4,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>基础知识</title>
-	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../../static/css/animate.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
 </head>
 <body>
 	<!--右边内容-->
@@ -201,6 +201,26 @@
 	
 	console.log(result)
 	//{ '1': 1, '3': 2, '4': 1, '5': 2, '6': 1, '82': 2 }
+	
+	var arr = ["李","李","设","弟","弟","生","生","李"]; 
+	function getRepeatNum(){ 
+		var obj = {}; 
+		for(var i= 0, l = arr.length; i< l; i++){ 
+			var item = arr[i]; 
+			obj[item] = (obj[item] +1 ) || 1; 
+		} 
+		return obj; 
+	}
+	console.log(getRepeatNum())		=>{李: 3, 设: 1, 弟: 2, 生: 2}
+	
+	var arr = ["李","李","设","弟","弟","生","生","李"]; 
+	function getRepeatNum(){ 
+		return arr.reduce(function(prev,next){ 
+			prev[next] = (prev[next] + 1) || 1; 
+			return prev; 
+		},{}); 
+	} 
+	console.log(getRepeatNum())		=>{李: 3, 设: 1, 弟: 2, 生: 2}
 				</pre>
 			</div>
 			<div>
@@ -217,8 +237,8 @@
 		</div>
 	</div>
 	<!--页面加载进度条-->
-	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
-	<script src="../../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		var app = new Vue({
 			el: "#app",

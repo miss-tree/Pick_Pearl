@@ -3,9 +3,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>基础知识</title>
-	<link href="../../../static/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../../static/css/animate.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../../../static/css/public.css" />
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
 </head>
 <body>
 	<!--右边内容-->
@@ -34,6 +34,15 @@
 	     return 'IOS'
 	   }
 	}   
+	手机端判断浏览器类型
+	BrowserInfo = {      
+	  isAndroid: Boolean(navigator.userAgent.match(/android/ig)),      
+	  isIphone: Boolean(navigator.userAgent.match(/iphone|ipod/ig)),      
+	  isIpad: Boolean(navigator.userAgent.match(/ipad/ig)),      
+	  isWeixin: Boolean(navigator.userAgent.match(/MicroMessenger/ig)),      
+	  isAli: Boolean(navigator.userAgent.match(/AlipayClient/ig)),
+	  isPhone: Boolean(/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent))
+	}
 						</pre>
 					</div>
 					<div>
@@ -101,8 +110,8 @@
 		</div>
 	</div>
 	<!--页面加载进度条-->
-	<script src="../../../static/js/plugins/pace/pace.min.js"></script>
-	<script src="../../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		var app = new Vue({
 			el: "#app",
