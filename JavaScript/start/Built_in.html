@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>eval()</h4>
+				<p>eval函数 学会他,并且远离他!因为它会将值暴露出来，不安全</p>
+				<pre>
+	var i = 1;	
+	eval("i = i + 1");
+	eval("alert(i)");	=>2			
+				</pre>
+			</div>
+			<div>
+				<h4>escape(编码) 和 unescape(解码)</h4>
+				<pre>
+	var url = "http://www.baidu.com/s?name=小米";	
+	url = escape(url);	
+	alert(url);	=>"http%3A//www.baidu.com/s%3Fname%3D%u5C0F%u7C73"
+	alert(unescape(url));=>"http://www.baidu.com/s?name=小米"			
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

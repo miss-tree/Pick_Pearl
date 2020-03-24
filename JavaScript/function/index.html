@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<p>在javascript中函数被提升为"一等公民",就是不管函数在哪定义，只要定义了，
+				在调用的时候不会出现"undefind"的情况。比变量声明的 var let const 定义级别更高。
+				</p>
+				<h4>命名函数</h4>
+				<pre>
+	function sum(){
+		……do something……
+		alert("sum");
+	};		
+	sum();  //调用函数		
+				</pre>
+			</div>
+			<div>
+				<h4>命名函数</h4>
+				<pre>
+	var sum = function(){
+		……code
+		alert("sum");
+	};	
+				</pre>
+			</div>
+			<div>
+				<h4>立即函数</h4>
+				<pre>
+	常用的立即函数				
+	(function IIFE(){
+		……code
+	})();	
+	(function IIFE(){
+		……code
+	}());
+	
+	算术运算符类型
+	+function IIFE(){
+		……code
+	}()
+	-function IIFE(){
+		……code
+	}()
+	!function IIFE(){
+		……code
+	}()
+	var fn=function IIFE(){
+		……code
+	}()
+				</pre>
+				<p>立即执行函数的好处：通过定义一个匿名函数，
+				创建了一个新的函数作用域，相当于创建了一个“私有”的命名空间，
+				该命名空间的变量和方法，不会破坏污染全局的命名空间。
+				此时若是想访问全局对象，将全局对象以参数形式传进去即可</p>
+				<pre>
+	(function IIFE(win,undefind){
+		……code
+	})(window)				
+				</pre>
+			</div>
+			<div>
+				<h4>注意</h4>
+				<pre>
+	1.位于return 语句之后的任何代码都永远不会执行！	
+	2.在JavaScript中，不一定要指定返回值！	
+	3. 定义函数的参数时，如果调用函数时没有传进参数，并不会报错，但可以在函数里面判断一下是否有传进参数，
+	例如可以这样判断:	
+	if(variable == 'undefined' || variable == null){		
+		variable=''1';			//可以给他一个默认值	
+	}				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

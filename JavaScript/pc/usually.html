@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<div>
+					<div class="Table">
+						<div class="TableRow" v-for="(el,index) in list">
+							<a class="RowRight" :href="'#'+el.id">{{el.name}}</a>
+						</div>
+					</div>	
+				</div>
+				<div>
+					<div>
+						<h4  id="Capslock">是否按下大小写</h4>
+						<pre>
+	document.addEventListener("click",function(e){
+		console.log(e.getModifierState('Capslock'))
+	},false)  
+						</pre>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"是否按下大小写",id:"Capslock"},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

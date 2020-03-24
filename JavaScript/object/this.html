@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4 >关于this</h4>
+				<p>不管在工作中还是面试中，我们经常会遇到this指向问题，this的绑定有这么几种方法：
+				new > 显示绑定(apply,call,bind) > 隐式绑定  >  默认绑定。下面先来一道经典的面试题</p>
+				<pre>
+					
+				</pre>
+				<pre>
+	ar name = '李四'
+	 var foo = {
+	   name: "张三",
+	   logName: function(age) {
+	   console.log(this.name, age);//没有age，this指向window
+	   }
+	 }
+	 var fooNew = foo.logName;
+	 var fooNewBind = foo.logName.bind(foo);
+	 fooNew(10)//李四,10
+	 fooNewBind(11)//张三,11  因为bind改变了fooNewBind里面的this指向
+				</pre>
+			</div>
+			<div>
+				<div>又一例</div>
+				<pre>
+		function person(name,age){
+			this.name=name;
+			this.age=age;
+		}
+		const somebody=person("mingming","27")	
+		上述方法报错 undefined
+		因为没有使用new，没有创建一个新对象，构造函数的this指向window		
+				</pre>
+			</div>
+			<div>
+				所有的对象除基础类型（引用类型）外都有原型，基础对象的原型是null
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

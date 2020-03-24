@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>WebSocket</h4>
+				<pre>
+	&lt;form action="/" method="get"&gt;
+		&lt;input type="text" name="keywords" id="keywords" value="" /&gt;
+		&lt;input type="submit" value="搜索" /&gt;
+	&lt;/form&gt;		
+			
+	var btnSubmit = document.querySelector("input[type='submit']");
+	btnSubmit.addEventListener('click',function(e){
+		e.preventDefault();
+		var keywords = document.querySelector("#keywords");
+		wx.send(keywords.value);
+	})
+	
+	var wx = new WebSocket('ws://echo.websocket.org');
+	wx.onopen=function(){
+		console.log("Connection open...");
+		wx.send('hi websocket');
+	}
+	wx.onmessage=function(evt){
+		console.log(evt)
+		console.log('recevied Msg:'+evt.data)
+	}
+	wx.onclose=function(e){
+		console.log("close",e)
+	};		
+				</pre>
+				<p>WebSocket一种在单个 TCP 连接上进行全双工通讯的协议，使得客户端和服务器之间的数据交换变得更加简单。
+				允许服务端主动向客户端推送数据，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。
+				主要是建立一个实时链接，状态一但关闭就不能再次连接，虽然WebSocket对象还是能打印出来</p>
+				<p>
+					缺点:即浏览器需要不断的向服务器发出请求，然而HTTP请求可能包含较长的头部，
+					其中真正有效的数据可能只是很小的一部分，显然这样会浪费很多的带宽等资源
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

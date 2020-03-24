@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<div class="Table">	
+					<div class="TableRow" v-for="(el,index) in list">
+						<a class="RowRight" :href="'#'+el.id">{{el.name}}</a>
+					</div>
+				</div>	
+			</div>
+			<div>
+				<h4 class="red" id="push">push()</h4>
+				<pre>
+	var arr3=["乌龟","王八","甲鱼"];
+	arr.push("千年");  //在数组尾部添加新元素	"千年",改变数组长度	
+			
+	(function(){
+	  Array.prototype.push.call(arguments,'王五');
+	  console.log(arguments);//['张三','李四','王五']
+	})('张三','李四')		
+				</pre>
+			</div>
+			<div>
+				<h4 class="red" id="unshift">unshift()</h4>
+				<pre>
+	var arr3=["乌龟","王八","甲鱼"];
+	arr.unshift("千年");  //在数组头部添加新元素	"千年",改变数组长度			
+				</pre>
+			</div>
+			<div>
+				<h4 class="red" id="pop">pop()</h4>
+				<pre>
+	var arr3=["乌龟","王八","甲鱼"];
+	arr.pop();  //在数组尾部删除新元素,改变数组长度			
+				</pre>
+			</div>
+			<div>
+				<h4 class="red" id="shift">shift()</h4>
+				<pre>
+	var arr3=["乌龟","王八","甲鱼"];
+	arr.shift();  //在数组头部删除新元素,改变数组长度			
+				</pre>
+			</div>
+			<div>
+				<h4 class="red" id="splice">splice()</h4>
+				<pre>
+	Array.splice(begin, deleteCount, addItem1, addItem2...)				
+	var arr3=["乌龟","王八","甲鱼"];
+	arr.splice(3,0,"养殖龟");  //第一个参数为插入的位置，第二个参数为在从插入位置开始删除元素个数,若是0，则是添加元素	
+	=>	["乌龟","王八","甲鱼","养殖龟"]	
+				</pre>
+			</div>
+			<div>
+				<h4 class="" id="slice">slice()</h4>
+				<pre>
+	var arr2=["a","b","c"];
+	var arr3=arr2.slice();  //在不改变源数组的前提下,进行数组的增删查改	
+			
+	arrayObject.slice(start,end)
+	start 		规定从何处开始选取。如果是负数，那么它规定从数组尾部开始算起的位置。
+		也就是说，-1 指最后一个元素，-2 指倒数第二个元素，以此类推。		
+	end		可选。规定从何处结束选取。该参数是数组片断结束处的数组下标。
+		如果没有指定该参数，那么切分的数组包含从 start 到数组结束的所有元素。
+		如果这个参数是负数，那么它规定的是从数组尾部开始算起的元素。
+				</pre>
+			</div>
+			<div>
+				<h4 class="" id="concat">concat()</h4>
+				<pre>
+	var arr2=["a","b","c"];
+	var arr3=["乌龟","王八","甲鱼"];
+	var arr4=arr2.concat(arr3);  //合并两个数组,不改变原数组		
+				</pre>
+			</div>
+			<div>
+				<h4 class="" id="reduce">reduce()</h4>
+				<pre>
+	Array.reduce()累积器：通过函数,显示每个元素,如果没有返回值,显示下个元素的时候会显示undefined,
+	返回后(return a+b)会显示返回的和(这里的和是指循环到每个位置与之前的和)
+	也可以用于乘法,过程和加法一样,只是把加给为乘.				
+	var arr=[5,2,3,10,100];
+	newArr=arr.reduce(function(a,b,c){
+		console.log(a);     //第一个元素或前两个元素处理后的值
+		console.log(b);     //第二个元素
+		console.log(c);     //第二个元素下标（位置）
+		return a+b;
+	})	
+				</pre>
+			</div>
+			<div>
+				<h4 class="" id="filter">filter()</h4>
+				<pre>
+	arr.filter(function(a,b,c){
+		console.log(a);
+		console.log(b);
+		console.log(c);
+		return a<10;
+	})	
+	自定义filter()方法
+	var obj={
+			filter:function(str,arr){
+				console.log(arr)
+				var tmp=[];	
+				for (var i=0;i<arr.length;i++){
+					console.log(arr[i])
+					console.log(i)
+					console.log(arr)
+					if(str(arr[i],i,arr)){
+						tmp.push(arr[i])
+					}
+				}
+			return tmp;
+			}
+		}
+				</pre>
+			</div>
+			<div>
+				<h4 class="red" id="sort">sort()</h4>
+				<pre>
+	Array.sort()：里面第一个参数是直接根据数组的元素值的字符编码，进行正序排列，从小到大，直接更新原数组
+	也可以传入回调来进行高级判断,如果a-b>0，则b在前，a在后，如果a-b==0，则位置不变，如果a-b<0，则b在后，a在前。	
+	
+	arr.sort(function(a,b){
+			console.log("a",a,"b",b)
+			return a-b;
+			//return b-a;  从大到小排列
+		})
+				</pre>
+			</div>
+			<div>
+				<h4 class="red" id="reverse">reverse()</h4>
+				<pre>
+	Array.reverse()：翻转数组
+	
+	var arr=["a","b","c"]
+	arr.reverse()=>   ["c","b","a"]
+				</pre>
+			</div>
+			<div>
+				<h4 class="red" id="max">求数组最大值</h4>
+				<pre>
+	Math.max.apply(null,arr)
+				</pre>
+			</div>
+			<div>
+				<h4 class="red" id="merge">合并数组</h4>
+				<pre>
+	let arr1=[1,2,3]; 
+	let arr2=[4,5,6]; 
+	Array.prototype.push.apply(arr1,arr2); //将arr2合并到了arr1中
+	
+	let fruits=["apple","banana"]; 
+	let meat=["beef","fish"]
+	let food=[...fruits,...meat]
+	console.log(food)	//["apple","banana","beef","fish"]
+				</pre>
+			</div>
+			<div>
+				<h4 class="red" id="fill">用数据填充数组</h4>
+				<pre>
+	let arr1=new Array(10).fill('1'); 
+	console.log(arr1)	//["1","1","1","1","1","1","1","1","1","1"]
+				</pre>
+			</div>
+			<div>
+				<h4 id="mixed">求两个数组的交集</h4>
+				<pre>
+	let num1=[1,5,6,8,7,3]; 
+	let num2=[5,9,48,6,3,1]
+	let newVal=[...new Set(num1)].filter(el=> num2.includes(el))
+	console.log(newVal)	//[1, 5, 6, 3]
+				</pre>
+			</div>
+			<div>
+				<h4 id="count">检测数值出现次数</h4>
+				<pre>
+	const countOccurrences = (arr, val) => {
+	  arr.reduce((a, v) => (v === val ? a + 1 : a), 0)
+	}
+	countOccurrences([1, 1, 2, 1, 2, 3], 1) // 3
+				</pre>
+			</div>
+			<div>
+				<h4 id="nums">统计数组中出现的次数的对象</h4>
+				<pre>
+	const nums = [3, 5, 6, 82, 1, 4, 3, 5, 82]
+	
+	const result = nums.reduce((tally, amt) => {
+	  tally[amt] ? tally[amt]++ : (tally[amt] = 1)
+	  return tally
+	}, {})
+	
+	console.log(result)
+	//{ '1': 1, '3': 2, '4': 1, '5': 2, '6': 1, '82': 2 }
+	
+	var arr = ["李","李","设","弟","弟","生","生","李"]; 
+	function getRepeatNum(){ 
+		var obj = {}; 
+		for(var i= 0, l = arr.length; i< l; i++){ 
+			var item = arr[i]; 
+			obj[item] = (obj[item] +1 ) || 1; 
+		} 
+		return obj; 
+	}
+	console.log(getRepeatNum())		=>{李: 3, 设: 1, 弟: 2, 生: 2}
+	
+	var arr = ["李","李","设","弟","弟","生","生","李"]; 
+	function getRepeatNum(){ 
+		return arr.reduce(function(prev,next){ 
+			prev[next] = (prev[next] + 1) || 1; 
+			return prev; 
+		},{}); 
+	} 
+	console.log(getRepeatNum())		=>{李: 3, 设: 1, 弟: 2, 生: 2}
+				</pre>
+			</div>
+			<div>
+				<h4 id="pseudo">多维数组降维</h4>
+				<pre>
+	let nums = [3, [5, 6, [82, 1], [4,[ 3, 5], 82]]]
+	
+		nums = nums.flat(5)
+	
+	console.log(nums)
+	//[3, 5, 6, 82, 1, 4, 3, 5, 82]
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"push()",id:"push"},
+						{name:"unshift()",id:"unshift"},
+						{name:"pop()",id:"pop"},
+						{name:"shift()",id:"shift"},
+						{name:"splice()",id:"splice"},
+						{name:"slice()",id:"slice"},
+						{name:"concat()",id:"concat"},
+						{name:"reduce()",id:"reduce"},
+						{name:"filter()",id:"filter"},
+						{name:"sort()",id:"sort"},
+						{name:"reverse()",id:"reverse"},
+						{name:"求数组最大值",id:"max"},
+						{name:"数组合并",id:"merge"},
+						{name:"用数据填充数组",id:"fill"},
+						{name:"求两个数组的交集",id:"mixed"},
+						{name:"检测数值出现次数",id:"count"},
+						{name:"统计数组中出现的次数的对象",id:"nums"},
+						{name:"多维数组降维",id:"pseudo"},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

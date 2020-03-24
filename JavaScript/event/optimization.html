@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		li{
+			list-style: none;
+			text-indent: 2em;
+		}
+		ul li ul li{
+			text-indent: 4em;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>操作DOM性能优化</h4>
+				<div>HTMLCollection和NodeList有什么区别,先看下面代码</div>
+				<pre>
+	// 片段一
+	var all = document.getElementsByTagName('div');
+	for(var i = 0; i < all.length ; i ++) {
+	    document.body.appendChild(document.createElement('div'));
+	}
+	// 片段二
+	var all2 = document.querySelectorAll('div');
+	for(var i = 0; i < all2.length ; i ++) {
+	    document.body.appendChild(document.createElement('div'));
+	}				
+				</pre>
+				<p>
+					片段一运行完之后页面崩溃了。片段二正常如期运行。为什么呢？
+					因为用getElementsByTagName方法获取到的是HTMLCollection,
+					而HTMLCollection是实时获取的，也就是说，每次循环时请求all.length，
+					都会重新去触发一次getElementsByTagName方法。导致all.length每次循环之后都会加1。
+					最终造成了死循环。而用querySelectorAll方法获取到的结果是NodeList不是实时获取的。
+				</p>
+			</div>
+			<div>
+				<h4>减少重排和重绘次数</h4>
+				<ul>
+					<li>1.当需要给一个DOM元素加各种动画或者改变一系列样式时，先把这个元素设置成绝对定位。
+					因为脱离文档流后，再对这个元素进行操作就不会影响到他周围的元素，也就不会发生重排。
+					等到一系列复杂的操作结束之后，再把这个元素的定位恢复到之前的样子。
+					这样只进行了两次重排，能明显的提高性能。</li>
+					<li>
+						2.当我们需要改变很多样式时，不要用style.color,style.width,style.height这样一个一个去改，
+						因为每次修改都会引起一次重排。我们应该使用给这个元素加一个类名，把所有的样式都写到这个类名中。
+						或者是改style.cssText。这样可以有效的减少重排的次数
+					</li>
+					<li>
+						3.用fragment代替dom。思考这样一个问题，如何给页面中插入10000个div元素。
+						每次创建一个然后append到body中去吗？这显然不是一个好的办法。
+						我们应该先把所有创建的元素都添加到一个fragment中。
+						然后再把fragment添加到body中去。这样只会引起一次重排，而不是1万次。
+					</li>
+					<li>
+						4.介绍一些会引起重排的属性。当访问元素的以下属性时也会引起重排，因为这些属性是实时算的。
+						<ul>
+							<li>
+								offsetTop,offsetLeft,offsetWidth,offsetHeight
+							</li>
+							<li>scrollTop,scrollLeft,scrollWidth,scrollHeight</li>
+							<li>clientTop,clientLeft,clientWidth,clientHeight</li>
+						</ul>
+					</li>
+					<li>5.尽可能少的访问DOM。</li>
+					<li>需要给大量元素分发事件时，采取事件委托。因为浏览器不仅不需要分发很多事件，而且需要跟踪每个事件处理器，这也会占用更多内存。</li>
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

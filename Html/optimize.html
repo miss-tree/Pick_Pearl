@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>HTML优化</h4>
+				<ul>
+					<li>CSS样式表置于头部，CSS会一边加载一边渲染</li>
+					<li>JS脚本置于尾部，JS在未加载完成之前，会阻塞渲染</li>
+					<li>使用外部的样式表和脚本，优先加载出HTML结构</li>
+					<li>关键JS、CSS代码可以内嵌在HTML中，比如：rem动态等</li>
+					<li>避免使用iFrame</li>
+					<li>使用骨架屏</li>
+				</ul>
+			</div>
+			<div>
+				<h4>CSS优化</h4>
+				<ul>
+					<li>避免使用css表达式</li>
+					<li>避免使用通配符</li>
+					<li>避免使用!impotant</li>
+					<li>优化css reset，项目中不会用到这么多reset</li>
+					<li>提取公共CSS</li>
+				</ul>
+			</div>
+			<div>
+				<h4>JS优化</h4>
+				<ul>
+					<li>如果没有兼容问题，尽量使用原生方法</li>
+					<li>根据兼容浏览器的最低版本，考虑是否使用polyfill</li>
+					<li>switch语句相对if，可以较快通过将case语句按照最可能到最不可能的顺序进行组织</li>
+					<li>位运算较快。当进行数字运算时，位运算操作要比任何布尔运算或者算数运算快</li>
+					<li>巧用||和&&布尔运算符，可以减少执行代码语句</li>
+					<li>使用加号拼接是最快的，其次是String()、.toString()、new String()</li>
+					<li>需要使用定时器时，用setTimeout取代setInterval，setInterval会一直占用内存</li>
+					<li>制作JS动画时，使用requestAnimationFrame取代setTimeout和setInterval</li>
+				</ul>
+			</div>
+			<div>
+				<h4>其他优化</h4>
+				<ul>
+					<li>避免全局查找，可以将需要访问的属性用变量保存</li>
+					<li>使用变量比使用对象属性和数组元素要快</li>
+					<li>使用节流、防抖</li>
+					<li>使用事件委托取代大量事件的绑定</li>
+					<li>添加key值，最大效益的使用虚拟DOM，减少Diff时间</li>
+					<li>每个网站最多允许同时6个请求，可以考虑将资源分类部署</li>
+					<li>使用CDN，可以加速资源的请求速度</li>
+					<li>核心资源预加载</li>
+					<li>大体积资源按需加载（Webpack拆包）</li>
+					<li>压缩图片</li>
+					<li>压缩HTML、CSS、JS代码</li>
+					<li>开启网络压缩，如：GZIP</li>
+					<li>将小图片转换为base64字符串</li>
+					<li>使用浏览器缓存,如: LocalStorage、Cookie、SessionStorage等</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

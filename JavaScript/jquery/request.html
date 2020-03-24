@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>JQ_Ajax</h4>
+				<pre>
+	$.ajax({
+		type:"GET",
+		url:baseUrl+"/getShopList",
+		success:function(res){代表从服务器接收回来的数据
+			data=res.result;
+			放在回调函数执行,才能够拿到正确数据
+			console.log(data);
+		},
+		JQ可以直接写入请求头(方法一)
+		headers:{
+			"authority":"bluej"
+		},
+		请求拦截器
+		beforeSend:function(xhr){
+			console.log("beforeSend");
+			console.log(xhr);
+			将token写入请求头（方法二）
+			xhr.setRequestHeader("authority","bluej");
+		},
+		设置请求超时时间,保证用户体验
+		timeout:1000,
+		error:function(){
+			console.log("请求失败")
+		}
+	});				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

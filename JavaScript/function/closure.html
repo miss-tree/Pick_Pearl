@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		ul>li{
+			text-indent: 2em;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>闭包</h4>
+				<p>调用函数时,会产生一个"执行环境"
+			闭包closure:有权访问外部变量或函数的执行环境
+				有权访问外部变量的函数
+			函数b对_a变量始终保持引用</p>
+			<pre>
+	function a(){
+		var _a=10;
+		console.log(g);
+		function b(){
+			var b_b="b函数内的变量";
+		}
+		console.log(b_b); //报错
+	}
+	a();			
+			</pre>
+			<br/>
+				<pre>
+	var lis=document.querySelectorAll("li");
+	for(var i=0;i<lis.length;i++){
+		(function(k){//立刻执行函数，形成一个闭包ES5
+			lis[i].addEventListener("click",function(){
+				alert(k);
+			})	
+		})(i);
+	}
+	for循环结束后,在内存里形成了3个闭包Closure
+	滥用闭包,可能会出现内存泄漏的问题
+	等价下面的方法
+	for(let i=0;i<lis.length;i++){
+		lis[i].addEventListener("click",function(){
+			alert(k);
+		})	
+	}
+				</pre>
+				<p>for循环用 var 声明只能执行最后一个，用立即函数的方法解决作用域的问题，
+				就是让循环每次都执行for里面的代码在执行下一次。用 let 声明定义了作用域，
+				每个 i 都能执行逐次执行，互不影响</p>
+			</div>
+			<div>
+				<h5>形成条件</h5>
+				<pre>
+		function foo() {
+		    var a = 1;
+		    return function() {
+		        console.log(a);
+		    }
+		}
+		
+		var bar = foo();
+		bar();
+				</pre>
+				<p>
+					foo()函数的执行结果返回给bar，而此时由于变量a还在使用，
+					因而没有被销毁，然后执行bar()函数。我们就能在外部作用域访问到函数内部作用域的变量。
+					每个函数都是闭包，函数能够记住自己定义时所处的作用域，函数走到了哪，定义时的作用域就到了哪。
+					闭包的形成条件：
+				</p>
+				<ul>
+					<li>函数嵌套</li>
+					<li>内部函数引用外部函数的局部变量</li>
+				</ul>
+			</div>
+			<div>
+				<h5>面试题</h5>
+				<pre>
+		let x = 5;
+		function fn(x) {
+		    return function(y) {
+		        console.log(y + (++x));
+		    }
+		}
+		let f = fn(6);
+		f(7);   
+		console.log(x);
+		=>14 	5		
+				</pre>
+				<p>
+					解析：因为使用前置的++，就相当于直接加1，返回值就是 y+7，
+					 y=function(y){console.log(y + 7)} ,然后又给y()传参，
+					变成 y=function(7){console.log(7 + 7)}，所以直接打印14。
+					x是直接定义的变量，不要被 fn(x) 传参误导。
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>图像热区</h4>
+				<pre>
+	图像热区就是能够通过点击图片的某一部分跳转。
+	&lt;img src="img/charector.png" alt="加载不成功" width="600" usemap="#bgg"/&gt;
+	&lt;map name="bgg"  id="bgg"&gt;
+		&lt;area shape="rect" coords="50 50 150 150" href="http://www.baidu.com" alt="加载不成功" /&gt;
+		&lt;area shape="rect" coords="0 0 20 20" href="http://taobao.com" alt="加载不成功" /&gt;
+	&lt;/map&gt;
+	说明:
+	1.有map标签，map标签里面有area标签，map标签可以把所有的area(区域)包裹起来。
+	2.area(区域)标签要有形状(shape),有坐标(coords),链接地址(href),alt				
+				</pre>
+			</div>
+			<div>
+				<img src="img/backgrond01.jpg" alt="加载不成功" width="600" usemap="#bgg"/>
+				<map name="bgg" id="bgg">
+				    <area shape="rect" coords="50 50 150 150" href="http://www.baidu.com" alt="去百度" />
+				    <area shape="rect" coords="0 0 20 20" href="http://taobao.com" alt="去淘宝" />
+				</map>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

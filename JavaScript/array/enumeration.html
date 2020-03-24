@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>Array.forEach()</h4>
+				<p>里面的两个参数,第一个是显示数组里的第一个
+		元素,第二个参数是显示元素的下标(位置)</p>
+				<pre>
+	var arr=[5,2,3,10,100];
+	arr.forEach(function(el,index){
+		console.log(el)
+	});				
+				</pre>
+			</div>
+			<div>
+				<h4>forEach 中使用 await 是否有效</h4>
+				<p>
+					对于异步代码，forEach 并不能保证按顺序执行。
+					因为forEach的 底层是以 for (var i=0;i&lt;length;i++) 
+					的方式执行，for是无法中断，但是可以使用break和continue，
+					return并不能跳出循环，只能出现在函数体内。
+					break和continue的区别是break跳出循环，continue跳出本次循环
+				</p>
+				<p>
+					要让for按顺序执行可以使用let，定义一个块级作用域，
+					每次循环相互隔离。方法二，可以使用立即执行函数，
+					在for的代码就形成了一个闭包，和let一样的效果
+				</p>
+				<p>
+					使用 forEach、map不能中断循环，将每个循环都执行完，
+					for ...in 可以遍历枚举，但对象不包括本身原型链上的属性，可以中断。
+				</p>
+				<p>
+					当对象通过 Object.defindProperty()方法定义 emumerable 为false时，
+					for ...in 不可遍历到。也可得出 Object.keys、
+					Object.values、Object.entries 方法都是遍历可枚举属性组成的数组
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

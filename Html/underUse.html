@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h4>base</h4>
+				<p>控制整个页面所有外部链接的根地址会自动拼接在该页面下面的所有相对地址的前面</p>
+				<pre>
+	&lt;head&gt;
+		&lt;base href="/20160727HTML/" /&gt;	
+	&lt;/head&gt;				
+	
+	&lt;body&gt;		
+		&lt;!– -这里的相对地址，会自动拼接base的值，即/20160727HTML/img/xx.jpg-- &gt;
+		&lt;img src=“img/xx.jpg”/&gt;	
+	&lt;/body&gt;
+				</pre>
+			</div>
+			<div>
+				<h4>icon</h4>
+				<p>32X32尺寸，并把图片放到项目目录中.在页面head标签中，插入以下代码，href的值为你的icon相对地址</p>
+				<pre>
+	&lt;head&gt;
+		&lt;link rel=“shortcut icon” href=“img/web.icon/&gt;	
+	&lt;/head&gt;				
+	
+				</pre>
+			</div>
+			<div>
+				<h4>让你的页面变成一个编辑器</h4>
+				<p>给目标元素添加contenteditable 属性，或设置为true</p>
+				<pre>
+	&lt;!DOCTYPE html&gt;			
+	&lt;html&gt;
+		&lt;body&gt;
+			&lt;div contenteditable="true"&gt;
+				This text can be edited by the user. 
+			&lt;/div&gt;
+		&lt;/body&gt;
+	&lt;/html&gt;		
+			
+	F12在控制台修改，此方法页面刷新还原		
+	document.body.contentEditable=true
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./css/cube.css"/>
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>transform-style</h4>
+				<p>
+					transform-style属性也是3D效果中经常使用的，其两个参数，flat|preserve-3d。
+					前者flat为默认值，表示平面的；后者preserve-3d表示3D透视。 
+					基本上，我们想要根据现实经验实现一些3D效果的时候，transform-style: preserve-3d是少不了的。
+					一般而言，该声明应用在3D变换的兄弟元素们的父元素上，也就是舞台元素。
+				</p>
+				<pre>
+	*{
+	     margin: 0;
+	     padding: 0;
+	     list-style: none;
+	 }				
+	.cube {
+		width: 200px;
+		height: 200px;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		transform-style: preserve-3d;/*定义该元素下的所有子元素，同属于一个三维空间里*/
+	}
+	.side {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		line-height: 200px;
+		font-size: 100px;
+		text-align: center;
+		opacity: .7;
+	}
+	.front {
+		transform: translateZ(100px);
+		background: skyblue;
+	}
+	.back {
+		transform: rotateY(180deg) translateZ(100px);
+		background: red;
+	}
+	.top {
+		transform: rotateX(90deg) translateZ(100px);
+		background: yellow;
+	}
+	.bottom {
+		transform: rotateX(-90deg) translateZ(100px);
+		background: green;
+	}
+	.left {
+		transform: rotateY(-90deg) translateZ(100px);
+		background: salmon;
+	}
+	.right {
+		transform: rotateY(90deg) translateZ(100px);
+		background: lavender;
+	}
+	加上动画让它动起来
+	.cube {
+		animation: rotateCube 5s linear infinite;
+	}
+	@keyframes rotateCube {
+		0% {transform: rotateX(0deg) rotateY(0) rotateZ(0);}
+		100% {transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);}
+	}	
+				
+	&lt;div style="margin-top: 100px;"&gt;
+		&lt;ul class="cube"&gt;
+			 &lt;li class="side front"&gt;1&lt;/li&gt;
+			 &lt;li class="side back"&gt;2&lt;/li&gt;
+			 &lt;li class="side left"&gt;3&lt;/li&gt;
+			 &lt;li class="side right"&gt;4&lt;/li&gt;
+			 &lt;li class="side top"&gt;5&lt;/li&gt;
+			 &lt;li class="side bottom"&gt;6&lt;/li&gt;
+		 &lt;/ul&gt;
+	&lt;/div&gt;			
+				</pre>
+			</div>
+			<div style="margin-top: 100px;">
+				<ul class="cube">
+					 <li class="side front">1</li>
+					 <li class="side back">2</li>
+					 <li class="side left">3</li>
+					 <li class="side right">4</li>
+					 <li class="side top">5</li>
+					 <li class="side bottom">6</li>
+				 </ul>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

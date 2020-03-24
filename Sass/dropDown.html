@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h4>第一种方法</h4>
+				<pre>
+	.drop{
+		border: 4px solid transparent;
+		border-top: 4px solid #0dafd2;
+		display: inline-block;
+		margin-left: 10px;
+		vertical-align: middle;
+	}		
+			
+	<span class="drop"></span>	
+	<style type="text/css">
+		.drop{
+			border: 15px solid transparent;
+			border-top: 15px solid #0dafd2;
+			display: inline-block;
+			margin-left: 10px;
+			vertical-align: middle;
+		}
+	</style>	
+				</pre>
+			</div>
+			<div>
+				<h4>第二种方法</h4>
+				<pre>
+	.dd{
+		border-width: 10px;
+		border-style: solid;
+		//关键一步，第一个显示的向下的三角形颜色，第二个是右边，第三个是下面向上，第四个是左边
+		border-color: #ff2f2f transparent transparent transparent;
+		display: inline-block;
+		margin-left: 10px;
+	}		
+			
+	<span class="dd"></span>	
+	<style type="text/css">
+		.dd{
+			border-width: 10px;
+			border-style: solid;
+			border-color: #ff2f2f transparent transparent transparent;
+			display: inline-block;
+			margin-left: 10px;
+		}
+	</style>	
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

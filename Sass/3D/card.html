@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./css/card.css"/>
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>transform-style</h4>
+				<p>
+					transform-style属性也是3D效果中经常使用的，其两个参数，flat|preserve-3d。
+					前者flat为默认值，表示平面的；后者preserve-3d表示3D透视。 
+					基本上，我们想要根据现实经验实现一些3D效果的时候，transform-style: preserve-3d是少不了的。
+					一般而言，该声明应用在3D变换的兄弟元素们的父元素上，也就是舞台元素。
+				</p>
+				<pre>
+	
+	* { margin: 0; padding: 0; list-style: none; } 
+	.flip-container { 
+		width: 283px; 
+		height: 283px; 
+		margin: 0px auto; 
+		transition: transform .5s ease-in-out; 
+		position: relative;
+		/*父类容器中 perspective 子类允许透视*/
+		perspective: 1000px;
+		/*使其子类变换后得以保留 3d转换后的位置*/
+		transform-style: preserve-3d;
+	}
+					
+	.front,.back {
+	    width: 100%;
+	    height: 100%;
+	    /*背景不穿透，表示翻转后便看不到正面*/
+	    -webkit-backface-visibility: hidden;/*注意：safari浏览器必须用webkit前缀*/
+	    backface-visibility: hidden;
+	    transition: 0.6s ease-out;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	}
+	.front{
+		background: #0000FF;
+	}
+	.back{
+		background: red;
+	}
+	.front img,.back img {
+	    width: 283px;
+	    height: 283px;
+	    overflow: hidden;
+	}
+	.front {
+	    transform: rotateY(0deg);
+	}
+	.back {
+	    transform: rotateY(-180deg);
+	}
+	
+	/*鼠标移动覆盖时，触发翻转*/
+	.flip-container:hover .back {
+	    transform: rotateY(0deg);
+	}
+	.flip-container:hover .front {
+	    transform: rotateY(180deg);
+	}
+	.flip-container:hover .back {
+	    animation: backRotate 2s linear both;
+	}
+	.flip-container:hover .front {
+	    animation: frontRotate 2s linear both;
+	}
+	@keyframes backRotate{
+	    0%,30%{transform: rotateY(-180deg);}
+	    15%,45%{transform: rotateY(-150deg);}
+	    100%{ transform: rotateY(0deg);}
+	}
+	@keyframes frontRotate{
+	    0%,30%{ transform: rotateY(0);}
+	    15%,45%{ transform: rotateY(30deg);}
+	    100%{ transform: rotateY(180deg);}
+	}	
+				
+	&lt;div style="margin-top: 100px;"&gt;
+		&lt;ul class="cube"&gt;
+			 &lt;li class="side front"&gt;1&lt;/li&gt;
+			 &lt;li class="side back"&gt;2&lt;/li&gt;
+			 &lt;li class="side left"&gt;3&lt;/li&gt;
+			 &lt;li class="side right"&gt;4&lt;/li&gt;
+			 &lt;li class="side top"&gt;5&lt;/li&gt;
+			 &lt;li class="side bottom"&gt;6&lt;/li&gt;
+		 &lt;/ul&gt;
+	&lt;/div&gt;			
+				</pre>
+			</div>
+			<div class="" style="margin-top: 100px;">
+				<div class="flip-container">
+					 <div class="front">1</div>
+					 <div class="back">2</div>
+				 </div>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

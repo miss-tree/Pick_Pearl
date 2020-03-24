@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>条件语句</h4>
+				<pre>
+	var  task = prompt("请输入内容");
+		if(task>=60){
+			alert("及格")
+		};
+		if(task<60){
+			alert("渣渣")
+		};
+		if（判断条件）{
+			……
+		}
+		if(task==="60"){
+			
+		} 
+	等价于下面的方式
+		
+	switch(true){
+		case task>=60:
+			alert("及格");
+		break;
+		case "59":   /*固定值要用""包裹*/
+			alert(task);
+		break;
+		case task<55:
+			alert(task);
+		break;
+		default:
+			alert("错误");
+		break;	
+	};				
+				</pre>	
+	
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>点击复选框获取值</h4>
+				<pre>
+	&lt;form action="" method="post"&gt;
+		爱好：
+		&lt;label&gt;篮球&lt;input type="checkbox" name="hobbise" value="篮球" /&gt;&lt;/label&gt;
+		&lt;label&gt;足球&lt;input type="checkbox" name="hobbise" value="足球" /&gt;&lt;/label&gt;
+		&lt;label&gt;波球&lt;input type="checkbox" name="hobbise" value="波球" /&gt;&lt;/label&gt;
+		&lt;label &gt;球球&lt;input type="checkbox" name="hobbise" value="球球" /&gt;&lt;/label&gt;
+	&lt;/form &gt;
+	
+	var checkBoxs=document.querySelectorAll("input")
+	var  h=[];
+	for(let i=0;i&lt;checkBoxs.length;i++){
+		checkBoxs[i].onclick=function(){
+			var v=checkBoxs[i].value;
+			if(h.indexOf(v)==-1){使用indexOf查找h数组是否有这个值,如果没有,则使用push方法
+				h.push(v);
+			}else{//如果有则删除
+				h.splice(h.indexOf(v),1);
+			}
+			console.log(h);
+		}
+	};				
+				</pre>
+			</div>
+			<div>
+				<div>
+					爱好：
+					<label>篮球<input type="checkbox" name="hobbise" value="篮球" v-model="hobbies" /></label>
+					<label>足球<input type="checkbox" name="hobbise" value="足球" v-model="hobbies" /></label>
+					<label>波球<input type="checkbox" name="hobbise" value="波球" v-model="hobbies" /></label>
+					<label >球球<input type="checkbox" name="hobbise" value="球球" v-model="hobbies" /></label>
+				</div>
+				选择的值：<input type="text" v-model="hobbies" value="" />
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					hobbies:[]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

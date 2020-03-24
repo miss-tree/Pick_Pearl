@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h4>模糊</h4>
+				<pre>
+	class="text_shadow"{//前两个参数是x轴和y轴偏移大小，第三个是模糊大小，最后一个是颜色。可以设置多个
+		text-shadow: 5px 12px 1px red,-5px -12px 5px yellow;
+	}
+	&lt; span class="text_shadow"&gt;hello world &lt; /span &gt;
+	
+	<span class="text_shadow">hello world</span>
+	<style type="text/css">
+		.text_shadow{text-shadow: 8px 10px 3px red,-2px -1px 5px green;}
+	</style>
+	
+	&lt;img src="transition/img/tt.jpg" /&gt;
+	.filterImg {
+	    filter: blur(4px);//   filter 滤镜 模糊度
+	}
+	<img src="transition/img/tt.jpg" alt="" class="filterImg">
+	<style type="text/css">
+		.filterImg{filter: blur(4px);width: 100px;height: 100px;}
+	</style>
+	
+	&lt;div class="bab"&gt;&lt;/div&gt;
+	.bab{
+		width: 300px;
+		height: 300px;
+		opacity:0.3;//div没有内容可以使用,因为字也一起透明
+		border: 1px red;
+	}	
+	
+	<div class="bab"></div>
+	<style type="text/css">
+		.bab{
+			width: 100px;
+			margin-left: 50px;
+			height: 30px;
+			opacity:0.4;
+			background: green;
+			border: 1px red;
+		}
+	</style>
+				</pre>
+			</div>
+			<div>
+				<h4>a 标签 线</h4>
+				<pre>
+	.line{
+		position: relative;
+	}
+	.line:hover{
+		color: #0dafd2;
+		box-sizing: border-box;
+	}
+	.line::after {
+		content: "";
+		display: block;
+		position: absolute;
+		border-bottom: 2px solid #0dafd2;
+		left: 0;
+		width: 0px;
+		margin: 0 auto;
+		margin-top: 5px;
+	}
+	.line:hover::after{
+		transition: all 0.5s ease;
+		width: 100%;
+	}
+	&lt;span class="line"&gt;公益合作&lt;/span&gt;
+	
+	<span class="line">公益合作</span>
+	<style type="text/css">
+		.line{
+			position: relative;
+		}
+		.line:hover{
+			color: #0dafd2;
+			box-sizing: border-box;
+		}
+		.line::after {
+			content: "";
+			display: block;
+			position: absolute;
+			border-bottom: 2px solid #0dafd2;
+			left: 0;
+			width: 0px;
+			margin: 0 auto;
+			margin-top: 5px;
+		}
+		.line:hover::after{
+			transition: all 0.5s ease;
+			width: 100%;
+		}
+	</style>
+	&lt;span class="text_decoration"&gt;good morning&lt;/span&gt;
+	text_decoration{
+		text-decoration: overline;//line-through/underline;
+	}	
+	<span class="text_decoration">good morning</span>
+	<style type="text/css">
+		.text_decoration{
+			text-decoration: overline;//line-through/underline;
+		}	
+	</style>		
+				</pre>
+			</div>
+			<div>
+				<h4>outline</h4>
+				<pre>
+	&lt;div class="outline"&gt;&lt;/div&gt;
+	.outline{
+		border: 1px solid #5FB878;
+		outline: dashed 5px;
+		outline-offset:10px;  //类似于padding
+		padding: 10px;
+		width: 214px;	
+		height: 50px;
+	}	
+	<div class="outline"></div>
+	<style type="text/css">
+		.outline{
+			border: 1px solid #5FB878;
+			margin-left: 80px;
+			outline-offset:10px;
+			outline: dashed 5px;
+			padding: 10px;
+			width: 214px;	
+			height: 50px;
+		}
+	</style>				
+				</pre>
+			</div>
+			<div>
+				<h4>linear-gradient</h4>
+				<pre>
+	&lt;div class="gradient"&gt;&lt;/div&gt;
+		.gradient{
+			width: 400px;
+			height: 100px;
+			background: linear-gradient(to right, white 33%,blue 70%,red);
+		}	//渐变从左到右，白色占总体的33%，蓝色占剩下的70%，红色就不用写，默认是最后剩下，若是值超出剩下的就相当于重写蓝色
+		.deg{
+			background: linear-gradient(66deg ,blue 30% , red );
+		}//只支持百分比  表示以时钟6点的方向为0°，顺时针方向拉渐变
+	（在ps中演示比较容易懂，拉一个圆形或方形，时钟6点的方向为0°，往中心的方向拉渐变就是其效果一样的）
+		.percent{
+			background: linear-gradient(blue ,red );
+		}类似比例的样式
+		<div class="gradient" style="background: linear-gradient(to right, white 33%,blue 70%,red);"></div>
+		<div class="gradient deg"></div>
+		<div class="gradient percent"></div>
+		<style type="text/css">
+			.gradient{
+				width: 400px;
+				height: 100px;
+				
+			}
+			.deg{
+				background: linear-gradient(66deg ,blue 30% , red );
+			}
+			.percent{
+				background: linear-gradient(blue ,red );
+			}
+		</style>				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+	<!--定义数据-->
+</body>
+
+</html>

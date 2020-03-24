@@ -1,0 +1,49 @@
+.cs-empty:empty{
+		width: 120px;
+		padding: 20px;
+		border: 5px dashed red;
+	}	
+.cs-empty-span{
+	display: none;
+}
+
+dd,dt{
+	display: inline-block;
+}
+dd:empty::before {
+	    content: '暂无';
+	    color: gray;
+	}
+dl{
+	padding: 0 20px;
+	float: left;
+}
+
+.cs-loading {
+    height: 150px;
+    position: relative;
+    text-align: center;
+    /* 与截图无关，截图示意用 */
+    border: 1px dotted;
+}
+/* 图片和文字同时存在时在中间留点间距 */
+.cs-loading-img {
+    width: 32px; height: 32px;
+    margin-top: 45px;
+    vertical-align: bottom;
+}
+.cs-loading-p {
+    margin: .5em 0 0;
+    color: gray;
+}
+/* 只有图片的时候居中绝对定位 */
+.cs-loading-img:only-child {
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
+}
+/* 只有文字的时候行号近似垂直居中 */
+.cs-loading-p:only-child {
+    margin: 0;
+    line-height: 150px;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>空白节点</h4>
+				<p>ie浏览器和firefox浏览器对空白节点的处理不同，ie浏览器会忽略这些节点，而Firefox浏览器则认可这些节点</p>
+				<pre>
+	处理方法：	1.避免在文档中出现文本节点。  
+				2.在使用前先删除其中的空白节点。 
+	function cleanWhitespace(element){	
+		for(var i=0; i < element.childNodes.length; i++){		  
+			var node = element.childNodes[i];		  //判断是否是空白节点，如果是则删除该节点		  
+			if(node.nodeType == 3 && !/\S/.test(node.nodeValue){		  	
+				node.parentNode.removeChild(node);		  
+			}	
+		}  
+	}				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

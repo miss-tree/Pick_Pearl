@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="../css/advance.css"/>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>超实用超高频使用的:empty 伪类</h4>
+				<pre>
+	&lt;div class="cs-empty"&gt;&lt;/div&gt;
+	
+	.cs-empty:empty{
+		width: 120px;
+		padding: 20px;
+		border: 5px dashed red;
+	}			
+	<div class="cs-empty"></div>
+	
+	.cs-empty-span{
+		display: none;
+	}
+	&lt;span class="cs-empty-span"&gt;&lt;/span&gt;
+	<span class="cs-empty-span"></span>
+	
+	&lt;dl&gt;
+	    &lt;dt&gt;姓名：&lt;/dt&gt;
+	    &lt;dd&gt;张三&lt;/dd&gt;
+	    &lt;dt&gt;性别：&lt;/dt&gt;
+	    &lt;dd&gt;&lt;/dd&gt;
+	&lt;/dl&gt;
+	
+	dd:empty::before {
+	    content: '暂无';
+	    color: gray;
+	}
+	<dl>
+	    <dt>姓名：</dt>
+	    <dd>张三</dd>
+	    <dt>性别：</dt>
+	    <dd></dd>
+	</dl>
+				</pre>
+			</div>
+			<div>
+				<h5>only-child伪类</h5>
+				<pre>
+	&lt;!-- 1. 只有加载图片 --&gt;
+	&lt;div class="cs-loading"&gt;
+		&lt;img src="./loading.png" class="cs-loading-img"&gt;
+	&lt;/div&gt;
+	&lt;!-- 2. 只有加载文字 --&gt;
+	&lt;div class="cs-loading"&gt;
+		&lt;p class="cs-loading-p"&gt;正在加载中...&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;!-- 3. 加载图片和加载文字同时存在 --&gt;
+	&lt;div class="cs-loading"&gt;
+		&lt;img src="./loading.png" class="cs-loading-img"&gt;
+		&lt;p class="cs-loading-p"&gt;正在加载中...&lt;/p&gt;
+	&lt;/div&gt;
+	
+	.cs-loading {
+	    height: 150px;
+	    position: relative;
+	    text-align: center;
+	    /* 与截图无关，截图示意用 */
+	    border: 1px dotted;
+	}
+	/* 图片和文字同时存在时在中间留点间距 */
+	.cs-loading-img {
+	    width: 32px; height: 32px;
+	    margin-top: 45px;
+	    vertical-align: bottom;
+	}
+	.cs-loading-p {
+	    margin: .5em 0 0;
+	    color: gray;
+	}
+	/* 只有图片的时候居中绝对定位 */
+	.cs-loading-img:only-child {
+	    position: absolute;
+	    left: 0; right: 0; top: 0; bottom: 0;
+	    margin: auto;
+	}
+	/* 只有文字的时候行号近似垂直居中 */
+	.cs-loading-p:only-child {
+	    margin: 0;
+	    line-height: 150px;
+	}
+				</pre>
+				<img src="../../static/img/advance01.jpg" alt="">
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<!--定义数据-->
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

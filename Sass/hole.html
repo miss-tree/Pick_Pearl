@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h3>移动端坑点</h3>
+			</div>
+			<div>
+				<h4>兼容iphoneX</h4>
+				<pre>
+	1.&lt; meta  name="viewport"  content="viewport-fit=cover" /&gt;
+	2.在编写css属性是加上 
+	height:env(safe-area-inset-bottom);/*兼容IOS>=11.2*/
+	height:constant(safe-area-inset-bottom);/*兼容IOS<11.2*/				
+				</pre>
+			</div>
+			<div>
+				<h4>底部导航被键盘顶上去</h4>
+				<img src="./img/hole01.jpg" alt="">
+				<pre>
+	直接给body添加定位信息relative或absolute,最好是当前屏幕可视高度				
+	body{
+	    position:relative;
+	}
+	但要注意，底部的导航，不能用固定定位，如果要固定在底部，则使用绝对定位
+	nav{
+	    position:absolute;
+	    bottom:0;
+	}
+	
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

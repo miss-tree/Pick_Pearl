@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<link href="../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h3>使用 Sass</h3>
+				<p>Sass 可以通过以下三种方式使用：作为命令行工具；作为独立的 Ruby 模块 (Ruby module)；
+				或者作为 Rack-enabled 框架的插件（例如 Ruby on Rails 与 Merb）。
+				无论哪种方式都需要先安装 Sass gem （Windows 系统需要先安装 Ruby）</p>
+				<div class="code">
+					gem install sass
+				</div>
+				<div class="code">
+					sass input.scss output.css <span>在命令行中运行 Sass</span>
+				</div>
+				<div class="code">
+					sass --watch input.scss:output.css <span>监视单个 Sass 文件，每次修改并保存时自动编译</span>
+				</div>
+				<div class="code">
+					sass --watch app/sass:public/stylesheets <span>监视整个文件夹</span>
+				</div>
+			</div>	
+			<div>
+				<h4>Sass运算</h4>
+				<p>
+					Sass经常会用到数值的运算，有时候我们可以直接用到算术的运算方式。
+					简单的数学运算式就不在此介绍了，认识点函数运算方法。
+				</p>
+				<pre>
+	$name: foo;
+	$attr: border;
+	p.#{$name} {
+	  #{$attr}-color: blue;
+	}
+					
+	编译为
+					
+	p.foo {
+	  border-color: blue; }				
+				</pre>
+			</div>
+			<div>
+				<h4>Sass函数指令</h4>
+				<pre>
+	$grid-width: 40px;
+	$gutter-width: 10px;
+	
+	@function grid-width($n) {
+	  @return $n * $grid-width + ($n - 1) * $gutter-width;
+	}
+	
+	#sidebar { width: grid-width(5); }
+					
+	编译为
+					
+	#sidebar {
+	  width: 240px; }				
+				</pre>
+			</div>
+		</div> 
+	</div>
+	<!--第三方插件-->
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

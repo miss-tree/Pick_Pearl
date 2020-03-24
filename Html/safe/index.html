@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>XSS</h4>
+				<p>XSS，即 Cross Site Script，中译是跨站脚本攻击。
+				XSS本质是Html注入，攻击者在网站上注入恶意的js代码，
+				对客户端页面进行篡改，进而窃取隐私数据比如cookie、
+				session，或者重定向到不好的网站等。</p>
+				<ul>
+					<li>使用url参数攻击：
+					https://www.baidu.com?jarttoTest=&lt;script&gt;alert(document.cookie)&lt;/script&gt;，
+					这种是反射型的XSS，攻击是一次性的。
+					简单来说就是：引导用户点击恶意链接，链接上的js代码被发送至服务器，
+					而服务器将不加处理的脚本又返回至客户端，此时用户客户端就会执行js代码。
+					</li>
+					<li>
+						有人在留言内容中插入恶意js，服务器将该内容放入数据库中，
+						此时，每当有人访问这个留言，就会执行这个恶意js。这是存储型XSS。
+					</li>
+					<li>
+						……
+					</li>
+				</ul>
+				<div>防范措施</div>
+				<ul>
+					<li>不要相信用户输入： 对用户输入内容进行过滤。对特殊字符进行实体转义。</li>
+					<li>不要完全信任服务端：对服务端输出进行转义。</li>
+					<li>使用HttpOnly Cookie：将重要的cookie标记为httponly，这样就无法使用js代码获取cookie。</li>
+				</ul>
+			</div>
+			<div class="F_Position">
+				<h4>CSRF</h4>
+				<p>
+					即 Cross Site Request Forgery，中译是跨站请求伪造。
+					未经用户许可，偷偷的使用用户名义，发送恶意请求的攻击。
+					通常情况下借助用户cookie来骗取服务器信任。
+				</p>
+				<ul>
+					<li>CSRF（通常）发生在第三方域名。(点击钓鱼网站：澳门赌场类，情趣诱惑类)</li>
+					<li>CSRF攻击者（通常）不能获取到Cookie等信息，只是使用。</li>
+					<li>。。</li>
+				</ul>
+				<div>防范措施</div>
+				<ul>
+					<li>同源监测</li>
+					<li>CSRF Token: 需要服务端生成一个Token，然后放在页面中，
+					页面提交请求的时候，带上这个Token。服务端把Token从Session中拿出，
+					与请求中的Token进行比对验证。</li>
+					<li>Samesite Cookie属性：</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

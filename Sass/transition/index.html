@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<link href="../../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<p>过度动画用到比较少，所以尽量详细一点。搭配手册讲解更让人理解通透</p>
+				<div class="code">transition-property<span>检索或设置对象中的参与过渡的属性</span></div>
+				<p>描述盒子在过度动画中属性的变化，主要有width、z-index、background-color、border-color、color、
+				font-size等描述盒子的变化属性，可以直接用 all 概括</p>
+				<div class="code">transition-duration<span>检索或设置对象过渡的持续时间</span></div>
+				<div class="code">transition-timing-function<span>检索或设置对象中过渡的类型</span></div>
+				<p>描述盒子变化的类型比如：linear(线性过渡)、ease(平滑过渡)、ease-in(由慢到快)、ease-out(由快到慢)、
+				ease-in-out(由慢到快再到慢)、step-start、step-end。
+				</p>
+				<div class="code">transition-delay<span>检索或设置对象延迟过渡的时间</span></div>
+				<p>不支持样式复写例如：transition: transform 2s，scale(1.3) 1s; 逗号后面的不生效，不能和动画一样。动画也是要在不同
+				时间内处理不同的事件</p>
+			</div>
+		</div> 
+	</div>
+	<!--第三方插件-->
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

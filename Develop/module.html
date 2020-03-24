@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>模块开发</h4>
+				<p>在原始的html页面开发中，会用到模块加载开发。但是又不同于三大框架，
+				需要用到一个 require.js 文件引入，因为没办法像框架开发运行直接使用
+				import或者 require 方法引用。模块化开发有便于我们后期的维护与开发,
+				将所有的文件通过 require.js 放到一个文件，避免出错，在公共文件中加载，定义和引用
+				下面介绍一下使用方法：</p>
+				<pre>
+		首先在body底部引入文件
+		&lt;script src="js/require.js" date-main="js/main.js" defer async&gt;&lt;/script&gt;
+		/*首先引入 require.js 文件，主要函数 main.js ，defer 或者	async是异步加载
+		defer:一边加载一边执行，	async:加载完才执行*/
+			
+		main.js
+		define("index",["js/jquery","vue"],function(){
+			...code..
+		})	
+		/*定义一个模块 index，[]中是依赖的文件，没有可以空着不写，后面的函数是执行的函数事件*/
+		
+		另一种曲线救国的方法：		a.js 	强行兼容
+		require.config({
+			paths:{"a":""js/a"}  		//a.js 路径
+		},slem:{
+			"a":{
+				deps:[],		//依赖的文件
+				export:"a"		//导出a
+			}
+		})
+		
+		加载模块		避免在公共文件中使用require  (推荐)
+		requir(["js/index","js/jquery","js/a"],function(){
+			...code..
+		})
+				</pre>
+				<p>
+					上面不管定义了多少都是从上至下执行，执行完同步然后到异步操作。
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+	
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link href="./css/input.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>radio按钮</h4>
+				<pre>
+	/*隐藏input*/
+	label.bui-radios-label input[type="radio"]{
+		position: absolute;
+		opacity: 0;
+		visibility: hidden;
+	}
+	/*自定义radio*/
+	label.bui-radios-label .bui-radios{
+		display: inline-block;
+		position: relative;
+		width: 13px;
+		height: 13px;
+		background-color: #fff;
+		border: 1px solid #979797;
+		border-radius: 50%;
+		vertical-align: -2px;
+		margin-right: 5px;
+	}
+	/*单选框选中后，自定义radio的样式*/
+	label.bui-radios-label input[type="radio"]:checked + .bui-radios:after{
+		position: absolute;
+		content: "";
+		width: 7px;
+		height: 7px;
+		background-color: #fff;
+		border-radius: 50%;
+		top: 3px;
+		left: 3px;
+	}
+	label.bui-radios-label input[type="radio"]:checked + .bui-radios{
+		background-color: #00B066;
+		border:1px solid #00B066;
+	}
+	label.bui-radios-label input[type="radio"]:disabled + .bui-radios{
+		background-color: #e8e8e8;
+		border:1px solid #979797;
+	}
+	label.bui-radios-label input[type="radio"]:disabled:checked + .bui-radios:after{
+		background-color: #c1c1c1;
+	}
+	/*自定义radio的过渡效果*/
+	label.bui-radios-label.bui-radios-anim .bui-radios{
+		-webkit-transition:background-color ease-out .5s;
+		transition:background-color ease-out .5s;
+	}			
+	
+	&lt;h4&gt;有简单的背景动画：&lt;/h4&gt;
+	&lt;div&gt;
+	&lt;label class="bui-radios-label bui-radios-anim"&gt;
+		&lt;input type="radio" name="sex"&gt;&lt;i class="bui-radios"&gt;&lt;/i&gt;男
+	&lt;/label&gt;
+	&lt;label class="bui-radios-label bui-radios-anim"&gt;
+		&lt;input type="radio" name="sex"&gt;&lt;i class="bui-radios"&gt;&lt;/i&gt;女
+	&lt;/label&gt;
+		
+	&lt;/div&gt;
+	&lt;h4&gt;无背景动画：&lt;/h4&gt;
+	&lt;label class="bui-radios-label"&gt;
+		&lt;input type="radio" name="sex"&gt;&lt;i class="bui-radios"&gt;&lt;/i&gt;男
+	&lt;/label&gt;
+	&lt;label class="bui-radios-label"&gt;
+		&lt;input type="radio" name="sex"&gt;&lt;i class="bui-radios"&gt;&lt;/i&gt;女
+	&lt;/label&gt;
+	&lt;h4&gt;禁用状态（disabled）：&lt;/h4&gt;
+	&lt;label class="bui-radios-label"&gt;
+		&lt;input type="radio" name="sex" disabled="disabled"&gt;&lt;i class="bui-radios"&gt;&lt;/i&gt;男
+	&lt;/label&gt;
+	&lt;label class="bui-radios-label"&gt;
+		&lt;input type="radio" name="sex" disabled="" checked=""&gt;&lt;i class="bui-radios"&gt;&lt;/i&gt;女
+	&lt;/label&gt;		
+	
+				</pre>
+				<div>
+					<h5>有简单的背景动画：</h5>
+					<div>
+					<label class="bui-radios-label bui-radios-anim">
+						<input type="radio" name="sex"><i class="bui-radios"></i>男
+					</label>
+					<label class="bui-radios-label bui-radios-anim">
+						<input type="radio" name="sex"><i class="bui-radios"></i>女
+					</label>
+						
+					</div>
+					<h5>无背景动画：</h5>
+					<label class="bui-radios-label">
+						<input type="radio" name="sexll"><i class="bui-radios"></i>男
+					</label>
+					<label class="bui-radios-label">
+						<input type="radio" name="sexll"><i class="bui-radios"></i>女
+					</label>
+					<h5>禁用状态（disabled）：</h5>
+					<label class="bui-radios-label">
+						<input type="radio" name="sexss" disabled="disabled"><i class="bui-radios"></i>男
+					</label>
+					<label class="bui-radios-label">
+						<input type="radio" name="sexss" disabled="" checked=""><i class="bui-radios"></i>女
+					</label>	
+				</div>
+			</div>
+			<div>
+				<h4>checkbox按钮</h4>
+				<pre>
+	label.bui-checkbox-label input[type="checkbox"]{
+		visibility: hidden;
+		opacity: 0;
+	}
+	label.bui-checkbox-label .bui-checkbox{
+		display: inline-block;
+		position: relative;
+		width: 13px;
+		height: 13px;
+		border: 1px solid #ddd;
+		background-color: #fff;
+		vertical-align: -2px;
+		margin-right: 5px;
+	}
+	label.bui-checkbox-label input[type="checkbox"]:checked + .bui-checkbox:after{
+		position: absolute;
+		content: "";
+		width:8px;
+		height: 4px;
+		border-left:2px solid #fff;
+		border-bottom: 2px solid #fff;
+		transform: rotate(-45deg) translate(-50%,-50%);
+		/*top:50%;*/
+		left:50%;
+	}
+	label.bui-checkbox-label input[type="checkbox"]:checked + .bui-checkbox {
+		background-color: #00B066;
+	}
+	label.bui-checkbox-label input[type="checkbox"]:disabled + .bui-checkbox{
+		background-color: #e8e8e8;
+		border:1px solid #979797;
+	}
+	label.bui-checkbox-label input[type="checkbox"]:disabled:checked + .bui-checkbox:after{
+		border-color: #000;
+	}
+	label.bui-checkbox-label.bui-checkbox-anim .bui-checkbox{
+		-webkit-transition:background-color ease-in-out .3s;
+		transition:background-color ease-in-out .3s;
+	}				
+	
+	&lt;h4&gt;有简单的背景动画：&lt;/h4&gt;
+	&lt;label class="bui-checkbox-label bui-checkbox-anim"&gt;
+		&lt;input type="checkbox" name="sex"&gt;&lt;i class="bui-checkbox"&gt;&lt;/i&gt;男
+	&lt;/label&gt;
+	&lt;label class="bui-checkbox-label bui-checkbox-anim"&gt;
+		&lt;input type="checkbox" name="sex"&gt;&lt;i class="bui-checkbox"&gt;&lt;/i&gt;女
+	&lt;/label&gt;
+	&lt;h4&gt;无背景动画：&lt;/h4&gt;
+	&lt;label class="bui-checkbox-label"&gt;
+		&lt;input type="checkbox" name="sex"&gt;&lt;i class="bui-checkbox"&gt;&lt;/i&gt;男
+	&lt;/label&gt;
+	&lt;label class="bui-checkbox-label"&gt;
+		&lt;input type="checkbox" name="sex"&gt;&lt;i class="bui-checkbox"&gt;&lt;/i&gt;女
+	&lt;/label&gt;
+	&lt;h4&gt;禁用状态（disabled）：&lt;/h4&gt;
+	&lt;label class="bui-checkbox-label"&gt;
+		&lt;input type="checkbox" name="sex" disabled="disabled"&gt;&lt;i class="bui-checkbox"&gt;&lt;/i&gt;男
+	&lt;/label&gt;
+	&lt;label class="bui-checkbox-label"&gt;
+		&lt;input type="checkbox" name="sex" disabled="" checked=""&gt;&lt;i class="bui-checkbox"&gt;&lt;/i&gt;女
+	&lt;/label&gt;
+				</pre>
+				<h5>有简单的背景动画：</h5>
+				<label class="bui-checkbox-label bui-checkbox-anim">
+					<input type="checkbox" name="sex11"><i class="bui-checkbox"></i>男
+				</label>
+				<label class="bui-checkbox-label bui-checkbox-anim">
+					<input type="checkbox" name="sex11"><i class="bui-checkbox"></i>女
+				</label>
+				<h5>无背景动画：</h5>
+				<label class="bui-checkbox-label">
+					<input type="checkbox" name="sex22"><i class="bui-checkbox"></i>男
+				</label>
+				<label class="bui-checkbox-label">
+					<input type="checkbox" name="sex22"><i class="bui-checkbox"></i>女
+				</label>
+				<h5>禁用状态（disabled）：</h5>
+				<label class="bui-checkbox-label">
+					<input type="checkbox" name="sex33" disabled="disabled"><i class="bui-checkbox"></i>男
+				</label>
+				<label class="bui-checkbox-label">
+					<input type="checkbox" name="sex33" disabled="" checked=""><i class="bui-checkbox"></i>女
+				</label>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>
