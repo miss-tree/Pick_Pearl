@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		ol{
+			margin-left: 2em;
+		}
+		li{
+			padding: 5px 0;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow" v-cloak>
+			<div>
+				<div class="Table">	
+					<div class="TableRow" v-for="(el,index) in catalog">
+						<a class="RowLeft" 
+						:title="el.name"
+						:href="'#'+el.id">{{el.name}}</a>
+						<span class="RowRight">{{el.explain}}</span>
+					</div>
+				</div>	
+			</div>
+			<div>
+				<h4 id="attritbue">对象属性查看方法</h4>
+				<div>
+					<ol>
+						<li v-for="(el,name) in list" :key="el.name">
+							<b>{{el.name}}</b>：{{el.explain}}	
+						</li>
+					</ol>
+				</div>
+			</div>
+			<div>
+				<h4 id="handler">对象属性操作</h4>
+				<div>
+					<ol>
+						<li v-for="(item,name) in arr" :key="item.name">
+							<b>{{item.name}}</b>：{{item.explain}}	
+						</li>
+					</ol>
+				</div>
+			</div>
+			<div>
+				<h4>对象原型方法</h4>
+				<div>
+					<ol>
+						<li>obj.hasOwnProperty()</li>
+						<li>prototypeObj.isPrototypeOf()</li>
+						<li>obj.propertyIsEnumerable()</li>
+						<li>obj.toLocaleString()</li>
+						<li>obj.toString()</li>
+						<li>object.valueOf()</li>
+					</ol>
+				</div>
+			</div>
+			<div>
+				<h4 id="defineProperty">defineProperty()</h4>
+				<div>
+					<pre>
+		let obj = {
+		  name: '子君',
+		  officialAccounts: '前端有的玩'
+		}
+		Object.defineProperty(obj,'name', {
+		  // 设置writable 是 false, 这个属性将不能被修改
+		  writable: false
+		})
+		// 修改obj.name
+		obj.name = "君子"
+		console.log(obj.name)=>打印依然是子君
+		
+					</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<!--定义数据-->
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					catalog:[
+						{name:"对象属性",id:"attritbue",explain:'查看对象属性使用的方法'},
+						{name:"对象属性操作",id:"handler",explain:'操作对象属性使用的方法'},
+						{name:"对象原型",id:"property",explain:'获取对象原型的方法'},
+						{name:"defineProperty",id:"defineProperty",explain:'设置对象属性'},
+					],
+					list:[
+						{name:"Object.values(obj)返回对象的所有可枚举属性值的数组",
+						explain:'值的顺序与使用for...in循环的顺序相同 ( 区别在于 for-in 循环枚举原型链中的属性 )'},
+						{name:"Object.keys(obj)返回对的所有可枚举属性的字符串数组",
+						explain:'排列顺序和 for...in 循环遍历时顺序一致'},
+						{name:"Object.entries(obj)返回给定对象自身可枚举属性的键值对数组",
+						explain:'其排列与 for...in 循环遍'},
+						{name:"Object.fromEntries(iterable)返回一个由该迭代对象条目提供对应属性的新对象",
+						explain:'把键值对列表转换为一个对象，参数：可迭代对象，类似 Array 、Map 历时返回的顺序一致（区别于 for-in 循环还会枚举原型链中的属性），浅拷贝'},
+						{name:"obj.toString()返回表示该对象的字符串",
+						explain:'[object Object]'},
+						{name:"object.valueOf()返回该对象的原始值",
+						explain:' '},
+						{name:"obj.toLocaleString()返回对象的字符串表示",
+						explain:'方法被用于派生对象为了特定语言环境的目的（locale-specific purposes）而重载使用'},
+						{name:"Object.getOwnPropertyDescriptor(obj, prop)返回指定属性描述对象",
+						explain:'返回指定对象上的一个自有属性对应的属性描述符，prop目标对象的属性名'},
+						{name:"Object.getOwnPropertyDescriptors(obj)返回对象的所有自身属性描述符",
+						explain:'用来获取一个对象的所有自身属性的描述符'},
+						{name:"Object.getOwnPropertyNames(obj)返回对象的所有属性名字符串组成的数组",
+						explain:'返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组'},
+						{name:"Object.getOwnPropertySymbols(obj)返回对象所有Symbol属性的数组",
+						explain:' '},
+						{name:"Object.getPrototypeOf(object)返回对象的原型",
+						explain:'返回指定对象的原型（内部[[Prototype]]属性的值），没有则null'},
+					],
+				arr:[
+					{name:"Object.assign(target, ...sources)返回目标对象",
+					explain:'用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象，浅拷贝'},
+					{name:"Object.create(proto[,propertiesObject])返回新对象，带有指定原型对象和属性",
+					explain:'参数1：新对象的原型，参数2：要定义其可枚举属性或修改的属性描述符的对象'},
+					{name:"Object.setPrototypeOf(obj, prototype)返回这个对象",
+					explain:'设置一个指定的对象的原型 ( 即, 内部[[Prototype]]属性）到另一个对象或 null'},
+					{name:"Object.preventExtensions(obj)返回不可扩展对象",
+					explain:'让对象变的不可扩展，也就是永远不能再添加新属性'},
+					{name:"Object.freeze(obj)返回冻结的对象",
+					explain:'冻结一个对象。一个被冻结的对象再也不能被修改'},
+					{name:"Object.seal(obj)返回被密封的对象",
+					explain:'阻止添加新属性并将所有现有属性标记为不可配置。当前属性的值只要原来是可写的就可以改变'},
+					{name:"Object.defineProperties(obj, props)返回参数对象本身",
+					explain:'在一个对象上定义新的属性或修改现有属性，并返回该对象，参数2：要定义其可枚举属性或修改的属性描述符的对象'},
+					{name:"Object.defineProperty(obj, prop, descriptor)返回参数对象",
+					explain:'参数2：定义或修改的属性名，参数3：对应的属性描述符。直接在一个对象上定义一个新属性，或者修改一个对象的现有属性'},
+				],
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

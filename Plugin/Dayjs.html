@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>Dayjs</h4>
+				<p>
+					Day.js 是一个轻量的处理时间和日期的 JavaScript 库，
+					和 Moment.js 的 API 设计保持完全一样。
+					<a href="https://day.js.org/docs/zh-CN/installation/installation"
+					target="_blank"	
+					>中文文档地址</a>
+				</p>
+				<p>
+					可以设置取值，赋值、验证、复制、查询
+				</p>
+				<div>
+					<pre>
+var now=new Date();
+console.log(now.getMonth()+1)==>获取当前月份
+var month=dayjs().month(0)==>设置月份
+console.log(month)
+tt=dayjs().month(now.getMonth()+3)
+y=tt.year().toString()
+m=tt.month().toString()
+d=tt.date().toString()
+console.log(y+"-"+m+"-"+d)
+var last=y+"-"+m+"-"+d
+var fultrue=(new Date(last)).getTime()-24*60*60*1000;
+console.log(fultrue)
+fultrue=new Date(fultrue)
+//设置两个月后前一天
+fultrue=`${fultrue.getFullYear()}-${fultrue.getMonth() + 1}-${fultrue.getDate()}`
+console.log(fultrue)					
+					</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--第三方插件-->
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+
+	<!--定义数据-->
+	<script type="text/javascript">
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link href="../../static/css/font-awesome.min.css" rel="stylesheet"> -->
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="../../static/layui/css/layui.css" media="all"> -->
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="../css/advance.css"/>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow" v-cloak>
+			<div class="Table">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="line">::first-line | 选择文本的第一行</h4>
+				<pre>
+	=>在display值为block, inline-block, table-cell 或者 table-caption中有用
+		p:first-line {
+		  color: lightcoral;
+		}
+				</pre>
+			</div>
+			<div>
+				<h4 id="letter">::first-letter | 选择这一行的第一字</h4>
+				<pre>
+	    p::first-letter{
+	      color: red;
+	      font-size: 2em;
+	    }
+				</pre>
+			</div>
+			<div>
+				<h4 id="selection">::selection| 被用户选中高亮的部分</h4>
+				<pre>
+	    div::selection {
+	          color: #409EFF;
+	    }
+				</pre>
+			</div>
+			<div>
+				<h4 id="root">:root | 根元素</h4>
+				<pre>
+	=>在声明全局 CSS 变量时 :root 会很有用
+	    :root {
+	      --main-color: hotpink;
+	      --pane-padding: 5px 42px;
+	    }
+				</pre>
+			</div>
+			<div>
+				<h4 id="first">:first-of-type | 选择指定类型的第一个子元素</h4>
+				<pre>
+		.innerDiv p:first-of-type {
+		  color: orangered;
+		}
+				</pre>
+			</div>
+			<div>
+				<h4 id="last">:last-of-type | 选择指定类型的最后一个子元素</h4>
+				<pre>
+		.innerDiv p:last-of-type {
+		    color: orangered;
+		}
+				</pre>
+			</div>
+			<div>
+				<h4 id="nth">:nth-of-type() | 选择指定类型的子元素</h4>
+				<pre>
+		.innerDiv p:nth-of-type(1) {
+		    color: orangered;
+		}
+				</pre>
+			</div>
+			<div>
+				<h4 id="type">:nth-last-of-type() | 在列表末尾选择类型的子元素</h4>
+				<pre>
+		.innerDiv p:nth-last-of-type(1) {
+		    color: orangered;
+		}
+				</pre>
+			</div>
+			<div>
+				<h4 id="link">:link | 选择一个未访问的超链接</h4>
+				<pre>
+		a:link {
+		    color: orangered;
+		}
+				</pre>
+			</div>
+			<div>
+				<h4 id="checked">:checked | 选择一个选中的复选框</h4>
+				<pre>
+		input:checked {
+		  box-shadow: 0 0 0 3px hotpink;
+		}
+				</pre>
+			</div>
+			<div>
+				<h4 id="not">:not() | 用来匹配不符合一组选择器的元素</h4>
+				<pre>
+		.innerDiv :not(p) {
+		    color: lightcoral;
+		}
+		&lt;div class="innerDiv"&gt;
+			&lt;p&gt;Paragraph 1&lt;/p&gt;
+			&lt;p&gt;Paragraph 2&lt;/p&gt;
+			&lt;div&gt;Div 1&lt;/div&gt;
+			&lt;p&gt;Paragraph 3&lt;/p&gt;
+			&lt;div&gt;Div 2&lt;/div&gt;
+		&lt;/div&gt;
+				</pre>
+			</div>
+			<div>
+				<h4 id="target">:target | 点击触发</h4>
+				<p>
+					当浏览器地址里的hash(地址里#号后面的部分)
+					和:target伪选择器指定的ID匹配上时，
+					它的样式就会在这个ID元素上生效。
+				</p>
+				<pre>
+		:target {
+			color: #000;
+		}
+		h2:target {
+			color: #f00;
+		}		
+			
+		&lt;h2 id="anchor"&gt;Anchor 1&lt;/h2&gt;
+		&lt;h2 id="anchor2"&gt;Anchor 2&lt;/h2&gt;
+		=>在#后面的部分和元素id相同时，设置的样式就会起效，通常和&lt;a&gt;配合使用
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<!--定义数据-->
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"::first-line",id:"line",explain:'选择文本的第一行'},
+						{name:"::first-letter",id:"letter",explain:'选择这一行的第一字'},
+						{name:"::selection",id:"selection",explain:'被用户选中高亮的部分'},
+						{name:"::root",id:"root",explain:'根元素'},
+						{name:":first-of-type",id:"first",explain:'选择指定类型的第一个子元素'},
+						{name:":last-of-type",id:"last",explain:'选择指定类型的最后一个子元素'},
+						{name:":nth-of-type()",id:"nth",explain:'选择指定类型的子元素'},
+						{name:":nth-last-of-type()",id:"type",explain:'在列表末尾选择类型的子元素'},
+						{name:":link",id:"link",explain:' 选择一个未访问的超链接'},
+						{name:":checked",id:"checked",explain:'选择一个选中的复选框'},
+						{name:":not()",id:"not",explain:'用来匹配不符合一组选择器的元素'},
+						{name:":target",id:"target",explain:'点击触发当前活动的target元素'},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

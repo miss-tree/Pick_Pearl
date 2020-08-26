@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	<style type="text/css">
+		.box {  background-color: #CCCCCC;  width: 200px; height: 200px;margin-left: 100px;  }
+		.boxshadow1{ box-shadow:inset 0px 15px 10px -15px #000; }
+		.boxshadow2{ box-shadow:inset -15px 0px  10px -15px #000;}
+		.boxshadow3{box-shadow:0px 12px 8px -12px #000; border-radius:10px; }
+		.boxshadow4{box-shadow:3px 0 8px -4px #000;}
+		.boxshadow5{ box-shadow: inset 0px -1px 0px 0px rgb(0, 0, 0) ;}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div class="Table">
+				<div class="TableRow" v-for="(el,index) in list" v-cloak>
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="shadow">base</h4>
+				<pre>
+	上边内阴影示例：
+		box-shadow:inset 0px 15px 10px -15px #000;
+	<div class="box boxshadow1"></div>	
+	右边内阴影示例：
+		box-shadow:inset -15px 0px  10px -15px #000;
+	<div class="box boxshadow2"></div>	
+	下边外阴影示例：
+		box-shadow:0px 12px 8px -12px #000; border-radius:10px;
+	<div class="box boxshadow3"></div>	
+	右边外阴影示例：
+		box-shadow:3px 0 8px -4px #000;
+	<div class="box boxshadow4"></div>	
+	下边细线示例：
+		box-shadow: inset 0px -1px 0px 0px rgb(0, 0, 0) ;
+	<div class="box boxshadow5"></div>				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+	<!--定义数据-->
+	<script src="../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"box-shadow",id:"shadow",explain:''},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div class="Table">
+				<div class="TableRow" v-for="(el,index) in list" v-cloak>
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="base">base</h4>
+				<marquee style="color: red;"
+				 scrollamount="12"
+				bgcolor="#000000"
+				onmouseout=this.start()
+				onmouseover=this.stop()>
+					请注意：公司将于下个月15号进行公司体检，若有员工家属想参与的可以到财务或后勤处登记，享受医院7折
+					优惠，体检地点=>广州番禺区番禺中心医院4楼。
+				</marquee>
+				<p></p>
+				<pre>
+	&lt;marquee style="color: red;" 
+		bgcolor="#000000"
+		onmouseout=this.start()
+		onmouseover=this.stop()&gt;
+		请注意：公司将于下个月15号进行公司体检，若有员工家属想参与的可以到财务或后勤处登记，享受医院7折
+		优惠，体检地点=&gt;广州番禺区番禺中心医院4楼。
+	&lt;/marquee&gt;
+				</pre>
+				<p>标签有以下属性：</p>
+				<ul>
+					<li>direction:表示滚动的方向，值可以是left，right，up，down，默认为left</li>
+					<li>behavior:表示滚动的方式，值可以是scroll（连续滚动）slide（滑动一次）alternate（往返滚动）</li>
+					<li>loop:表示循环的次数，值是正整数，默认为无限循环 </li>
+					<li>scrollamount:表示运动速度，值是正整数，默认为6</li>
+					<li>scrolldelay:表示停顿时间，值是正整数，默认为0，单位毫秒 </li>
+					<li>align:表示元素的垂直对齐方式，值可以是top，middle，bottom，默认为middle </li>
+					<li>bgcolor:表示运动区域的背景色，值是16进制的RGB颜色，默认为白色</li>
+					<li>height、width:表示运动区域的高度和宽度，值是正整数（单位是像素）或百分数，默认width=100% height为标签内元素的高度 </li>
+					<li>hspace、vspace:表示元素到区域边界的水平距离和垂直距离，值是正整数，单位是像素</li>
+					<li>onmouseover=this.stop()、onmouseout=this.start():表示当鼠标以上区域的时候滚动停止，当鼠标移开的时候又继续滚动。</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+	<!--定义数据-->
+	<script src="../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"<marquee>",id:"marquee",explain:'多用于大屏提示和系统服务提示消息'},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

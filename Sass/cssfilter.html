@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<!-- <link href="../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet"> -->
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="../static/layui/css/layui.css" media="all"> -->
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h4>一段css让全站变灰</h4>
+				<p>
+					css3中有个filter属性，可以设置grayscale ，
+					但是会出现一个新问题，页面内所有的position属性内容都到
+					头部了，因为设置了这个属性会为这些元素创建一个新的容器，
+					使得这些绝对或固定定位的元素其定位的基准相对于这个新创建的容器。
+				</p>
+				<pre>
+	.gray-filter {
+	    filter: grayscale(100%);
+	    -webkit-filter: grayscale(100%);
+	    -moz-filter: grayscale(100%);
+	    -ms-filter: grayscale(100%);
+	    -o-filter: grayscale(100%);
+	    filter: url("data:image/svg+xml;utf8,&lt;svg xmlns=\'http://www.w3.org/2000/svg\'&gt;&lt;filter id=\'grayscale\'&gt;&lt;feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/&gt;&lt;/filter&gt;&lt;/svg&gt;#grayscale");
+	    filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+	    -webkit-filter: grayscale(1);
+	}
+				
+	解决办法：将属性设置到html标签上
+	html {
+	    filter: grayscale(100%);
+	    -webkit-filter: grayscale(100%);
+	    -moz-filter: grayscale(100%);
+	    -ms-filter: grayscale(100%);
+	    -o-filter: grayscale(100%);
+	    filter: url("data:image/svg+xml;utf8,&lt;svg xmlns=\'http://www.w3.org/2000/svg\'&gt;&lt;filter id=\'grayscale\'&gt;&lt;feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/&gt;&lt;/filter&gt;&lt;/svg&gt;#grayscale");
+	    filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+	    -webkit-filter: grayscale(1);
+	}
+
+					
+				</pre>
+			</div>
+		</div> 
+	</div>
+	<!--第三方插件-->
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

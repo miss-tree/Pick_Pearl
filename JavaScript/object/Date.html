@@ -47,7 +47,27 @@
 	}	
 	setInterval(calculateTime,1000);//设置每秒更新			
 				</pre>
-	<input type="text" name="" id="t" value="" />			
+	<input type="text" name="" id="t" value="" />		
+				<h4>另一种时间倒计时</h4>
+				<pre>
+	var maxtime = 1 * 60;
+	function CountDown() {
+		if (maxtime >= 0) {
+		minutes = Math.floor(maxtime / 60);
+		seconds = Math.floor(maxtime % 60);
+		msg = "距离结束还有" + minutes + ":" + seconds ;
+		document.querySelector(".timer").innerHTML = msg;
+		--maxtime;
+		} else{
+			clearInterval(timer);
+			alert("时间到，结束!");
+		}
+	}
+	***
+	timer = setInterval("CountDown()", 1000); 
+		<div class="timer">距离结束还有</div>
+		<button type="button" id="countDown">点击开始倒计时</button>
+				</pre>
 			</div>
 		</div>
 	</div>
@@ -65,6 +85,23 @@
 			t.value=day+"天"+hour+"时"+min+"分"+sec+"秒";
 		}
 		setInterval(calculateTime,1000);//设置每秒更新
+		var maxtime = 1 * 60;
+		function CountDown() {
+			if (maxtime >= 0) {
+			minutes = Math.floor(maxtime / 60);
+			seconds = Math.floor(maxtime % 60);
+			msg = "距离结束还有" + minutes + ":" + seconds ;
+			document.querySelector(".timer").innerHTML = msg;
+			--maxtime;
+			} else{
+				clearInterval(timer);
+				alert("时间到，结束!");
+			}
+		}
+		let countDown=document.querySelector('#countDown')
+		countDown.addEventListener('click',()=>{
+			timer = setInterval("CountDown()", 1000); 
+		})
 	</script>
 </body>
 

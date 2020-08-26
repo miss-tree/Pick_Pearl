@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/polygon.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div class="Table">
+				<div class="TableRow" v-for="(el,index) in list" v-cloak>
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="filter">梯形</h4>
+				<pre>
+	width: 200px;
+	height: 0px;
+	border-top: 0px;
+	border-bottom: 70px solid #1E6AA4;
+	border-right: 50px solid transparent;
+	border-left: 50px solid transparent;
+		
+		<div class="CaptionTD"></div>
+				</pre>
+			</div>
+			<div>
+				<h4 id="triangle">三角形</h4>
+				<pre>
+	width: 0px;
+	height: 0px;
+	border-color: #014F83 transparent;
+	border-width: 0px 56px 56px 00px;
+	border-style: solid;
+		<div class="triangle"></div>
+				</pre>
+			</div>
+			<div>
+				<h4 id="polygon">多边形</h4>
+				<pre>
+	width: 50px;
+	height: 50px;
+	background: #58a;
+	clip-path:
+		polygon(0 0, 100% 0%, 100% 100%,
+		70px 100%, 0 calc(100% - 70px));
+		<div class="polygon"></div>
+				</pre>
+			</div>
+			<div>
+				<h4 id="parallelogram">平行四边形</h4>
+				<pre>
+	float: left;
+	width: 185px;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #01385F;
+	text-decoration: none;
+	transform: skewX(45deg);
+		<div class="parallelogram"></div>
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<!--定义数据-->
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"梯形",id:"filter",explain:''},
+						{name:"三角形",id:"triangle",explain:''},
+						{name:"多边形",id:"polygon",explain:''},
+						{name:"平行边形",id:"parallelogram",explain:''},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

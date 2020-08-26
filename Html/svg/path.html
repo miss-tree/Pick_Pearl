@@ -7,10 +7,9 @@
 	<link href="../../static/css/animate.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
 	<style type="text/css">
-		svg{
-			display: block;
-			width: 2000px;
-			height: 2000px;
+		li{
+			text-indent: 2em;
+			padding: 5px 0;
 		}
 	</style>
 </head>
@@ -18,15 +17,15 @@
 	<!--右边内容-->
 	<div id="app" class="main animated fadeInRight">
 		<div class="shadow">
+			<div class="Table" v-cloak>
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
 			<div>
 				<h4>circle</h4>
 				<pre>
-		svg{
-			display: block;
-			width: 2000px;
-			height: 2000px;
-		}	
-			
 		&lt;svg&gt;
 			&lt;!--M10 10 为起笔坐标 ，h为横向，数值为正往右走
 				v为纵向，数值为正往下走，数值为负往上走
@@ -43,29 +42,54 @@
 				</pre>
 			</div>
 			<div class="F_Position">
-				<svg>
-					<path d="M100 100 m 0,-100 a 100 100 0 1 100,200 100 100 0 1 100,-200" stroke-width="1" stroke="skyblue"
+				<svg width='300' height='230'>
+					<path d="M100 100 m 0,-100 
+					a 100 100 0 1 100,200 100 100 0 1 100,-200" 
+					stroke-width="1" stroke="skyblue"
 						fill-opacity="0"/>
 				</svg>
+			</div>
+			<div>
+				<h4 id="pathAttr">path属性</h4>
+				<ul>
+					<li>M：移动到（moveto）x,y</li>
+					<li>L：画直线到（lineto）x,y</li>
+					<li>Z：闭合路径</li>
+					<li>H：从当前坐标画水平直线到 x 坐标轴 </li>
+					<li>V：从当前坐标画水平直线到 y 坐标轴 </li>
+					<li>C：参数=>x1 y1 x2 y2 x y,画条贝赛尔曲线到 x， y，其中x1 y1 x2 y2为控制点</li>
+					<li>S：参数=> x2 y2 x y,画条贝赛尔曲线到 x， y，其中 x2 y2为控制点</li>
+					<li>Q：参数=> x1 y1 x y,画条贝赛尔曲线到 x， y，其中 x1 y1为控制点</li>
+					<li>T：参数=>x y,画条反射二次贝赛尔曲线到 x， y，其中以前一個坐标为控制点</li>
+					<li>A：参数=>rx ry x-axis-rotation large-arc-flag sweep-flag x y,
+					从目前点的坐标画個橢圆形到指定点的 x, y 坐标：
+					其中 rx, ry 為橢圆形的 x 轴及 y 轴的半径，x-axis-rotation 是弧线与 x 轴的旋转角度，
+					large-arc-flag 則設定 1 最大角度的弧线或是 0 最小角度的弧线，
+					sweep-flag 设定方向为 1 顺时针方向或 0 逆时针方向 ( Arc )
+					
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
 	<!--页面加载进度条-->
 	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		var sum=0;
-		var timer=null;
-		var num=314;
-		var circle=document.querySelector("circle");
-		timer=setInterval(function(){
-			sum+=1;
-			txt.innerText=sum+"%";
-			circle.style.strokeDashoffset=num*3.14+"px";
-			num--;
-			if(sum==100){
-				clearInterval(timer);
+		var app = new Vue({
+			el: "#app",
+			data: function() {
+				return {
+					list: [
+						{ name: "path",id: "rect",explain: '路径'},
+						{ name: "path属性",id: "pathAttr",explain: 'path常用属性'},
+						{ name: "<polygon>标签",id: "polygon",explain: ''},
+					]
+				}
+			},
+			mounted() {
 			}
-		},100)
+		})
 	</script>
 </body>
 

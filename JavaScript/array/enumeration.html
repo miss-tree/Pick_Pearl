@@ -11,20 +11,142 @@
 <body>
 	<!--右边内容-->
 	<div id="app" class="main animated fadeInRight">
-		<div class="shadow">
+		<div class="shadow" v-cloak>
+			<div class="Table">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
 			<div>
-				<h4>Array.forEach()</h4>
-				<p>里面的两个参数,第一个是显示数组里的第一个
-		元素,第二个参数是显示元素的下标(位置)</p>
+				<h4 id="for">for</h4>
+				<p> 遍历数组最常用到的for循环，是最为熟知的一种方法，
+				在ES5中定义了一些新的遍历方法，更加适用于函数式编程</p>
+				<pre>
+	console.time('你好')
+	let num=0
+	for(let i=0;i&lt;1000000;i++){
+		num+=1
+	}
+	console.timeEnd('你好')
+	console.log('num:',num)
+	VM654:6 你好: 6.131103515625ms
+	VM654:7 num: 1000000			
+				</pre>
+				<h5>for...in 和 for...of</h5>
+				<p>
+					for..in..：也是JS循环的一种，但是<span class="red">性能很低效</span>，
+					因为它会遍历数组里的每一个属性，包括不知名或者动态添加的属性，
+					全部查找遍历的内存开销很大，所以再开发尽量不要用for in 。
+					但是for..in..可以遍历对象的键名，将键名读取，
+				</p>
+				<p>
+					 for...of:是ES6遍历数组Iterator（遍历器），通过内部属性next()方法，
+					 读取下个属性、方法，遵循Iterator原则，对于Object.defineProperty()中
+					 enumerable为false时不可读取。也会遍历数组里的每一个属性，
+					 包括不知名或者动态添加的属性，
+				</p>
+				<pre>
+	let arr1={name:'1',age:2,sex:'3'}
+	    let newArr=[]
+	for(let item in arr1){
+		console.log(item)
+	}==>		name  age	sex
+	
+	const arr = ['red', 'green', 'blue'];
+	for(let v of arr) {
+	  console.log(v); // red green blue
+	}
+	const obj = {};
+	obj[Symbol.iterator] = arr[Symbol.iterator].bind(arr);
+	for(let v of obj) {
+	  console.log(v); // red green blue
+	}
+	
+	const message = 'hello';
+	
+	for (const character of message) {
+	  console.log(character);
+	}
+	// 'h'
+	// 'e'
+	// 'l'
+	// 'l'
+	// 'o'
+
+	
+	const persons2 = [
+	  { name: 'John Smith' ,last:{name:'last'}},
+	  { name: 'Jane Doe' }
+	];
+	for (const { name } of persons2) {
+	  console.log(name);
+	}
+	// 'John Smith'
+	// 'Jane Doe'
+	
+	const names = new Map();
+	names.set(1, 'one');
+	names.set(2, 'two');
+	for (const [number, name] of names) {
+	  console.log(number, name);
+	}
+	// logs 1, 'one'
+	// logs 2, 'two'
+
+				</pre>
+				<p>
+					它简明扼要
+					它接受迭代器，包括数组，字符串，Set，Map，DOM集合
+					它接受类数组对象
+					迭代的项目可以在就地解构。
+				</p>
+			</div>
+			<div>
+				<h4 id="forEach">Array.forEach()</h4>
+				<p>里面的三个参数,第一个是显示数组里的第一个元素,
+				第二个参数是显示元素的下标(位置),第三个参数是数组本身</p>
+				<p class="red">forEach没有返回值，break、continue不能停止遍历，而且还会报错，
+				return false在函数中使用只是阻止了当前的函数继续执行，并不能阻断遍历过程。
+				但是在数据量小于10*5时，forEach比for高效</p>
 				<pre>
 	var arr=[5,2,3,10,100];
 	arr.forEach(function(el,index){
 		console.log(el)
-	});				
+	});		
+	
+	break、continue这两个关键字只能在循环语句中使用，现在是在函数中，不能使用
+	var a = [1,2,3,4,5,6,7,8,9,10];
+	a.forEach(function(val, idx, arr){
+	    if(val == 5)
+	        break;
+	}, this);
+	==>Uncaught SyntaxError: Illegal break statement
+	
+	var a = [1,2,3,4,5,6,7,8,9,10];
+	a.forEach(function(val, idx, arr){
+	    console.log(arguments);
+	    return false;
+	}, this);		
+				</pre>
+				<p class="red">
+					forEach能停止循环的情况，使用try{}catch{}方法，因为捕获到错误
+					会停止函数执行。
+				</p>
+				<pre>
+	try{
+		var a = [1,2,3,4,5,6,7,8,9,10];
+		a.forEach(function(val, idx, arr){
+			if(val == 5)
+				throw new Error('break')
+		}, this);
+	}catch (e){
+		console.log(e);
+	}
 				</pre>
 			</div>
 			<div>
-				<h4>forEach 中使用 await 是否有效</h4>
+				<h5>forEach 中使用 await 是否有效</h5>
 				<p>
 					对于异步代码，forEach 并不能保证按顺序执行。
 					因为forEach的 底层是以 for (var i=0;i&lt;length;i++) 
@@ -47,10 +169,67 @@
 					Object.values、Object.entries 方法都是遍历可枚举属性组成的数组
 				</p>
 			</div>
+			<div>
+				<h4 id="map">map</h4>
+				<p> 返回一个新数组，它不会检测一个空数组，也不会改变原始数组</p>
+				<pre>
+	let arr1=[1,2,3,4,5,6]
+	let newArr=arr1.map((item)=>{
+		return item*2
+	})			
+				</pre>
+			</div>
+			<div>
+				<h4 id="filter">filter</h4>
+				<p> 遍历过滤，它不会对空数组进行检测，也不会改变原始数组，
+				它能通过筛选条件快速给出遍历结果，不符合条件的就不会去遍历，
+				符合条件的才会遍历，极大的节省了遍历开销成本</p>
+				<pre>
+	let arr1=[1,2,3,4,5,6]
+	function filterFN(num){
+		return num>3
+	}
+	let newArr=arr1.filter(filterFN)			
+				</pre>
+			</div>
+			<div>
+				<h4 id="await">遍历按顺序执行</h4>
+				<p> for遍历的时候不会按顺序执行，需要配合ES6 async 和 await 方法执行</p>
+				<pre>
+	const fruits = ["apple", "grape", "pear","bananer","orange"];
+	const  ms = (ms)=&gt;{ return new Promise(resolve =&gt; setTimeout(resolve, ms))}
+	const   getNumFruit = (fruit) =&gt; {return ms(1000).then(()=&gt;{console.log(fruit)})}
+	async function hander (){
+		for (let i = 0; i &lt; fruits.length; i ++) {
+			const fruit = fruits[i];
+			const numFruit = await getNumFruit(fruit);
+			console.log(numFruit);
+		}
+	}
+	hander()		
+				</pre>
+			</div>
 		</div>
 	</div>
 	<!--页面加载进度条-->
 	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"for",id:"for",explain:''},
+						{name:"forEach",id:"forEach",explain:''},
+						{name:"map",id:"map",explain:''},
+						{name:"filter",id:"filter",explain:''},
+						{name:"遍历按顺序执行",id:"await",explain:'让遍历可以按顺序执行'},
+					]
+				}
+			},
+		})
+	</script>
 </body>
 
 </html>

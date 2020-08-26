@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>Cascader 级联选择器</h4>
+				<div>
+					省：
+					<select style="width: 100px;" id="pre" onchange="chg(this);">
+					    <option value="-1">请选择</option>
+					</select>
+					市：
+					<select style="width: 100px;" id="city" onchange="chg2(this)" ;></select>
+					区：
+					<select style="width: 100px;" id="area"></select>
+				</div>
+				<div>
+					<pre>
+省：
+&lt;select style="width: 100px;" id="pre" onchange="chg(this);"&gt;
+	&lt;option value="-1"&gt;请选择&lt;/option&gt;
+&lt;/select&gt;
+市：
+&lt;select style="width: 100px;" id="city" onchange="chg2(this)" ;&gt;&lt;/select&gt;
+区：
+&lt;select style="width: 100px;" id="area"&gt;&lt;/select&gt;		
+				
+ //声明省
+var pres = ["北京", "上海", "广东"]; //直接声明Array
+ //声明市
+var cities = [
+	["东城", "昌平", "海淀"],
+	["浦东", "高区"],
+	["广州", "深圳"]
+];
+var areas = [
+		[
+			["东城1", "东城2", "东城3"],
+			["昌平1", "昌平2", "昌平3"],
+			["海淀1", "海淀2", "海淀3"]
+		],
+		[
+			["浦东1", "浦东2", "浦东3"],
+			["高区1", "高区2", "高区3"]
+		],
+		[
+			["天河", "越秀"],
+			["保安", "罗湖"]
+		]
+	]
+//设置一个省的公共下标
+var pIndex = -1;
+var preEle = document.getElementById("pre");
+var cityEle = document.getElementById("city");
+var areaEle = document.getElementById("area");
+ //先设置省的值
+for (var i = 0; i < pres.length; i++) {
+	//声明option.<option value="pres[i]">Pres[i]</option>
+	var op = new Option(pres[i], i);
+	//添加
+	preEle.options.add(op);
+}
+function chg(obj) {
+	if (obj.value == -1) {
+		cityEle.options.length = 0;
+		areaEle.options.length = 0;
+	}
+	//获取值
+	var val = obj.value;
+	pIndex = obj.value;
+	//获取ctiry
+	var cs = cities[val];
+	//获取默认区
+	var as = areas[val][0];
+	//先清空市
+	cityEle.options.length = 0;
+	areaEle.options.length = 0;
+	for (var i = 0; i < cs.length; i++) {
+		var op = new Option(cs[i], i);
+		cityEle.options.add(op);
+	}
+	for (var i = 0; i < as.length; i++) {
+		var op = new Option(as[i], i);
+		areaEle.options.add(op);
+	}
+}
+function chg2(obj) {
+	var val = obj.selectedIndex;
+	var as = areas[pIndex][val];
+	areaEle.options.length = 0;
+	for (var i = 0; i < as.length; i++) {
+		var op = new Option(as[i], i);
+		areaEle.options.add(op);
+	}
+}				
+					</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--第三方插件-->
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+
+	<!--定义数据-->
+	<script type="text/javascript">
+	//声明省
+	var pres = ["北京", "上海", "广东"]; //直接声明Array
+	 //声明市
+	var cities = [
+	    ["东城", "昌平", "海淀"],
+	    ["浦东", "高区"],
+	    ["广州", "深圳"]
+	];
+	var areas = [
+	        [
+	            ["东城1", "东城2", "东城3"],
+	            ["昌平1", "昌平2", "昌平3"],
+	            ["海淀1", "海淀2", "海淀3"]
+	        ],
+	        [
+	            ["浦东1", "浦东2", "浦东3"],
+	            ["高区1", "高区2", "高区3"]
+	        ],
+	        [
+	            ["天河", "越秀"],
+	            ["保安", "罗湖"]
+	        ]
+	    ]
+	//设置一个省的公共下标
+	var pIndex = -1;
+	var preEle = document.getElementById("pre");
+	var cityEle = document.getElementById("city");
+	var areaEle = document.getElementById("area");
+	 //先设置省的值
+	for (var i = 0; i < pres.length; i++) {
+	    //声明option.<option value="pres[i]">Pres[i]</option>
+	    var op = new Option(pres[i], i);
+	    //添加
+	    preEle.options.add(op);
+	}
+	function chg(obj) {
+	    if (obj.value == -1) {
+	        cityEle.options.length = 0;
+	        areaEle.options.length = 0;
+	    }
+	    //获取值
+	    var val = obj.value;
+	    pIndex = obj.value;
+	    //获取ctiry
+	    var cs = cities[val];
+	    //获取默认区
+	    var as = areas[val][0];
+	    //先清空市
+	    cityEle.options.length = 0;
+	    areaEle.options.length = 0;
+	    for (var i = 0; i < cs.length; i++) {
+	        var op = new Option(cs[i], i);
+	        cityEle.options.add(op);
+	    }
+	    for (var i = 0; i < as.length; i++) {
+	        var op = new Option(as[i], i);
+	        areaEle.options.add(op);
+	    }
+	}
+	function chg2(obj) {
+	    var val = obj.selectedIndex;
+	    var as = areas[pIndex][val];
+	    areaEle.options.length = 0;
+	    for (var i = 0; i < as.length; i++) {
+	        var op = new Option(as[i], i);
+	        areaEle.options.add(op);
+	    }
+	}	
+	</script>
+</body>
+
+</html>

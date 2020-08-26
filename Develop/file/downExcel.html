@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link href="../../static/css/font-awesome.min.css" rel="stylesheet"> -->
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="../../static/layui/css/layui.css" media="all"> -->
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h4>生成Excel</h4>
+				<pre>
+	对于导出数据而言,返回二进制流文件是最常见的, 而前端打开链接下载excel文件一般有三种方式, 
+	第一种是form表单方式 , 也是同步下载方式,直接下载. 这种方式的优点在于不需要对返回数据进行转换操作, 
+	浏览器会自动同步解析. 但缺点是无法对返回结果进行操作, 如:一般工作中需要对请求进行鉴权, 这个时候,
+	form表单方式下载是无法在请求头中带上token的, 后端只能通过从cookie中获取.
+	
+	第二种是a标签下载方式, 将返回结果处理成一个新链接, 通过创建a标签打开, 
+	这种方式的优点在于内部请求不需要对鉴权做多余处理, 也可以拿到返回结果进行操作,
+	缺点在于不注意之间会产生乱码,及数据量太大导致网络失败. 
+	使用blob容器可以解决数据量大导致网络失败的问题, 
+	而乱码问题在二进制流前拼接字符串'\ufeff'即可
+	```
+	 this.$axios({
+	      method: params.method,
+	      url: params.url,
+	      data: params.data,
+	      responseType: 'blob'  // 指明返回格式, 这里注明一下, 如果导出EXCEL为[object blob]的话, 可以把这段responseType:'blob' 注释掉试一下.  
+	    }).then(res => {
+	      console.log(res) // 返回结果
+	      // 这里尤其需要注意, '\ufeff' 用于解决乱码问题, blob可以解决数据量大导致网络失败.
+	      const blob = new Blob(['\ufeff' + res.data], { type: 'text/csv;charset=utf-8' })
+	      const url = window.URL.createObjectURL(blob)
+	      // 通过创建a标签实现
+	      const link = document.createElement('a')
+	      link.href = url
+	      // 对下载的文件命名, 如果后端返回名称出现乱码, 需要后端编码一下.
+	      link.download = decodeURI(res.headers['content-disposition'].split('=')[1]) || '发货单导出数据表.csv'
+	      document.body.appendChild(link)
+	      link.click()
+	      document.body.removeChild(link)
+	    })
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

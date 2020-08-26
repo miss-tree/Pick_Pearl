@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow" v-cloak>
+			<div class="Table">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="preview">原生预览</h4>
+				<p> </p>
+				<pre>
+	function print(){
+		var str=function(){
+			return `&lt;td&gt;ni&lt;/td&gt;
+					&lt;td&gt;ni&lt;/td&gt;
+					&lt;td&gt;ni&lt;/td&gt;`;
+		}
+		var printWin=window.open("打印窗口", "_blank");
+		printWin.document.write(str());
+		printWin.print();
+		printWin.close();
+	}		
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"原生预览",id:"preview",explain:''},
+						{name:"forEach",id:"forEach",explain:''},
+						{name:"map",id:"map",explain:''},
+						{name:"filter",id:"filter",explain:''},
+						{name:"遍历按顺序执行",id:"await",explain:'让遍历可以按顺序执行'},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

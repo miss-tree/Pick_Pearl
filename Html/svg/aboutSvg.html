@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+			padding: 5px 0;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow" v-cloak>
+			<div class="Table">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="for">关于Svg</h4>
+				<ul>
+					<li>SVG 是可伸缩的矢量图形，在浏览器中改变尺寸，其图形质量不会有所损失</li>
+					<li>相比其它位图，SVG图像文件更小，可压缩性更强</li>
+					<li>SVG 可以被记事本等阅读器、搜索引擎访问</li>
+					<li>SVG 图像中的文本是可选的，同时也是可复制的</li>
+					<li>SVG 图像可以与DOM，CSS和JavaScript交互</li>
+					<li>SVG 可以制作成整体或局部动画</li>
+				</ul>
+			</div>
+			<div>
+				<h4 id="">使用.svg文件</h4>
+				<h5>将 SVG 作为图像导入</h5>
+				<pre>
+	&lt;img src="example.svg" alt="My SVG example"&gt;				
+				</pre>
+				<h5>将 SVG 作为图像在.css中使用</h5>
+				<pre>
+	.my-image { 
+		background: url("example.png"); /* fallback */ 
+		background-image: url("example.svg"); 
+	}				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"for",id:"for",explain:''},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

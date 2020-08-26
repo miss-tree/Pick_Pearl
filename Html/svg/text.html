@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>基础知识</title>
+		<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../static/css/animate.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+		<style type="text/css">
+			li {
+				text-indent: 2em;
+				padding: 5px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!--右边内容-->
+		<div id="app" class="main animated fadeInRight">
+			<div class="shadow">
+				<div class="Table" v-cloak>
+					<div class="TableRow" v-for="(el,index) in list">
+						<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+						<span class="RowRight">{{el.explain}}</span>
+					</div>
+				</div>
+				<div>
+					<h4 id="text">&lt;text&gt;</h4>
+					<p>和html标签一样，&lt;text&gt;标签类似于p标签类型的文本输入。
+						支持css样式设置。<span class="red">svg没有换行符！
+							svg默认会把所有单个或连续多个空格、tabs、换行符转成单个空格。
+							即使在css中将white-space设置为pre，换行符依然会被转换成空格！</span>
+						但是&lt;text&gt;标签可以将文字按路径排列</p>
+					<pre>
+	&lt;svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+	//文本路径	在后面使用textPath标签包裹文本
+	   &lt;defs&gt;
+	    &lt;path id="path1" d="M75,20 a1,1 0 0,0 100,0" /&gt;
+	  &lt;/defs&gt;
+	  &lt;text x="10" y="100" style="fill:red;"&gt;
+	  //文本跳转
+		&lt;a xlink:href="http://www.w3schools.com/svg/" target="_blank"&gt;
+			&lt;textPath xlink:href="#path1"&gt;I love SVG I love SVG&lt;/textPath&gt;
+		&lt;/a&gt;
+	  &lt;/text&gt;
+	&lt;/svg&gt;				
+				</pre>
+					<div>
+						<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+							<defs>
+								<path id="path1" d="M75,20 a1,1 0 0,0 100,0" />
+							</defs>
+							<text x="10" y="100" style="fill:red;">
+								<a xlink:href="http://www.w3schools.com/svg/" target="_blank">
+									<textPath xlink:href="#path1">I love SVG I love SVG</textPath>
+								</a>
+							</text>
+						</svg>
+					</div>
+				</div>
+				<div>
+					<h4 id="style">样式设置</h4>
+					<ul>
+						<li>x,y:设置文本的起始位置</li>
+						<li>stroke,fill:边框和填充</li>
+						<li>font style:
+							font-size, font-weight, font-family, font-style,
+							font-decoration, word-spacing, letter-spacing
+						</li>
+						<li>text-anchor:文本对齐方式=>Start/Middle/End</li>
+						<li>baseline-shift: sub;//文本内容偏移baseline往下</li>
+						<li>letter-spacing:每个文字的间隔</li>
+					</ul>
+				</div>
+				<div>
+					<h4 id="tspan">&lt;tspan&gt;</h4>
+					<p>
+						&lt;tspan&gt;是在&lt;text&gt;包裹的，可以实现&lt;text&gt;内部换行
+						以及内部实现样式设置。其中dx，dy是相对于&lt;text&gt;坐标为零点的相对坐标。
+						下面是一个另类的示例展示：
+					</p>
+					<pre>
+	&lt;svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+		xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+		&lt;text x="30" y="30" font-size="2rem"&gt;
+			It’s
+			&lt;tspan dx="0 4 -3 5 -4 6" dy="0 -3 7 3 -2 -8"
+				   rotate="5 10 -5 -20 0 15"&gt;shaken&lt;/tspan&gt;,
+			not stirred.
+		&lt;/text&gt;
+	&lt;/svg&gt;				
+				</pre>
+					<svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="width: 600px;" xmlns:xlink="http://www.w3.org/1999/xlink">
+						<text x="30" y="30" font-size="2rem">
+							It’s
+							<tspan dx="0 4 -3 5 -4 6" dy="0 -3 7 3 -2 -8" rotate="5 10 -5 -20 0 15">shaken</tspan>,
+							not stirred.
+						</text>
+					</svg>
+					<p>
+						上面dx，dy每个数都代表包裹的内容对应下标的坐标，rotate对应旋转的角度
+					</p>
+				</div>
+			</div>
+		</div>
+		<!--页面加载进度条-->
+		<script src="../../static/js/plugins/pace/pace.min.js"></script>
+		<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: function() {
+					return {
+						list: [{
+								name: "<text>",
+								id: "text",
+								explain: ''
+							},
+							{
+								name: "样式设置",
+								id: "style",
+								explain: ''
+							},
+							{
+								name: "<tspan>",
+								id: "tspan",
+								explain: ''
+							},
+						]
+					}
+				},
+			})
+		</script>
+	</body>
+
+</html>

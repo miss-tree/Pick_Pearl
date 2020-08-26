@@ -7,6 +7,11 @@
 	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../static/css/animate.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		.Both{
+			padding: 5px 0;
+		}
+	</style>
 </head>
 <body>
 	<!--右边内容-->
@@ -32,8 +37,39 @@
 	obj.hasOwnProperty('name');	//true
 	obj.hasOwnProperty('toString'); //false	
 	
-	原型链上继承过来的属性无法通过hasOwnProperty检测到，返回false。			
+	原型链上继承过来的属性无法通过hasOwnProperty检测到，返回false。
+	prop：要检测的属性的 String 字符串形式表示的名称，或者 Symbol。
+	指示对象自身属性中是否具有指定的属性（也就是，是否有指定的键）			
 				</pre>
+			</div>
+			<div>
+				<h4>isPrototypeOf</h4>
+				<p>
+					prototypeObj.isPrototypeOf(object)返回boolean，
+					测试引用对象是否存在于参数对象的原型链，与instanceof不同，
+					object instanceof AFunction中，
+					object 的原型链是针对 AFunction.prototype 进行检查的
+				</p>
+			</div>
+			<div>
+				<h4>propertyIsEnumerable</h4>
+				<p>
+					obj.propertyIsEnumerable(prop)返回boolean，检测对象指定的属性是否可枚举
+				</p>
+			</div>
+			<div>
+				<div class="Both">
+					<b>Object.is(value1, value2)返回boolean</b>:判断两个值是否是相同的值，不会隐式转换
+				</div>
+				<div class="Both">
+					<b>Object.isExtensible(obj)返回boolean</b>:判断一个对象是否是可扩展的（是否可以在它上面添加新的属性）
+				</div>
+				<div class="Both">
+					<b>Object.isFrozen(obj)返回boolean</b>:判断一个对象是否被冻结
+				</div>
+				<div class="Both">
+					<b>Object.isSealed(obj)返回boolean</b>:判断对象是否被密封(不可扩展 ，且所有自身属性都不可配置且因此不可删除（但不一定是不可写）的对象
+				</div>
 			</div>
 		</div>
 	</div>

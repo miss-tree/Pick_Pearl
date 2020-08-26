@@ -11,11 +11,14 @@
 <body>
 	<!--右边内容-->
 	<div id="app" class="main animated fadeInRight">
-		<div class="shadow">
+		<div class="shadow" v-cloak>
 			<div>
 				<div class="Table">	
 					<div class="TableRow" v-for="(el,index) in list">
-						<a class="RowRight" :href="'#'+el.id">{{el.name}}</a>
+						<a class="RowLeft" 
+						:title="el.name"
+						:href="'#'+el.id">{{el.name}}</a>
+						<span class="RowRight">{{el.explain}}</span>
 					</div>
 				</div>	
 			</div>
@@ -105,14 +108,14 @@
 		console.log(a);
 		console.log(b);
 		console.log(c);
-		return a<10;
+		return a&lt;10;
 	})	
 	自定义filter()方法
 	var obj={
 			filter:function(str,arr){
 				console.log(arr)
 				var tmp=[];	
-				for (var i=0;i<arr.length;i++){
+				for (var i=0;i&lt;arr.length;i++){
 					console.log(arr[i])
 					console.log(i)
 					console.log(arr)
@@ -126,16 +129,61 @@
 				</pre>
 			</div>
 			<div>
+				<h4 class="" id="every">every()</h4>
+				<pre>
+	function isBigEnough(element, index, array) {
+	  return element >= 10;
+	}			
+	[12, 5, 8, 130, 44].every(isBigEnough);   // false
+	[12, 54, 18, 130, 44].every(isBigEnough); // true			
+				</pre>
+			</div>
+			<div>
+				<h4 class="" id="some">some()</h4>
+				<pre>
+	function isBiggerThan10(element, index, array) {
+	  return element > 10;
+	}
+	[2, 5, 8, 1, 4].some(isBiggerThan10);  // false
+	[12, 5, 8, 1, 4].some(isBiggerThan10); // true
+				</pre>
+			</div>
+			<div>
+				<h4 class="" id="toString">toString()</h4>
+				<pre>
+	const array1 = [1, 2, 'a', '1a'];
+	console.log(array1.toString());
+	// expected output: "1,2,a,1a"
+				</pre>
+			</div>
+			<div>
 				<h4 class="red" id="sort">sort()</h4>
 				<pre>
 	Array.sort()：里面第一个参数是直接根据数组的元素值的字符编码，进行正序排列，从小到大，直接更新原数组
-	也可以传入回调来进行高级判断,如果a-b>0，则b在前，a在后，如果a-b==0，则位置不变，如果a-b<0，则b在后，a在前。	
+	也可以传入回调来进行高级判断,如果a-b>0，则b在前，a在后，如果a-b==0，则位置不变，如果a-b&lt;0，则b在后，a在前。	
 	
 	arr.sort(function(a,b){
 			console.log("a",a,"b",b)
 			return a-b;
 			//return b-a;  从大到小排列
 		})
+	数组对象排序:(从大到小排列)
+		var str=[
+		    {name:"a",age:50},
+		    {name:"b",age:20},
+		    {name:"c",age:40},
+		    {name:"d",age:30},
+		];
+		function compare(key){
+		    return function(value1,value2){
+		        var val1=value1[key];
+		        var val2=value2[key];
+		        return val2-val1;
+		    }
+		}
+		var last=str.sort(compare('age'));
+		console.log(last);
+		//[{name:"a",age:50},{name:"c",age:40},{name:"d",age:30},{name:"b",age:20},]
 				</pre>
 			</div>
 			<div>
@@ -151,6 +199,57 @@
 				<h4 class="red" id="max">求数组最大值</h4>
 				<pre>
 	Math.max.apply(null,arr)
+				</pre>
+			</div>
+			<div>
+				<h4 class="red" id="bubbleSort">冒泡排序</h4>
+				<ul>
+					<li>比较两个相邻的元素，若前一个比后一个大，则交换位置</li>
+					<li>第一轮的时候最后一个元素应该是最大的一个</li>
+					<li>对所有的元素重复以上的步骤，除了最后一个</li>
+				</ul>
+				<pre>
+	function bubbleSort(arr) {
+	    for(let i=0; i&lt;arr.length; i++) {
+	        for(let j=0; j&lt;arr.length - i - 1; j++) {
+	            if(arr[j+1] &lt; arr[j]) {
+	                let temp = arr[j];
+	                arr[j] = arr[j+1];
+	                arr[j+1] = temp;
+	            }
+	        }
+	    }
+	    return arr;
+	}
+	console.log(bubbleSort(arr));
+	// [ 1, 3, 6, 7, 12, 44, 77, 99 ]
+				</pre>
+			</div>
+			<div>
+				<h4 class="red" id="quickSort">快速排序</h4>
+				<p>原理：在数组中随机取一个数作中间数A，将剩下的数和A作对比，小的放左边，大的放右边。
+				然后不断递归使用此方法，将数据拼接就是排序好的数组。当然随机取也是可以取第一个数的。
+				对比冒泡排序，快速排序还是优于冒泡排序的。
+				</p>
+				<pre>
+	function quickSort(arr) {
+	    if(arr.length &lt;= 1) return arr;
+	    let mid = Math.floor(arr.length / 2);
+	    let midItem = arr.splice(mid, 1)[0];
+	    let leftArr = [];
+	    let rightArr = [];
+	    for(let i=0; i&lt;arr.length; i++) {
+	        let current = arr[i];
+	        if(current >= midItem) {
+	            rightArr.push(current);
+	        } else {
+	            leftArr.push(current);
+	        }
+	    }
+	    return quickSort(leftArr).concat([midItem], quickSort(rightArr));
+	}
+	console.log(quickSort(arr));
+	// [ 1, 3, 6, 7, 12, 44, 77, 99 ]
 				</pre>
 			</div>
 			<div>
@@ -247,24 +346,29 @@
 			data: function () {
 				return {
 					list:[
-						{name:"push()",id:"push"},
-						{name:"unshift()",id:"unshift"},
-						{name:"pop()",id:"pop"},
-						{name:"shift()",id:"shift"},
-						{name:"splice()",id:"splice"},
-						{name:"slice()",id:"slice"},
-						{name:"concat()",id:"concat"},
-						{name:"reduce()",id:"reduce"},
-						{name:"filter()",id:"filter"},
-						{name:"sort()",id:"sort"},
-						{name:"reverse()",id:"reverse"},
-						{name:"求数组最大值",id:"max"},
-						{name:"数组合并",id:"merge"},
-						{name:"用数据填充数组",id:"fill"},
-						{name:"求两个数组的交集",id:"mixed"},
-						{name:"检测数值出现次数",id:"count"},
-						{name:"统计数组中出现的次数的对象",id:"nums"},
-						{name:"多维数组降维",id:"pseudo"},
+						{name:"push()",id:"push",explain:'尾部添加'},
+						{name:"unshift()",id:"unshift",explain:'头部添加'},
+						{name:"pop()",id:"pop",explain:'尾部删除'},
+						{name:"shift()",id:"shift",explain:'头部删除'},
+						{name:"splice()",id:"splice",explain:'删除从index开始，number个'},
+						{name:"slice()",id:"slice",explain:'复制从start开始到end'},
+						{name:"concat()",id:"concat",explain:'拼接数组，返回新数组'},
+						{name:"reduce()",id:"reduce",explain:'累积器，常用于统计'},
+						{name:"filter()",id:"filter",explain:'过滤'},
+						{name:"every()",id:"every",explain:'只要一个不符合条件，返回false'},
+						{name:"some()",id:"some",explain:'只有一个符合条件，返回true'},
+						{name:"toString()",id:"toString",explain:'转字符串'},
+						{name:"sort()",id:"sort",explain:'排序'},
+						{name:"reverse()",id:"reverse",explain:'翻转数组'},						
+						{name:"冒泡排序",id:"bubbleSort",explain:'相邻元素对比'},
+						{name:"快速排序",id:"quickSort",explain:'相对sort方法快速排序,默认从小到大排序'},
+						{name:"求数组最大值",id:"max",explain:''},
+						{name:"数组合并",id:"merge",explain:''},
+						{name:"用数据填充数组",id:"fill",explain:''},
+						{name:"求两个数组的交集",id:"mixed",explain:''},
+						{name:"检测数值出现次数",id:"count",explain:''},
+						{name:"统计数组中出现的次数的对象",id:"nums",explain:''},
+						{name:"多维数组降维",id:"pseudo",explain:''},
 					]
 				}
 			},

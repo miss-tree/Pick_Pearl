@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		.resizeBox {
+			overflow-x: auto;
+			width: 100%;
+		}
+		table {
+			width: 100%;
+			border: 1px solid #ccc;
+			border-collapse: collapse;
+		}
+		th,
+		td {
+			border: 1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<div class="resizeBox">
+					<table id="resizeTable">
+						<thead>
+							<tr>
+								<th>标题1</th>
+								<th>标题2</th>
+								<th>标题3</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>第1行</td>
+								<td>第1行</td>
+								<td>第1行</td>
+							</tr>
+							<tr>
+								<td>第2行</td>
+								<td>第2行</td>
+								<td>第1行</td>
+							</tr>
+							<tr>
+								<td>第3行</td>
+								<td>第3行</td>
+								<td>第1行</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div>
+					<pre>
+	.resizeBox {
+		overflow-x: auto;
+		width: 100%;
+	}
+	table {
+		width: 100%;
+		border: 1px solid #ccc;
+		border-collapse: collapse;
+	}
+	th,
+	td {
+		border: 1px solid #ccc;
+	}					
+						
+&lt;div class="resizeBox"&gt;
+	&lt;table id="resizeTable"&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;
+				&lt;th&gt;标题1&lt;/th&gt;
+				&lt;th&gt;标题2&lt;/th&gt;
+				&lt;th&gt;标题3&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;第1行&lt;/td&gt;
+				&lt;td&gt;第1行&lt;/td&gt;
+				&lt;td&gt;第1行&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;第2行&lt;/td&gt;
+				&lt;td&gt;第2行&lt;/td&gt;
+				&lt;td&gt;第1行&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;第3行&lt;/td&gt;
+				&lt;td&gt;第3行&lt;/td&gt;
+				&lt;td&gt;第1行&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;		
+					
+&lt;script type="text/javascript"&gt;
+	window.onload = function() {
+		tabSize.init('resizeTable');
+	};
+	"use strict";
+	var tabSize = tabSize || {};
+	tabSize.init = function(id) {
+		var i,
+			self,
+			table = document.getElementById(id),
+			header = table.rows[0],
+			tableX = header.clientWidth,
+			length = header.cells.length;
+
+		for(i = 0; i &lt; length; i++) {
+			header.cells[i].onmousedown = function() {
+				self = this;
+				if(event.offsetX &gt; self.offsetWidth - 10) {
+					self.mouseDown = true;
+					self.oldX = event.x;
+					self.oldWidth = self.offsetWidth;
+				}
+			};
+			header.cells[i].onmousemove = function() {
+				if(event.offsetX &gt; this.offsetWidth - 10) {
+					this.style.cursor = 'col-resize';
+				} else {
+					this.style.cursor = 'default';
+				}
+				if(self == undefined) {
+					self = this;
+				}
+				if(self.mouseDown != null && self.mouseDown == true) {
+					self.style.cursor = 'default';
+					if(self.oldWidth + (event.x - self.oldX) &gt; 0) {
+						self.width = self.oldWidth + (event.x - self.oldX);
+					}
+					self.style.width = self.width;
+					table.style.width = tableX + (event.x - self.oldX) + 'px';
+					self.style.cursor = 'col-resize';
+				}
+			};
+			table.onmouseup = function() {
+				if(self == undefined) {
+					self = this;
+				}
+				self.mouseDown = false;
+				self.style.cursor = 'default';
+				tableX = header.clientWidth;
+			};
+		}
+	};
+&lt;/script&gt;					
+					</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--第三方插件-->
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+
+	<!--定义数据-->
+	<script type="text/javascript">
+	window.onload = function() {
+		tabSize.init('resizeTable');
+	};
+	"use strict";
+	var tabSize = tabSize || {};
+	tabSize.init = function(id) {
+		var i,
+			self,
+			table = document.getElementById(id),
+			header = table.rows[0],
+			tableX = header.clientWidth,
+			length = header.cells.length;
+
+		for(i = 0; i < length; i++) {
+			header.cells[i].onmousedown = function() {
+				self = this;
+				if(event.offsetX > self.offsetWidth - 10) {
+					self.mouseDown = true;
+					self.oldX = event.x;
+					self.oldWidth = self.offsetWidth;
+				}
+			};
+			header.cells[i].onmousemove = function() {
+				if(event.offsetX > this.offsetWidth - 10) {
+					this.style.cursor = 'col-resize';
+				} else {
+					this.style.cursor = 'default';
+				}
+				if(self == undefined) {
+					self = this;
+				}
+				if(self.mouseDown != null && self.mouseDown == true) {
+					self.style.cursor = 'default';
+					if(self.oldWidth + (event.x - self.oldX) > 0) {
+						self.width = self.oldWidth + (event.x - self.oldX);
+					}
+					self.style.width = self.width;
+					table.style.width = tableX + (event.x - self.oldX) + 'px';
+					self.style.cursor = 'col-resize';
+				}
+			};
+			table.onmouseup = function() {
+				if(self == undefined) {
+					self = this;
+				}
+				self.mouseDown = false;
+				self.style.cursor = 'default';
+				tableX = header.clientWidth;
+			};
+		}
+	};
+	</script>
+</body>
+
+</html>

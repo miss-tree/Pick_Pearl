@@ -1,0 +1,55 @@
+.layui-form-select dl dd.layui-this{
+	background-color: #737980;
+}
+.layui-input, .layui-select, .layui-textarea{
+	height: 30px;
+}
+.layui-table-tool-self{
+	top: 0;
+}
+.layui-table-tool{
+	min-height: 32px;
+	padding: 0;
+}
+.layui-btn-container .layui-btn{
+	margin-bottom: 0;
+}
+.layui-table-view .layui-table td, .layui-table-view .layui-table th{
+	padding: 0;
+}
+.layui-layer .layui-anim .layui-layer-iframe .layui-layer-title{
+	font-weight: bold;
+	color: #676a6c;
+}
+.layui-form-label{
+	width: 100px;
+}
+.layui-layer-title{
+	font-size: 15px;
+	font-weight: bold;
+}
+.dtree-theme-icon{
+	display: none;
+}
+.dtree-theme-choose{
+	color: #23c6c8!important;
+}
+.layui-form-item{
+	margin-bottom: 5px;
+}
+.layui-tab-title{
+	background-color: #f2f2f2;
+}
+.layui-tab-title .layui-this{
+	background-color: #fff;
+}
+.layui-tab-content{
+	padding:10px 0;
+}
+.layui-form-label{
+	font-weight: 700;
+}
+.lightGreen{
+	background-color: #1ab394;
+	color: #fff;
+}

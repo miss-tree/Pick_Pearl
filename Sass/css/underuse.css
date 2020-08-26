@@ -1,0 +1,67 @@
+.text_shadow {
+	text-shadow: 8px 10px 3px red, -2px -1px 5px green;
+}
+
+.filterImg {
+	filter: blur(4px);
+	width: 100px;
+	height: 100px;
+}
+
+.bab {
+	width: 100px;
+	margin-left: 50px;
+	height: 30px;
+	opacity: 0.4;
+	background: green;
+	border: 1px red;
+}
+
+.line {
+	position: relative;
+}
+
+.line:hover {
+	color: #0dafd2;
+	box-sizing: border-box;
+}
+
+.line::after {
+	content: "";
+	display: block;
+	position: absolute;
+	border-bottom: 2px solid #0dafd2;
+	left: 0;
+	width: 0px;
+	margin: 0 auto;
+	margin-top: 5px;
+}
+
+.line:hover::after {
+	transition: all 0.5s ease;
+	width: 100%;
+}
+
+.text_decoration {
+	text-decoration: overline;
+}
+
+.outline {
+	margin-left: 80px;
+	border: 1px solid #5FB878;
+	outline-offset: 10px;
+	outline: dashed 5px;
+	padding: 10px;
+	width: 214px;
+	height: 50px;
+}
+.gradient{
+	width: 400px;
+	height: 100px;
+}
+.deg{
+	background: linear-gradient(66deg ,blue 30% , red );
+}
+.percent{
+	background: linear-gradient(blue ,red );
+}

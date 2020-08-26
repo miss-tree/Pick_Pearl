@@ -1,0 +1,37 @@
+.CaptionTD {
+	width: 200px;
+	height: 0px;
+	border-top: 0px;
+	border-bottom: 70px solid #1E6AA4;
+	border-right: 50px solid transparent;
+	border-left: 50px solid transparent;
+}
+
+.triangle {
+	width: 0px;
+	height: 0px;
+	border-color: #014F83 transparent;
+	border-width: 0px 56px 56px 00px;
+	border-style: solid;
+}
+
+.polygon {
+	width: 50px;
+	height: 50px;
+	background: #58a;
+	clip-path:
+		polygon(0 0, 100% 0%, 100% 100%,
+		70px 100%, 0 calc(100% - 70px));
+}
+.parallelogram{
+	float: left;
+	width: 185px;
+	height: 60px;
+	margin-left: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #01385F;
+	text-decoration: none;
+	transform: skewX(45deg);
+}

@@ -94,8 +94,11 @@
 				</div>
 				<div>
 					<h4>输入框</h4>
+					<p>
+						 required="required"为输入框添加必填属性
+					</p>
 					<pre>
-	&lt;input type="text" name="usernanme" placeholder="请输入用户名"&gt;&lt;/td&gt;
+	&lt;input type="text" name="usernanme" required placeholder="请输入用户名"&gt;&lt;/td&gt;
 		&lt;!-- placeholder="请输入用户名"  这个会出现在用户框内，但在点击后就会消失 --&gt;
 	文字颜色修改 修改框内注释文字的颜色
 	 /*兼容谷歌*/	  
@@ -106,7 +109,11 @@
 	input:-ms-input-placeholder{
 		color: red;
 	}
-	<input type="text" name="usernanme" placeholder="请输入用户名">
+	<form  method="post">
+		<input type="text" name="usernanme" 
+		 required="required" placeholder="请输入用户名">
+		<button type="submit">submit</button>
+	</form>
 	<style type="text/css">
 		input::-webkit-input-placeholder{
 			color: red;

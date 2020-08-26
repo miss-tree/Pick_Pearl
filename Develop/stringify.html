@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link href="../static/css/font-awesome.min.css" rel="stylesheet"> -->
+		<link href="../static/css/animate.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	</head>
+
+	<body>
+		<div id="app" class="main">
+			<div class="shadow">
+				<div>
+					<h4>JSON.stringify()的5个秘密特性</h4>
+					<h5>第二个参数（数组）</h5>
+					<p>获取所需的对象属性，在数组内可以列举需要打印的属性</p>
+					<pre>
+	{"type":"donut","name":"Cake","batters":{"batter":[{"id":"1001","type":"Regular"}]}
+	console.log(JSON.stringify(product,['name' ]));
+	// 结果
+	{"name" : "Cake"}
+					</pre>
+					<h5>第二个参数（函数）</h5>
+					<p>筛选需要打印的结果或类型，相当于过滤</p>
+					<pre>
+	const user = {
+	 "name" : "Prateek Singh",
+	 "age" : 26
+	}
+	JSON.stringify(user,(key,value)=>{
+		if(typeof value==='string'){
+			return undefined
+		}
+		return value
+	})
+	// 结果
+	{ "age" : 26 }
+					</pre>
+					<h5>第三个参数为字符串</h5>
+					<p>如果第三个参数是 string，那么将使用它来代替上面显示的空格字符。</p>
+					<pre>
+	JSON.stringify(user, null,'**');
+	//{
+	//**"name": "Prateek Singh",
+	//**"age": 26,
+	//**"country": "India"
+	//}
+	// 这里 * 取代了空格字符
+					</pre>
+					<h5>toJSON 方法</h5>
+					<p>可以作为任意对象的属性。JSON.stringify返回这个函数的
+					结果并对其进行序列化，而不是将整个对象转换为字符串。</p>
+					<pre>
+	const user = {
+	 firstName : "Prateek",
+	 lastName : "Singh",
+	 age : 26,
+	 toJSON() {
+	    return { 
+	      fullName: `${this.firstName} + ${this.lastName}`
+	    };
+	 }
+	}
+	console.log(JSON.stringify(user));
+	// 结果
+	// "{ "fullName" : "Prateek Singh"}"
+					</pre>
+				</div>
+			</div>
+		</div>
+		<!--页面加载进度条-->
+		<script src="../static/js/plugins/pace/pace.min.js"></script>
+		<script type="text/javascript">
+		</script>
+	</body>
+
+</html>

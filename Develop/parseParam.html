@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../static/css/animate.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	</head>
+
+	<body>
+		<div id="app" class="main">
+			<div class="shadow">
+				<div>
+					<h4>JSON.stringify()的5个秘密特性</h4>
+					<h5>第二个参数（数组）</h5>
+					<p>获取所需的对象属性，在数组内可以列举需要打印的属性</p>
+					<pre>
+	function parseParam(url) {
+	    // 将浏览器地址中 ‘?’ 后面的字符串取出来
+	    const paramsStr = /.+\?(.+)$/.exec(url)[1];
+	    // 将截取的字符串以 ‘&’ 分割后存到数组中
+	    const paramsArr = paramsStr.split('&');
+	    // 定义存放解析后的对象
+	    let paramsObj = {};
+	    // 遍历
+	    paramsArr.forEach(param => {
+	      // 判断是否含有key和value
+	      if (/=/.test(param)) {
+	        // 结构获取对象的key和value
+	        let [key, val] = param.split('=');
+	        // 解码
+	        val = decodeURIComponent(val);
+	        // 判断是否转为数字
+	        val = /^\d+$/.test(val) ? parseFloat(val) : val;
+	        // 判断存放对象中是否存在key属性
+	        if (paramsObj.hasOwnProperty(key)) {
+	          // 存在的话就存放一个数组
+	          paramsObj[key] = [].concat(paramsObj[key], val);
+	        } else {
+	          // 不存在就存放一个对象
+	          paramsObj[key] = val;
+	        }
+	      } else {
+	        // 没有value的情况
+	        paramsObj[param] = true;
+	      }
+	    })
+	    return paramsObj;
+	}
+
+	let url = 'https://www.baidu.com?username=%22tmc%22&password=%22123456%22&dutiy=%E5%89%8D%E7%AB%AF%E6%94%BB%E5%9F%8E%E7%8B%AE&flag';
+	console.log(parseParam(url))
+	
+	{ username: '"tmc"',
+	  password: '"123456"',
+	  dutiy: '前端攻城狮',
+	  flag: true 
+	}
+					</pre>
+				</div>
+			</div>
+		</div>
+		<!--页面加载进度条-->
+		<script src="../static/js/plugins/pace/pace.min.js"></script>
+		<script type="text/javascript">
+		</script>
+	</body>
+
+</html>

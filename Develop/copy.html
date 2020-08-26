@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	<style type="text/css">
+		ol{
+			margin-left: 2em;
+		}
+		li{
+			padding: 5px 0;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>document.execCommand()</h4>
+				<p>复制粘贴板</p>
+				<pre>
+		function copy(e) {
+		    let transfer = document.createElement('input');
+		    document.body.appendChild(transfer);
+		    transfer.value = target.value;  // 这里表示想要复制的内容
+		    transfer.focus();
+		    transfer.select();
+		    if (document.execCommand('copy')) {
+		        document.execCommand('copy');
+		    }
+		    transfer.blur();
+		    console.log('复制成功');
+		    document.body.removeChild(transfer);
+		    
+		}
+		​
+		$('#copyBtn').addEventListener('click', copy);			
+				</pre>
+				<div>
+					hello world <button @click="copy">赋值</button>
+				</div>
+				<div>
+					<input type="" name="" id="" value="" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+	<!--定义数据-->
+	<script src="../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					copyVal:'hello world  复制成功!!!!!'
+				}
+			},
+			methods:{
+				copy(e) {
+				    let transfer = document.createElement('input');
+				    document.body.appendChild(transfer);
+				    transfer.value = this.copyVal;  // 这里表示想要复制的内容
+				    transfer.focus();
+				    transfer.select();
+				    if (document.execCommand('copy')) {
+				        document.execCommand('copy');
+				    }
+				    transfer.blur();
+				    console.log('复制成功');
+				    document.body.removeChild(transfer);
+				    
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

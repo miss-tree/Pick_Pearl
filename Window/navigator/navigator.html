@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div>
+				<h4>Fullscreen</h4>
+				<pre>
+	// 开启全屏
+	document.documentElement.requestFullscreen();
+	// 退出全屏
+	document.exitFullscreen();
+				
+				</pre>
+			</div>
+			<div>
+				<h4>Geolocation</h4>
+				<p>获取用户的地理位置，通过不同的地理位置展示不同的信息，
+				在电商网站上使用比较多，可以推荐当地的广告产品</p>
+				<pre>
+	function getUserLocation() {
+	    return new Promise((resolve, reject) => {
+	      if (!navigator.geolocation) {
+	        reject()
+	      } else {
+	        navigator.geolocation.getCurrentPosition(success, error);
+	      }
+	
+	      function success(position) {
+	        const latitude  = position.coords.latitude;
+	        const longitude = position.coords.longitude;
+	        resolve({latitude, longitude})
+	      }
+	
+	      function error() {
+	        reject()
+	      }
+	    })
+	  }
+	
+	getUserLocation().then(res=>console.log(res))			
+				</pre>
+			</div>
+			<div>
+				<h4>Notifications</h4>
+				<p>
+					Notifications API 允许网页或应用程序在系统级别发送在页面外部显示的通知;
+					这样即使应用程序空闲或在后台，Web应用程序也会向用户发送信息。
+				</p>
+				<pre>
+	Notification.requestPermission( function(status) {
+	  console.log(status); // 仅当值为 "granted" 时显示通知
+	  var n = new Notification("趣谈前端", {body: "从零搭建一个CMS全栈项目"}); // 显示通知
+	});
+	
+	提供了4个事件触发api方便我们做更全面的控制:
+	onshow 当通知被显示给用户时触发 (已废弃, 但部分浏览器仍然能用)
+	onclick 当用户点击通知时触发
+	onclose 当通知被关闭时触发(已废弃, 但部分浏览器仍然能用)
+	onerror 当通知发生错误的时候触发
+	Notification.requestPermission( function(status) {
+	  console.log(status); // 仅当值为 "granted" 时显示通知
+	  var n = new Notification("趣谈前端", {body: "从零搭建一个CMS全栈项目"}); // 显示通知
+	      n.onshow = function () { 
+	        // 消息显示时执行的逻辑
+	        console.log('show') 
+	      }
+	      n.onclick = function () { 
+	        // 消息被点击时执行的逻辑
+	        history.push('/detail/1232432')
+	      }
+	      n.onclose = function () { 
+	        // 消息关闭时执行的逻辑
+	        console.log('close')
+	      }
+	});
+
+				
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>

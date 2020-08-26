@@ -5,17 +5,27 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>基础知识</title>
 	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../static/css/font-awesome.min.css" rel="stylesheet">
 	<link href="../static/css/animate.css" rel="stylesheet">
-	<link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
 	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	<style type="text/css">
+		mark {
+		    color: #000;
+		    background: #ff0;
+		}
+	</style>
 </head>
 <body>
 	<!--右边内容-->
 	<div id="app" class="main">
 		<div class="shadow">
+			<div class="Table">
+				<div class="TableRow" v-for="(el,index) in list" v-cloak>
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
 			<div>
-				<h4>base</h4>
+				<h4 id="base">base</h4>
 				<p>控制整个页面所有外部链接的根地址会自动拼接在该页面下面的所有相对地址的前面</p>
 				<pre>
 	&lt;head&gt;
@@ -29,7 +39,7 @@
 				</pre>
 			</div>
 			<div>
-				<h4>icon</h4>
+				<h4 id="icon">icon</h4>
 				<p>32X32尺寸，并把图片放到项目目录中.在页面head标签中，插入以下代码，href的值为你的icon相对地址</p>
 				<pre>
 	&lt;head&gt;
@@ -39,7 +49,29 @@
 				</pre>
 			</div>
 			<div>
-				<h4>让你的页面变成一个编辑器</h4>
+				<h4 id="other">标题类/文本</h4>
+				<p>32X32尺寸，并把图片放到项目目录中.在页面head标签中，插入以下代码，href的值为你的icon相对地址</p>
+				<pre>
+	&lt;mark&gt;hell world&lt;/mark&gt;
+	&lt;meter value="2" min="0" max="10"&gt;2 out of 10&lt;/meter&gt;
+	&lt;meter value="0.6"&gt;60%&lt;/meter&gt;
+	&lt;progress&gt;&lt;/progress&gt;
+	&lt;q&gt;hell girl&lt;/q&gt;
+	&lt;s&gt;hell evrybody&lt;/s&gt;
+	&lt;del&gt;hell world&lt;/del&gt;	
+			
+	高亮标题: <mark>hell world</mark><br>		
+	进度条1: <meter value="2" min="0" max="10">2 out of 10</meter><br>		
+	进度条2: <meter value="0.6">60%</meter><br>		
+	进度条3: <progress></progress><br>		
+	文本加引号: <q>hell girl</q><br>		
+	加删除线: <s>hell evrybody</s><br>		
+	加删除线: <del>hell world</del><br>		
+	
+				</pre>
+			</div>
+			<div>
+				<h4 id="contenteditable">让你的页面变成一个编辑器</h4>
 				<p>给目标元素添加contenteditable 属性，或设置为true</p>
 				<pre>
 	&lt;!DOCTYPE html&gt;			
@@ -59,6 +91,23 @@
 	</div>
 	<!--页面加载进度条-->
 	<script src="../static/js/plugins/pace/pace.min.js"></script>
+	<!--定义数据-->
+	<script src="../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"<base>",id:"base",explain:''},
+						{name:"icon",id:"icon",explain:'浏览器标题显示icon'},
+						{name:"标题类/文本",id:"other",explain:'进度条/标题/文本'},
+						{name:"contenteditable 属性",id:"contenteditable",explain:'让你的页面变成一个编辑器'},
+					]
+				}
+			},
+		})
+	</script>
 </body>
 
 </html>

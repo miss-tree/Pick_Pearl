@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	<style type="text/css">
+		ol{
+			margin-left: 2em;
+		}
+		li{
+			padding: 5px 0;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>dialog</h4>
+				<p>
+					&lt;dialog&gt; 元素默认是隐藏的。
+					HTMLDialogElement 是 &lt;dialog&gt; 的底层元素表示，
+					提供了 show()、close()、showModal() 方法，控制对话框的显隐。
+				</p>
+				<pre>
+	&lt;button id="open"&gt;Open Dialog&lt;button&gt;
+	&lt;button id="close"&gt;Close Dialog&lt;button&gt;
+	
+	&lt;dialog id="dialog"&gt;
+	  &lt;h2&gt;Dialog Title&lt;h2&gt;
+	  &lt;p&gt;Dialog content and other stuff will go here&lt;p&gt;
+	&lt;dialog&gt;
+	
+	&lt;script&gt;
+		const dialog = document.getElementById("dialog");
+		
+		document.getElementById("open").addEventListener("click", () =&gt; {
+		  dialog.show();
+		});
+		
+		document.getElementById("close").addEventListener("click", () =&gt; {
+		  dialog.close();
+		});
+	&lt;script&gt;			
+				</pre>
+				<p>
+					show() 与 showModal() 不同之处在于，
+					showModal() 创建是一个模态框，
+					打开时默认不能操作背后页面里的内容；
+					而 show() 是以弹框形式显示的。
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+	<!--定义数据-->
+	<script src="../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						explain:'返回指定对象的原型（内部[[Prototype]]属性的值），没有则null'},
+					],
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

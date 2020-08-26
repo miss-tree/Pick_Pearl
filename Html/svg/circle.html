@@ -7,14 +7,14 @@
 	<link href="../../static/css/animate.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
 	<style type="text/css">
-		*{
-			margin: 0;
-			padding: 0;
+		li{
+			text-indent: 2em;
+			padding: 5px 0;
 		}
 		svg	{
 			transform: rotate(-90deg);
 		}
-		circle{
+		.F_Position circle{
 			transition: stroke-dasharray 1s;
 			fill: pink;
 			fill-opacity:0.1;
@@ -23,12 +23,12 @@
 			stroke-width:3px; 
 			stroke-dasharray: 330px;
 		}
-		span{
+		#txt{
 			position: absolute;
-			top: 52%;
-			left: 42%;
+			top: 30%;
+			left: 30%;
 			transform: translate(50%,50%,0);
-			font-size: 55px;
+			font-size: 30px;
 		}
 	</style>
 </head>
@@ -36,13 +36,23 @@
 	<!--右边内容-->
 	<div id="app" class="main animated fadeInRight">
 		<div class="shadow">
+			<div class="Table" v-cloak>
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
 			<div>
-				<h4>circle</h4>
+				<h4 id="circle">circle展示</h4>
+				<div class="F_Position">
+					<svg viewbox="0 0 200 200" width='200' height='200'>
+						<circle cx="100" cy="100" r="50"  />
+					</svg>
+					<span id="txt">
+						0%
+					</span>
+				</div>
 				<pre>
-		*{
-			margin: 0;
-			padding: 0;
-		}
 		svg	{
 			/*相对坐标在三点钟方向,需要偏移90度到12点方向*/
 			transform: rotate(-90deg);
@@ -95,32 +105,94 @@
 		},100)		
 				</pre>
 			</div>
-			<div class="F_Position">
-				<svg viewbox="0 0 200 200">
-					<circle cx="100" cy="100" r="50"  />
+			<div>
+				<h4 id='attr'>circle属性</h4>
+				<ul>
+					<li>cx,cy：定义圆的坐标位置</li>
+					<li>r：圆的半径</li>
+					<li>fill：填充色</li>
+					<li>stroke：描边色</li>
+					<li>stroke-width：边框宽度</li>
+				</ul>
+			</div>
+			<div>
+				<h4 id="apply">多个圆运用展示</h4>
+				<pre>
+	&lt;svg xmlns="http://www.w3.org/2000/svg"
+		 xmlns:xlink="http://www.w3.org/1999/xlink"
+		 version="1.1" height="400" width="450"
+		 baseProfile="full"&gt;
+	  &lt;g fill-opacity="0.7" stroke="black" stroke-width="0.1cm"&gt;
+		&lt;circle cx="6cm" cy="2cm" r="100" fill="red"
+						transform="translate(0,50)" /&gt;
+		&lt;circle cx="6cm" cy="2cm" r="100" fill="blue"
+						transform="translate(100,100)" /&gt;
+		&lt;circle cx="6cm" cy="2cm" r="100" fill="green"
+						transform="translate(-10,150)" /&gt;
+	  &lt;/g&gt;
+	&lt;/svg&gt;				
+				</pre>
+				<svg xmlns="http://www.w3.org/2000/svg"
+				     xmlns:xlink="http://www.w3.org/1999/xlink"
+				     version="1.1" height="400" width="450"
+				     baseProfile="full">
+				  <g fill-opacity="0.7" stroke="black" stroke-width="0.1cm">
+				    <circle cx="6cm" cy="2cm" r="100" fill="red"
+				                    transform="translate(0,50)" />
+				    <circle cx="6cm" cy="2cm" r="100" fill="blue"
+				                    transform="translate(100,100)" />
+				    <circle cx="6cm" cy="2cm" r="100" fill="green"
+				                    transform="translate(-10,150)" />
+				  </g>
 				</svg>
-				<span id="txt">
-					0%
-				</span>
+			</div>
+			<div>
+				<h4 id="ellipse">ellipse 椭圆</h4>
+				<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+				  <ellipse cx="100" cy="80" rx="20" ry="60"
+				  style="fill:yellow;stroke:purple;stroke-width:2"/>
+				</svg>
+				<pre>
+	&lt;svg xmlns="http://www.w3.org/2000/svg" version="1.1"&gt;
+	  &lt;ellipse cx="100" cy="80" rx="20" ry="60"
+	  style="fill:yellow;stroke:purple;stroke-width:2"/&gt;
+	&lt;/svg&gt;				
+				</pre>
 			</div>
 		</div>
 	</div>
 	<!--页面加载进度条-->
 	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		var sum=0;
-		var timer=null;
-		var num=314;
-		var circle=document.querySelector("circle");
-		timer=setInterval(function(){
-			sum+=1;
-			txt.innerText=sum+"%";
-			circle.style.strokeDashoffset=num*3.14+"px";
-			num--;
-			if(sum==100){
-				clearInterval(timer);
+		var app = new Vue({
+			el: "#app",
+			data: function() {
+				return {
+					list: [
+						{ name: "circle展示",id: "circle",explain: ''},
+						{ name: "circle属性",id: "attr",explain: 'circle常用属性'},
+						{ name: "多个圆运用展示",id: "apply",explain: ''},
+						{ name: "ellipse 椭圆",id: "ellipse",explain: ''},
+					]
+				}
+			},
+			mounted() {
+				var sum=0;
+				var timer=null;
+				var num=314;
+				var circle=document.querySelector("circle");
+				timer=setInterval(function(){
+					sum+=1;
+					txt.innerText=sum+"%";
+					circle.style.strokeDashoffset=num*3.14+"px";
+					num--;
+					if(sum==100){
+						clearInterval(timer);
+					}
+				},100)
 			}
-		},100)
+		})
 	</script>
 </body>
 

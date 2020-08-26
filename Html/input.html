@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link href="../css/polygon.css" rel="stylesheet"> -->
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div class="Table">
+				<div class="TableRow" v-for="(el,index) in list" v-cloak>
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="date">date 类型</h4>
+				<pre>
+	&lt;input type="date" name="bday" max="1979-12-31"&gt;
+	&lt;input type="date" name="bday" min="2000-01-02"&gt;
+	
+	输入 1980-01-01 之前的日期:  <input type="date" name="bday" max="1979-12-31"><br>
+	输入 2000-01-01 之后的日期:  <input type="date" name="bday" min="2000-01-02"><br>
+				</pre>
+			</div>
+			<div>
+				<h4 id="number">number 类型</h4>
+				<pre>
+	&lt;input type="number" min="1" max="5"&gt;
+	
+	 数量 (在1和5之间):  <input type="number" name="quantity" min="1" max="5"><br>
+				</pre>
+			</div>
+			<div>
+				<h4 id="text">text 类型</h4>
+				<pre>
+	&lt;input type="text" name="usrname" maxlength="10"&gt;
+	&lt;input type="text"  pattern="[A-Za-z]{3}"&gt;
+	pattern="[A-Za-z]{3}",可以使用正则。限制输入的内容
+	
+	限制10字符:  <input type="text" name="usrname" maxlength="10"><br>
+	使用限制: <input type="text"  pattern="[A-Za-z]{3}" >
+				</pre>
+			</div>
+			<div>
+				<h4 id="form">form 类型</h4>
+				<pre>
+	&lt;form action="demo-form.php"&gt;
+		用户名: &lt;input type="search" value="80" required&gt;&lt;br/&gt;
+		Username: &lt;input type="text" name="usrname" required&gt;&lt;br/&gt;
+		网址输入 :&lt;input type="url" value="" required&gt;&lt;br/&gt;
+		E-mail: &lt;input type="email" name="email" required&gt;&lt;br/&gt;
+		input的另类select: &lt;input list="browsers" name="browser" required&gt;
+		  &lt;datalist id="browsers"&gt;
+		    &lt;option value="Internet Explorer"&gt;
+		    &lt;option value="Firefox"&gt;
+		    &lt;option value="Chrome"&gt;
+		    &lt;option value="Opera"&gt;
+		    &lt;option value="Safari"&gt;
+		  &lt;/datalist&gt;&lt;br/&gt;
+		数字间隔 step="3"： &lt;input type="number" name="points" step="3" required&gt;&lt;br/&gt;
+		input图片:&lt;input type="image" src="img/ajax-loader.gif" alt="Submit"&gt;
+		  &lt;input type="submit" &gt;
+	&lt;/form&gt;
+	
+	<form action="demo-form.php">
+	用户名: <input type="search" value="80" required><br/>
+	Username: <input type="text" name="usrname" required><br/>
+	网址输入 :<input type="url" value="" required><br/>
+	E-mail: <input type="email" name="email" required><br/>
+	input的另类select: <input list="browsers" name="browser" required>
+	  <datalist id="browsers">
+	    <option value="Internet Explorer">
+	    <option value="Firefox">
+	    <option value="Chrome">
+	    <option value="Opera">
+	    <option value="Safari">
+	  </datalist><br/>
+	数字间隔 step="3"： <input type="number" name="points" step="3" required><br/>
+	input图片:<input type="image" src="../static/img/user.jpg" alt="Submit">
+	  <input type="submit" >
+	</form>
+	
+	&lt;form action="demo-form.php" id="usrform"&gt;
+			提交时包含下面的textarea文本框
+		  Name: &lt;input type="text" name="usrname"&gt;
+		  &lt;input type="submit"&gt;
+	&lt;/form&gt;
+		&lt;textarea rows="4" cols="50" name="comment" form="usrform"&gt;
+		输入内容...&lt;/textarea&gt;
+	在文本编辑器输入表单form的id，在提交表单的时候会一起将文本标签内容提交	
+				</pre>
+			</div>
+			<div>
+				<h4 id="other">other more</h4>
+				<pre>
+	&lt;input type="color"&gt;
+	&lt;input type="range" value="10"&gt;
+	
+	颜色选择: <input type="color"><br>
+	范围滑块:<input type="range" value="10">
+	上面标签可以通过获取el.value来获取操作后值
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+	<!--定义数据-->
+	<script src="../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"date 类型",id:"date",explain:'用于时间选择器'},
+						{name:"number 类型",id:"number",explain:'数字类型'},
+						{name:"text 类型",id:"text",explain:'文本类型'},
+						{name:"form",id:"form",explain:'表单类'},
+						{name:"other more",id:"other",explain:'其他'},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>
