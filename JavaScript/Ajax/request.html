@@ -35,6 +35,11 @@
 	})
 	2.发送请求 open 方法
 	xhr.open("GET","https://www.easy-mock.com/mock/5baafee49f43b479fb7c86ac/getShopList");
+	//设置请求头
+	xhr.setRequestHeader('content-type', 'application/json;charset=utf-8')//设置文件格式
+	// 'content-type'	text/html;text/plain(纯文本);
+	xhr.setRequestHeader('dataType', 'json')// 当请求本地json数据的时候	'./data.json'
+	xhr.setRequestHeader('Cache-Control', 'no-cache')//设置请求是否缓存
 	将请求发送出去send方法
 	xhr.send();
 	4.处理数据

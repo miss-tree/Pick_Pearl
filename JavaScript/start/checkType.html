@@ -4,20 +4,33 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>基础知识</title>
 	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
 	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
 </head>
 <body>
+	<!-- 回到顶部 -->
+	<div class="topBtn">
+		<a href="#top">
+			<i class="fa fa-long-arrow-up"></i>
+		</a>
+	</div>
 	<!--右边内容-->
 	<div id="app" class="main animated fadeInRight">
 		<div class="shadow">
 			<div>
 				<h3>判断数据类型</h3>
-				<p>判断数据类型常用的方式是 typeof ,但是对于数组和 null 的判断不准。</p>
+			</div>
+			<div class="Table" v-cloak id="top">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
 			</div>
 			<div>
-				<h4>typeof</h4>
+				<h4 id="typeof">typeof</h4>
+				<p>判断数据类型常用的方式是 typeof ,但是对于数组和 null 的判断不准。
+					但对于原始类型来说，除了 null 都可以显示正确的类型</p>
 				<pre>
 	typeof 　　undefined　　		'undefined'
 	typeof 　　null 　　　　 	'object'
@@ -30,15 +43,23 @@
 				</pre>
 			</div>
 			<div>
-				<h4>判断数组</h4>
+				<h4 id="array">判断数组</h4>
 				<pre>
 	1、Array.isArray()  //ES6方法
 	var a = [];
 	Array.isArray(a); // true
 	
-	2、constructor属性
+	2、constructor属性	(不推荐，如果创建一个对象，更改它的原型，constructor就会变得不可靠了)
 	var a = [];
 	a.constructor === Array // true
+	
+	function Fn(){};
+	Fn.prototype=new Array();
+	var f=new Fn();
+	 
+	console.log(f.constructor===Fn);    // false
+	console.log(f.constructor===Array); // true 
+
 	
 	3、instanceof (可判断 Arrray、Object。不推荐)
 	var a =[];
@@ -53,10 +74,66 @@
 	console.log( Object.prototype.toString.call(arr));=>"[object Array]"
 				</pre>
 			</div>
+			<div>
+				<h4 id="instanceof">instanceof</h4>
+				<div>instanceof可以精准判断引用数据类型（Array，Function，Object），
+				而基本数据类型不能被instanceof精准判断。</div>
+				<pre>
+	console.log(2 instanceof Number);                    // false
+	console.log(true instanceof Boolean);                // false 
+	console.log('str' instanceof String);                // false  
+	console.log([] instanceof Array);                    // true
+	console.log(function(){} instanceof Function);       // true
+	console.log({} instanceof Object);                   // true    
+	// console.log(undefined instanceof Undefined);
+	// console.log(null instanceof Null);
+				
+				</pre>
+				<p>
+					instanceof 运算符用来
+					<span class="red">测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性</span>。
+					其意思就是判断对象是否是某一数据类型（如Array）的实例，
+					请重点关注一下是判断一个对象是否是数据类型的实例。在这里字面量值，2， true ，
+					'str'不是实例，所以判断值为false。
+				</p>
+			</div>
+			<div>
+				<h4 id="compail">valueOf与toString</h4>
+				<p>
+					valueOf与toString通常用来值的转化，主要区别如下
+				</p>
+				<pre>
+	{}.valueOf() ===>{} ，{}.toString()===>"[object Object]"
+	
+	[].valueOf() ===>[] ，[].toString() ===>""
+			
+				</pre>
+			</div>
 		</div>
 	</div>
 	<!--页面加载进度条-->
 	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function() {
+				return {
+					list: [
+						{ name: "typeof",id: "typeof",explain: ''},
+						{ name: "判断数组",id: "array",explain: ''},
+						{ name: "instanceof",id: "instanceof",explain: ''},
+						{ name: "valueOf与toString",id: "compail",explain: ''},
+						{ name: "投影",id: "boxshadow",explain: ''},
+						{ name: "图片蒙版",id: "imageGrad",explain: ''},
+						{ name: "图片图形混合搭配",id: "imagemixd",explain: ''},
+					]
+				}
+			},
+			mounted() {
+			}
+		})
+	</script>
 </body>
 
 </html>

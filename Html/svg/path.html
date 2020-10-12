@@ -5,6 +5,7 @@
 	<title>基础知识</title>
 	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../static/css/animate.css" rel="stylesheet">
+    <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
 	<style type="text/css">
 		li{
@@ -14,10 +15,16 @@
 	</style>
 </head>
 <body>
+	<!-- 回到顶部 -->
+	<div class="topBtn">
+		<a href="#top">
+			<i class="fa fa-long-arrow-up"></i>
+		</a>
+	</div>
 	<!--右边内容-->
 	<div id="app" class="main animated fadeInRight">
 		<div class="shadow">
-			<div class="Table" v-cloak>
+			<div class="Table" v-cloak id="top">
 				<div class="TableRow" v-for="(el,index) in list">
 					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
 					<span class="RowRight">{{el.explain}}</span>
@@ -26,19 +33,20 @@
 			<div>
 				<h4>circle</h4>
 				<pre>
-		&lt;svg&gt;
-			&lt;!--M10 10 为起笔坐标 ，h为横向，数值为正往右走
-				v为纵向，数值为正往下走，数值为负往上走
-			--&gt;
-			&lt;!--画线的方法--&gt;
-			&lt;!--&lt;path d="M10 10 h 10 v 10 h -10 v -10" stroke-width="1" stroke="pink" fill-opacity="0"/&gt;--&gt;
-			&lt;!--画圆方法--&gt;
-			&lt;!--M10 10 为圆心坐标 ，a(m 0,-100)为圆心相对坐标(0,0)，往上100 
-				a表示要画弧	b(100,200)是相对与a的坐标结尾
-			0表示小角度 1表示大角度--&gt;
-			&lt;path d="M100 100 m 0,-100 a 100 100 0 1 100,200 100 100 0 1 100,-200" stroke-width="1" stroke="skyblue"
-				fill-opacity="0"/&gt;
-		&lt;/svg&gt;	
+	&lt;svg&gt;
+		&lt;!--M10 10 为起笔坐标 ，h为横向，数值为正往右走
+			v为纵向，数值为正往下走，数值为负往上走
+		--&gt;
+		&lt;!--画线的方法--&gt;
+		&lt;!--&lt;path d="M10 10 h 10 v 10 h -10 v -10" stroke-width="1" stroke="pink" fill-opacity="0"/&gt;--&gt;
+		&lt;!--画圆方法--&gt;
+		&lt;!--M10 10 为圆心坐标 ，a(m 0,-100)为圆心相对坐标(0,0)，往上100 
+			a表示要画弧	b(100,200)是相对与a的坐标结尾
+		0表示小角度 1表示大角度--&gt;
+		&lt;path d="M100 100 m 0,-100 a 100 100 0 1 100,200 100 100 0 1 100,-200" stroke-width="1" stroke="skyblue"
+			fill-opacity="0"/&gt;
+	&lt;/svg&gt;	
+	 stroke="green"  stroke-width="5" 设置了stroke，stroke-width才会起效
 				</pre>
 			</div>
 			<div class="F_Position">
@@ -53,20 +61,153 @@
 				<h4 id="pathAttr">path属性</h4>
 				<ul>
 					<li>M：移动到（moveto）x,y</li>
-					<li>L：画直线到（lineto）x,y</li>
+					<li>
+						<div>
+						L：画直线到（lineto）x,y	
+						</div>
+						<p>
+							L 可以從目前的点画垂直线到某個坐标，
+							有兩個參数個參数 x、y，也就是要移動到的坐标点，
+							下列程式为画一條线到 (50,50)。
+						</p>
+						<img src="../img/202008260939.png" alt="">
+						<pre>
+	&lt;path d="M0 0 L50 50" stroke="black"/&gt;						
+						</pre>
+					</li>
 					<li>Z：闭合路径</li>
-					<li>H：从当前坐标画水平直线到 x 坐标轴 </li>
-					<li>V：从当前坐标画水平直线到 y 坐标轴 </li>
-					<li>C：参数=>x1 y1 x2 y2 x y,画条贝赛尔曲线到 x， y，其中x1 y1 x2 y2为控制点</li>
-					<li>S：参数=> x2 y2 x y,画条贝赛尔曲线到 x， y，其中 x2 y2为控制点</li>
-					<li>Q：参数=> x1 y1 x y,画条贝赛尔曲线到 x， y，其中 x1 y1为控制点</li>
-					<li>T：参数=>x y,画条反射二次贝赛尔曲线到 x， y，其中以前一個坐标为控制点</li>
-					<li>A：参数=>rx ry x-axis-rotation large-arc-flag sweep-flag x y,
-					从目前点的坐标画個橢圆形到指定点的 x, y 坐标：
-					其中 rx, ry 為橢圆形的 x 轴及 y 轴的半径，x-axis-rotation 是弧线与 x 轴的旋转角度，
-					large-arc-flag 則設定 1 最大角度的弧线或是 0 最小角度的弧线，
-					sweep-flag 设定方向为 1 顺时针方向或 0 逆时针方向 ( Arc )
-					
+					<li>
+						<div>
+						H：从当前坐标画水平直线到 x 坐标轴 	
+						</div>
+						<p>可以从目前的点画水平线到坐标 x，
+						只有一個參数，x 数字越大越往左，数字越小越往右。
+						( 小写则可视为长度 ) 下列程式为画一條水平线到 (50,0)。</p>
+						<img src="../img/202008260928.png" >
+						<pre>
+	&lt;path d="M0 0 H50" stroke="black"/&gt;						
+						</pre>
+					</li>
+					<li>
+						<div>V：从当前坐标画水平直线到 y 坐标轴</div> 
+						<p>
+							V 可以從目前的点画垂直线到某個 y 坐标，只有一個參数，y 
+							数字越大越往下，数字越小越往上。( 小写则可视为长度 ) 
+							下列程式为画一條垂直线到 (0,50)。
+						</p>
+						<img src="../img/202008260936.png" >
+						<pre>
+	&lt;path d="M0 0 V50" stroke="black"/&gt;	
+						</pre>
+					</li>
+					<li>
+						<div >
+						C：参数=>x1 y1 x2 y2 x y,画条贝赛尔曲线到 x， y，其中x1 y1 x2 y2为控制点	
+						</div>
+						<p>
+						C 表示可以画一個如下圆所示的三次贝茲曲线，
+						因此总共會有六個控制点，分別是 x1,y1,x2,y2,x,y，
+						當中 x1,y2 表示第一個贝茲曲线的控制点，
+						x2,y2 表示第二個贝茲曲线的控制点，x,y 则是线段的結束点，
+						这裡 C 和 c 的大小写一定要搞清楚，如果是使用 Illustrator 画出來的，c 是小写喔！
+						下面的程式就會画出一個波浪型的线段。	
+						</p>
+						<img src="../img/202008260941.png" alt="">
+						<pre>
+	&lt;path d="M0 0 C40 40,60 40,100,0" stroke="black" fill="none"/&gt;						
+						</pre>
+					</li>
+					<li>
+						<div>
+						S：参数=> x2 y2 x y,画条贝赛尔曲线到 x， y，其中 x2 y2为控制点	
+						</div>
+						<p>
+							S 可以在原本的点后方建立一個帶有贝茲曲线控制点的点，
+							然后原本的点會以同样的斜率镜射一個贝茲控制点，
+							讲得很像绕口令，可以可以看下圆就明白了。
+						</p>
+						<img src="../img/202008260959.png" >
+						<pre>
+	&lt;path d="M0 0 C40 40,60 40,100,0 S150 -40, 200 0" stroke="black" fill="none"/&gt;					
+						</pre>
+					</li>
+					<li>
+						<div>
+						Q：参数=> x1 y1 x y,画条贝赛尔曲线到 x， y，其中 x1 y1为控制点	
+						</div>
+						<p>
+					Q 就简单多了，就是起点和终点的贝茲曲线共用同一個控制点，只需要有贝茲控制点的坐标和终点坐标即可。		
+						</p>
+						<img src="../img/202008261001.png" alt="">
+						<pre>
+	&lt;path d="M0 0 Q50 50, 100 0" stroke="black" fill="none"/&gt;					
+						</pre>
+					</li>
+					<li>
+						<div>
+						T：参数=>x y,画条反射二次贝赛尔曲线到 x， y，其中以前一個坐标为控制点	
+						</div>
+						<p>
+					T 只有一組參数 x,y ，表示终点的坐标，所以 T 的前方要接上 Q 才能画出對應的坐标线。		
+						</p>
+						<img src="../img/202008261002.png" alt="">
+						<pre>
+	&lt;path d="M0 0 Q50 50, 100 0 T200 0" stroke="black" fill="none"/&gt;					
+						</pre>
+					</li>
+					<li>
+						<div class="red">
+						A：参数=>rx ry x-axis-rotation large-arc-flag sweep-flag x y,	
+						从目前点的坐标画個橢圆形到指定点的 x, y 坐标：
+						其中 rx, ry 为橢圆形的 x 轴及 y 轴的半径，x-axis-rotation 是弧线与 x 轴的旋转角度，
+						large-arc-flag 则設定 1 最大角度的弧线或是 0 最小角度的弧线，
+						sweep-flag 设定方向为 1 顺时针方向或 0 逆时针方向 ( Arc )
+						</div>
+						<p>
+							A指令是Path最精华的部分，也是最难的，参数也特别的多，先介绍参数再实例讲解
+							<ul>
+								<li>rx ： 橢圆的 x 轴半径 ( 根据不同的终点換算成比例 )</li>
+								<li>ry ： 橢圆的 y 轴半径 ( 根据不同的终点換算成比例 )</li>
+								<li>x-axis-rotation ： 弧线與 x 轴的夾角</li>
+								<li>large-arc-flag ： 1 为大角度弧线，0 为小角度弧线 ( 必須有三個点 )</li>
+								<li>sweep-flag ： 1 为顺时针方向，0 为逆时针方向</li>
+								<li>x ： 终点 x 坐标</li>
+								<li>y ： 终点 y 坐标</li>
+							</ul>
+						</p>
+						<div>
+							先扁长型，x,y 轴半径比例为 5:1，小角度弧线，顺时针方向
+						</div>
+						<img src="../img/202008261027.png" alt="">
+						<pre>
+	&lt;path d="M0 0 A100 20,0 0 1 50 100" stroke="#000" fill="none"/&gt;
+		
+	//因为只有兩個点，所以大小角度結果相同，返回原來的点了  下面的显示与上面一致
+	&lt;path d="M0 0 A100 20,0 1 1 50 100" stroke="#000" fill="none"/&gt;					
+						</pre>
+						<h5>大小角度区别</h5>
+						<p>
+							Path 里头我們只提供了兩個点，兩個点只有一條线，不會有角度的問題，
+							但是我們多增加一個点，就可以看出大小角度的差異。
+						</p>
+						<img src="../img/202008261046.png" alt="">
+						<pre>
+	大角度 ( 黑色线 )
+	&lt;path d="M0 0 L50 50 A50 50,0 1 0 100 0" stroke="#000" fill="none"/&gt;
+	
+	小角度 ( 紅色线 )
+	&lt;path d="M0 0 L50 50 A50 50,0 0 0 100 0" stroke="#f00" fill="none"/&gt;						
+						</pre>
+						<div>另外的情况：A的第一个参数平方第二个参数平方之和然后开根的值为sum，
+						若第一个参数与第二个参数之和reduce的值小于sum，则不管是否设置大小角度都重叠</div>
+						<img src="../img/202008261148.png" alt="">
+						<pre>
+	大角度 ( 黑色线 )
+	&lt;path d="M0 0 L50 50 A50 10,0 1 0 100 0" stroke="#000" fill="none"/&gt;
+	
+	小角度 ( 紅色线 )
+	&lt;path d="M0 0 L50 50 A50 10,0 0 0 100 0" stroke="#f00" fill="none"/&gt;
+						</pre>
 					</li>
 				</ul>
 			</div>
@@ -82,8 +223,7 @@
 				return {
 					list: [
 						{ name: "path",id: "rect",explain: '路径'},
-						{ name: "path属性",id: "pathAttr",explain: 'path常用属性'},
-						{ name: "<polygon>标签",id: "polygon",explain: ''},
+						{ name: "path属性",id: "pathAttr",explain: 'path常用属性以及实例讲解'},
 					]
 				}
 			},

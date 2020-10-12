@@ -6,6 +6,11 @@
 	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../static/css/animate.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+		}
+	</style>
 </head>
 <body>
 	<!--右边内容-->
@@ -32,6 +37,12 @@
 	}
 	console.log(fun(2,20,16));	//output: [20, 16, 2]				
 				</pre>
+				<div>类数组可以转换为数组：</div>
+				<ul>
+					<li>第一种方法:Array.prototype.slice.call(arrayLike, start)</li>
+					<li>第二种方法:[...arrayLike]</li>
+					<li>第三种方法:Array.from(arrayLike)</li>
+				</ul>
 			</div>
 		</div>
 	</div>

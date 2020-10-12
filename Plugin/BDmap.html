@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>百度地图封装</h4>
+				<p>
+					在使用百度地图的时候经常会用到一些常用方法，我们将这些方法封装并做了以下文档；
+					<a href="./js/drawMap.js" target="_blank">封装源码</a>，
+					封装不是写死的，可以根据源码作一些数据的调整
+				</p>
+			</div>
+			<div id="allmap" style="width: 1000px;height: 700px;"></div>
+			<div>
+				<h4>创建地图：new drawMap({id:'allmap'})</h4>
+				<p>
+					实例化一个class，绑定地图在DOM上的元素id，
+				</p>
+				<pre>
+	let BDmap=new drawMap({id:'allmap'})	
+	BDmap.createMap()//创建地图,此方法可以不用调用，在实例化的时候已经调用了	
+				</pre>
+			</div>
+			<div>
+				<h4>创建点详情：mapMarkers(mapPoints)</h4>
+				<p>
+					在给点添加一个点击事件，点击的时候弹出百度的弹窗显示
+				</p>
+				<pre>
+	mapPoints数据格式为：
+		[{
+			x: 24.22,//纬度坐标
+			y: 114.22,//经度坐标
+			title: "A",//标题
+			con: "我是A",//点事件绑定的label，为' '时不显示label
+			branch: "老大x:23.312903,y:113.382029"//内容
+		}]			
+	BDmap.mapMarkers(mapPoints)//传一个点数据数组	
+				</pre>
+			</div>
+			<div>
+				<h4>创建折线：addPolyLine(polyPoints)</h4>
+				<p>
+					在地图上画一条线段，并且折线带箭头方向
+				</p>
+				<pre>
+	BDmap.mapMarkers(polyPoints)//传一个折线点数据数组
+	// 给线段设置起点和终点(要自己在封装中修改图标路径) 默认是折线的
+	BDmap.setStartEnd()//设置起始点 
+	修改方法：1、首先在封装的class中设置点坐标对象
+			 2、将设置的两个点坐标对象放到方法中的Point1、Point2替换
+			 3、在方法中带入参数
+				</pre>
+			</div>
+			<div>
+				<h4>添加工具：addControl()</h4>
+				<p>
+					在地图上添加工具，默认是比例尺和缩放工具
+				</p>
+				<pre>
+	BDmap.addControl()//传一个折线点数据数组
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+	<!--第三方插件-->
+	<script src="../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<!--百度插件-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=izKslMWQG7sLmlaG4UjUV90Z"></script>
+	<!--自定义-->
+	<script src="js/drawMap.js" type="text/javascript" charset="utf-8"></script>
+	<!--定义数据-->
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function() {
+				return {
+					BDmap:null,//实例化地图类
+					mapPoints:[
+							{
+								x: 24.22,
+								y: 114.22,
+								title: "A",
+								con: "我是A",
+								branch: "老大x:23.312903,y:113.382029"
+							},
+							{
+								x: 24.215855,
+								y: 114.024568,
+								title: "B",
+								con: "我是B",
+								branch: "老二"
+							},
+							{
+								x: 24.18015,
+								y: 114.174968,
+								title: "C",
+								con: "我是C",
+								branch: "老三"
+							},
+							{
+								x: 24.324994,
+								y: 114.164399,
+								title: "D",
+								con: "我是D",
+								branch: "老四"
+							},
+							{
+								x: 24.24884,
+								y: 114.305074,
+								title: "E",
+								con: "我是E",
+								branch: "老五x:23.24884,y:113.305074"
+							}
+						],//坐标数据
+					someday: "" //出差时间	
+				}
+			},
+			mounted() {
+				var that = this;
+				that.setBaiDuMap();
+			},
+			methods: {
+				// 渲染地图和数据
+				setBaiDuMap() {
+					this.BDmap=new drawMap({
+						id:"allmap"
+					})
+					// this.BDmap.createMap()//创建地图
+					this.BDmap.mapMarkers(this.mapPoints)//渲染点
+					this.BDmap.addPolyLine()//添加折线
+					// this.BDmap.addControl()//添加工具
+					// this.$nextTick(()=>{
+					// 	this.BDmap.setStartEnd()//设置起始点
+					// })
+				},
+			}
+		})
+	</script>
+</body>
+
+</html>

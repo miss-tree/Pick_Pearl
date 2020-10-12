@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	<style>
+		li{list-style:none;float:left;}
+		li:after{display: block;clear: both;}
+		img{margin:10px;}
+		body{
+			margin:0;
+			padding:40px;
+			background:#fff;
+			font:80% Arial, Helvetica, sans-serif;
+			color:#555;
+			line-height:180%;
+		}
+		#tooltip{
+			position:absolute;
+			border:1px solid #ccc;
+			background:#333;
+			padding:2px;
+			display:none;
+			color:#fff;
+		}
+	</style>
+	
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>鼠标预览图片</h4>
+				<p>
+					在项目中经常会遇到要图片预览，下面记录的是鼠标经过图片，
+					放大预览固定像素，方便用户直接预览。缺点是只能放大固定像素，
+					不能滚动鼠标缩放。
+				</p>
+				<ul style="height: 100px;">
+					<li>
+						<a href="images/a1d.png" class="toolHover">
+							<img src="images/a1x.png" alt="Picture 1" />
+						</a>
+					</li>
+					<li>
+						<a href="images/a2d.png" class="toolHover">
+							<img src="images/a2x.png" alt="Picture 2"/>
+						</a>
+					</li>
+					<li>
+						<a href="images/a3d.png" class="toolHover">
+							<img src="images/a3x.png" alt="Picture 3"/>
+						</a>
+					</li>
+					<li>
+						<a href="images/a4d.png" class="toolHover">
+							<img src="images/a4x.png" alt="Picture 4"/>
+						</a>
+					</li>
+				</ul>
+				<div>
+					<pre>
+	&lt;li&gt;
+		&lt;a href="images/a1d.png" class="toolHover"&gt;
+			&lt;img src="images/a1x.png" alt="Picture 1" /&gt;
+		&lt;/a&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;a href="images/a2d.png" class="toolHover"&gt;
+			&lt;img src="images/a2x.png" alt="Picture 2"/&gt;
+		&lt;/a&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;a href="images/a3d.png" class="toolHover"&gt;
+			&lt;img src="images/a3x.png" alt="Picture 3"/&gt;
+		&lt;/a&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;a href="images/a4d.png" class="toolHover"&gt;
+			&lt;img src="images/a4x.png" alt="Picture 4"/&gt;
+		&lt;/a&gt;
+	&lt;/li&gt;	
+	
+	$(function(){
+		var x = 10;
+		var y = 20;
+		$("a.toolHover").mouseover(function(e){
+			//创建 div 元素
+			var tooltip = "&lt;div id='tooltip'&gt;&lt;img src='"+ this.href +"' alt='产品预览图'/&gt;&lt;\/div&gt;"; 
+			$("body").append(tooltip);	//把它追加到文档中						 
+			$("#tooltip")
+				.css({
+					"top": (e.pageY+y) + "px",
+					"left":  (e.pageX+x)  + "px"
+				}).show("fast");	  //设置x坐标和y坐标，并且显示
+		}).mouseout(function(){
+			$("#tooltip").remove();	 //移除 
+		}).mousemove(function(e){
+			$("#tooltip")
+				.css({
+					"top": (e.pageY+y) + "px",
+					"left":  (e.pageX+x)  + "px"
+				});
+		});
+	})				
+					</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--第三方插件-->
+	<script src="../static/js/jquery.min.js"></script>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+
+	<!--定义数据-->
+	<script type="text/javascript">
+		$(function(){
+			var x = 10;
+			var y = 20;
+			$("a.toolHover").mouseover(function(e){
+					
+				var tooltip = "<div id='tooltip'><img src='"+ this.href +"' alt='产品预览图'/><\/div>"; //创建 div 元素
+				$("body").append(tooltip);	//把它追加到文档中						 
+				$("#tooltip")
+					.css({
+						"top": (e.pageY+y) + "px",
+						"left":  (e.pageX+x)  + "px"
+					}).show("fast");	  //设置x坐标和y坐标，并且显示
+		    }).mouseout(function(){
+					
+				$("#tooltip").remove();	 //移除 
+		    }).mousemove(function(e){
+				$("#tooltip")
+					.css({
+						"top": (e.pageY+y) + "px",
+						"left":  (e.pageX+x)  + "px"
+					});
+			});
+		})
+	</script>
+</body>
+
+</html>

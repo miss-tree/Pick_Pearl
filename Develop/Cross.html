@@ -5,6 +5,7 @@
 	<title>基础知识</title>
 	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../static/css/animate.css" rel="stylesheet">
+	<link href="../static/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
 	<style type="text/css">
 		li{
@@ -13,11 +14,27 @@
 	</style>
 </head>
 <body>
+	<!-- 回到顶部 -->
+	<div class="topBtn">
+		<a href="#top">
+			<i class="fa fa-long-arrow-up"></i>
+		</a>
+	</div>
 	<!--右边内容-->
 	<div id="app" class="main animated fadeInRight">
 		<div class="shadow">
+			<div class="Table" v-cloak id="top">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
 			<div>
-				<h4>跨域iframe传值</h4>
+				<h4>常用的跨域方式</h4>
+				<img src="./img/20200912221242.jpg" alt="">
+			</div>
+			<div>
+				<h4 id="iframe">跨域iframe传值</h4>
 				<p>
 					postMessage()方法允许来自不同源的脚本采用异步方式进行有限的通信，
 					可以实现跨文本档、多窗口、跨域消息传递.
@@ -40,47 +57,164 @@
 					</li>
 				</ul>
 				<pre>
-		&lt;iframe src="http://192.168.1.5:8020/2018-07~11project/跨域iframe传值/b.html"
-			name="postIframe" onload="messageLoad()"&gt;&lt;/iframe&gt;
-		&lt;script&gt;
-			function messageLoad() {
-				var url = "http://192.168.1.5:8020";
-				window.postIframe.postMessage("给我post传递的信息", url); //发送数据
-			}
+	&lt;iframe src="http://192.168.1.5:8020/2018-07~11project/跨域iframe传值/b.html"
+		name="postIframe" onload="messageLoad()"&gt;&lt;/iframe&gt;
+	&lt;script&gt;
+		function messageLoad() {
+			var url = "http://192.168.1.5:8020";
+			window.postIframe.postMessage("给我post传递的信息", url); //发送数据
+		}
 
-			window.onmessage = function(e) {
-				e = e || event;
-				console.log(e.data); //接收b返回的数据，在控制台有两次输出
-			}
-		&lt;/script&gt;
-		
-		iframe页面
-		&lt;script&gt;
-			/*window.addEventListener('message',function(e){})方法也可以*/
-			window.onmessage = function(e) {
-				e = e || event;
-				alert(e.data); //立即弹出a发送过来的数据
-				e.source.postMessage("好的，请稍等三秒！", e.origin); //立即回复a
+		window.onmessage = function(e) {
+			e = e || event;
+			console.log(e.data); //接收b返回的数据，在控制台有两次输出
+		}
+	&lt;/script&gt;
+	
+	iframe页面
+	&lt;script&gt;
+		/*window.addEventListener('message',function(e){})方法也可以*/
+		window.onmessage = function(e) {
+			e = e || event;
+			alert(e.data); //立即弹出a发送过来的数据
+			e.source.postMessage("好的，请稍等三秒！", e.origin); //立即回复a
 
-				var postData = {
-					name: "tsrot",
-					age: 24
-				};
-				var strData = JSON.stringify(postData); //json对象转化为字符串
-				setTimeout(function() {
-					e.source.postMessage(strData, e.origin);
-				}, 3000); //3秒后向a发送数据
-			}
-		&lt;/script&gt;				
+			var postData = {
+				name: "tsrot",
+				age: 24
+			};
+			var strData = JSON.stringify(postData); //json对象转化为字符串
+			setTimeout(function() {
+				e.source.postMessage(strData, e.origin);
+			}, 3000); //3秒后向a发送数据
+		}
+	&lt;/script&gt;				
 				</pre>
 				<p>
 					注意：跨域地址一定要一致，不能输入错误，一定是浏览器前面的域名地址。
 				</p>
 			</div>
+			<div>
+				<h4 id="CORS">CORS</h4>
+				<p>
+					跨域资源共享(CORS) 是一种机制，它使用额外的 HTTP 头来告诉浏览器 
+					让运行在一个 origin (domain) 上的 Web 应用被准许访问来自不同源服务器上的指定的资源。
+					当一个资源从与该资源本身所在的服务器「不同的域、协议或端口」请求一个资源时，
+					资源会发起一个「跨域 HTTP 请求」。
+				</p>
+				<p>
+	//koa 框架	  	
+	app.use(async (ctx, next) => {  
+		ctx.set("Access-Control-Allow-Origin", ctx.headers.origin);  
+		ctx.set("Access-Control-Allow-Credentials", true);  
+		ctx.set("Access-Control-Request-Method", "PUT,POST,GET,DELETE,OPTIONS");  
+		ctx.set("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept, cc"  );  
+		if (ctx.method === "OPTIONS") {    
+			ctx.status = 204;    return;  
+		}  
+		await next();
+	});	
+		
+	const cors = require("koa-cors");
+	app.use(cors());			
+				</p>
+			</div>
+			<div>
+				<h4 id="Node">Node 正向代理</h4>
+				<pre>
+	//Webpack (4.x)	  	
+	const path = require("path");
+	const HtmlWebpackPlugin = require("html-webpack-plugin");
+	module.exports = {  
+		... 
+		devServer: {    
+			port: 8000,    
+			proxy: {      
+				"/api": {        
+					target: "http://localhost:8080"      
+				}    
+			}  
+		},  
+		...
+	};			
+				</pre>
+			</div>
+			<div>
+				<h4 id="Nginx">Nginx 反向代理</h4>
+				<pre>
+	//配置 nginx	
+	server {
+			listen 80;
+			server_name local.test;
+			location /api {
+				proxy_pass http://localhost:8080;
+			}
+			location / {
+				proxy_pass http://localhost:8000;
+			}
+	}
+	
+	重启 nginx
+	systymctl nginx -s reload	(linux操作方法)
+				</pre>
+			</div>
+			<div>
+				<h4 id="JSONP">JSONP</h4>
+				<pre>
+	&lt;script type="text/javascript"&gt;
+		window.jsonpCallback = function(res) {    
+			console.log(res);  
+		};
+	&lt;/script&gt;
+	&lt;script  
+	src="http://localhost:8080/api/jsonp?msg=hello&cb=jsonpCallback"  
+	type="text/javascript"&gt;&lt;/script&gt;
+				</pre>
+			</div>
+			<div>
+				<h4 id="Websocket">Websocket</h4>
+				<pre>
+	//前端
+	let socket = new WebSocket("ws://localhost:8080");  
+	socket.onopen = function() {    
+		socket.send("秋风的笔记");  
+	};  
+	socket.onmessage = function(e) {    
+		console.log(e.data);  
+	}
+	
+	//后端
+	const WebSocket = require("ws");
+	const server = new WebSocket.Server({ port: 8080 });
+	server.on("connection", function(socket) {  
+		socket.on("message", function(data) {    
+			socket.send(data);  
+		});
+	});
+				</pre>
+			</div>
 		</div>
 	</div>
 	<!--页面加载进度条-->
 	<script src="../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function() {
+				return {
+					list: [
+						{ name: "跨域iframe传值", id: "iframe", explain: '' },
+						{ name: "CORS", id: "CORS", explain: '' },
+						{ name: "Node 正向代理", id: "Node", explain: '' },
+						{ name: "Nginx 反向代理", id: "Nginx", explain: '' },
+						{ name: "JSONP", id: "JSONP", explain: '' },
+						{ name: "Websocket", id: "Websocket", explain: '' },
+					]
+				}
+			},
+		})
+	</script>
 	
 </body>
 

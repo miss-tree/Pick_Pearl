@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+    <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+			padding: 5px 0;
+		}
+	</style>
+</head>
+<body>
+	<!-- 回到顶部 -->
+	<div class="topBtn">
+		<a href="#top">
+			<i class="fa fa-long-arrow-up"></i>
+		</a>
+	</div>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div class="Table" v-cloak id="top">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id"
+					:title="el.name"
+					>{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="link">超链接</h4>
+				<pre>
+	var link = draw.link('http://svgjs.com')
+	var rect = link.rect(100, 100)
+		
+	link.to('http://www.htmleaf.com')
+	
+	超链接元素有一个show()方法可也创建xlink:show属性:
+	link.show('replace')
+	link.target('_blank')
+	
+	元素也可以通过linkTo()被链接到其它地方：	
+	link.linkTo('http://www.htmleaf.com')	
+	
+	使用函数的方式可以同时添加多个属性：
+	rect.linkTo(function(link) {
+	  link.to('http://svgjs.com').target('_blank')
+	})
+				</pre>
+			</div>
+			<div>
+				<h4 id="Defs">Defs</h4>
+				<p>
+					元素是一个引用其它元素的容器元素。一个"defs"的后代元素不会直接被渲染
+				</p>
+				<pre>
+	var defs = draw.defs()
+		
+	defs在任何使用doc()方法的元素上有效：
+	var defs = rect.doc().defs()	
+				</pre>
+			</div>ellipse
+			<div>
+				<h4 id="rect">绘制矩形</h4>
+				<pre>
+	var rect = draw.rect(100, 100)	
+	rect.radius(10)
+				</pre>
+			</div>
+			<div>
+				<h4 id="ellipse">绘制椭圆形</h4>
+				<pre>
+	椭圆形也有两个参数：width和height。
+	var ellipse = draw.ellipse(200, 100)
+	
+	rect.radius(75, 50)
+				</pre>
+			</div>
+			<div>
+				<h4 id="circle">绘制圆形</h4>
+				<pre>
+	var circle = draw.circle(100)
+				</pre>
+			</div>
+			<div>
+				<h4 id="polyline">绘制圆形</h4>
+				<pre>
+	var line = draw.line(0, 0, 100, 150).stroke({ width: 1 })
+	
+	通过plot()方法来更新直线的坐标点
+	line.plot(50, 30, 100, 150)
+	
+	var polyline = draw.polyline('0,0 100,50 50,100').fill('none').stroke({ width: 1 })
+	var polyline = draw.polyline([[0,0], [100,50], [50,100]]).fill('none').stroke({ width: 1 })
+	polyline.plot([[0,0], [100,50], [50,100], [150,50], [200,50]])
+	
+	polyline.animate(3000).plot([[0,0], [100,50], [50,100], [150,50], [200,50], [250,100], [300,50], [350,50]])
+				</pre>
+			</div>
+			<div>
+				<h4 id="polygon">绘制多边形</h4>
+				<pre>
+	var polygon = draw.polygon('0,0 100,50 50,100').fill('none').stroke({ width: 1 })
+	polygon.plot([[0,0], [100,50], [50,100], [150,50], [200,50]])
+	polygon.animate(3000).plot([[0,0], [100,50], [50,100], [150,50], [200,50], [250,100], [300,50], [350,50]])
+				</pre>
+			</div>
+			<div>
+				<h4 id="path">绘制路径</h4>
+				<pre>
+	draw.path('M 100 200 C 200 100 300  0 400 100 C 500 200 600 300 700 200 C 800 100 900 100 900 100')
+	path.plot('M100,200L300,400')
+				</pre>
+			</div>
+			<div>
+				<h4 id="image">绘制图像</h4>
+				<pre>
+	var image = draw.image('/path/to/image.jpg')
+	//绘制图片大小
+	var image = draw.image('/path/to/image.jpg', 200, 300)
+	
+	如果你不知道图片的大小，你就需要等待图片加载完毕：
+	var image = draw.image('/path/to/image.jpg').loaded(function(loader) {
+	  this.size(loader.width, loader.height)
+	})
+	loaded方法返回的loader随性有四个参数：width、height、ratio (width / height)、url
+				</pre>
+			</div>
+			<div>
+				<h4 id="text">绘制文本</h4>
+				<pre>
+	var text = draw.text("Lorem ipsum dolor sit amet consectetur.")
+	var text = draw.text(function(add) {
+	  add.tspan('Lorem ipsum dolor sit amet ').newLine()//添加新行的方法
+	  add.tspan('consectetur').fill('#f06')
+	  add.tspan('.')
+	  add.tspan('Cras sodales imperdiet auctor.').newLine().dx(20)
+	  add.tspan('Nunc ultrices lectus at erat').newLine()
+	  add.tspan('dictum pharetra elementum ante').newLine()
+	})
+	制作文本路径
+	text
+	  .path('M 100 200 C 200 100 300 0 400 100 C 500 200 600 300 700 200 C 800 100 900 100 900 100')
+	如果只有一行文本，可以使用plain()方法：
+	var text = draw.plain('Lorem ipsum dolor sit amet consectetur.')
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function() {
+				return {
+					list: [
+						{ name: "超链接",id: "link",explain: ''},
+						{ name: "Defs",id: "Defs",explain: ''},
+						{ name: "绘制矩形",id: "rect",explain: ''},
+						{ name: "绘制椭圆形",id: "ellipse",explain: ''},
+						{ name: "绘制圆形",id: "circle",explain: ''},
+						{ name: "绘制线段",id: "polyline",explain: ''},
+						{ name: "绘制多边形",id: "polygon",explain: ''},
+						{ name: "绘制路径",id: "path",explain: ''},
+						{ name: "绘制图像",id: "image",explain: ''},
+						{ name: "绘制文本",id: "text",explain: ''},
+					]
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+    <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+			padding: 5px 0;
+		}
+	</style>
+</head>
+<body>
+	<!-- 回到顶部 -->
+	<div class="topBtn">
+		<a href="#top">
+			<i class="fa fa-long-arrow-up"></i>
+		</a>
+	</div>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div class="Table" v-cloak id="top">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id"
+					:title="el.name"
+					>{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="use">创建svg</h4>
+				<pre>
+	let svgCode='http://www.w3.org/2000/svg'	
+	let path=document.createElementNS(svgCode,'path')
+	path.setAttribute('d','M 0 20 L 33 60 Z')			
+	path.setAttribute('fill','#98b3f3')			
+	path.setAttribute('stroke','blue')		
+		
+	let text=document.createElementNS(svgCode,'text')
+	text.textContent='生成的文本'		
+				</pre>
+			</div>
+			<div>
+				<h4 id="image">&lt;image&gt;</h4>
+				<p>
+					关于image标签的使用，用两种引用方法，
+					方法一有时候会不起作用
+				</p>
+				<pre>
+	let svgCode='http://www.w3.org/2000/svg'				
+	let images=document.createElementNS(svgCode,'image')
+	images.href.baseVal = "img/water.png"; //svg设置image的url图片，要用image.href.baseVal	
+				
+	第二种方法(推荐)	将图片转二进制	
+	let images=document.createElementNS(svgCode,'image')	
+	var image = new Image();
+	image.crossOrigin = '';
+	image.src = "https://img.alicdn.com/bao/uploaded/TB1qimQIpXXXXXbXFXXSutbFXXX.jpg";
+	image.onload = function () {
+	    var base64 = getBase64Image(image);
+	    svgIamge.href.baseVal=base64;			
+	}			
+				
+	function getBase64Image(img) {
+	     var canvas = document.createElement("canvas");
+	     canvas.width = img.width;
+	     canvas.height = img.height;
+	     var ctx = canvas.getContext("2d");
+	     ctx.drawImage(img, 0, 0, img.width, img.height);
+	     var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
+	     var dataURL = canvas.toDataURL("image/" + ext);
+	     canvas = null; //释放
+	     return dataURL;
+	}			
+				</pre>
+			</div>
+			<div>
+				<h4 id="svgDom">读取svg dom</h4>
+				<p>
+					使用&lt;object&gt;、&lt;iframe&gt;、&lt;embed&gt;
+					标签插入 SVG 文件，可以获取 SVG DOM
+				</p>
+				<pre>
+	var svgObject = document.getElementById('object').contentDocument;
+	var svgIframe = document.getElementById('iframe').contentDocument;
+	var svgEmbed = document.getElementById('embed').getSVGDocument();
+					
+	使用XMLSerializer实例的serializeToString()方法，获取 SVG 元素的代码。
+	let svgElm=document.querySelector('svg')
+	var svgString = new XMLSerializer().serializeToString(svgElm);				
+				</pre>
+			</div>
+			<div>
+				<h4 id="ruler">地图量尺的实现</h4>
+				<p>
+					在常用的地图使用工具中，量距尺也是可以用svg实现的。
+					实现过程：在mouseenter添加事件，点击添加polyline的
+					坐标点，实现折线坐标点pointsNum。在onmousemove事件中
+					通过(pointsNum+','+x+','+y)的方式动态改变折线最后一点的坐标
+					但是不能添加到折线坐标pointsNum中
+				</p>
+				<pre>
+	<div id="svgDiv">
+		<svg id="svg" 
+		xmlns="http://www.w3.org/2000/svg"
+		width='1000' height='250'>
+		</svg>
+	</div>				
+	window.onload=function(){
+		let svgNS='http://www.w3.org/2000/svg'
+		let oParent=document.getElementById('svgDiv')
+		let oSvg=document.getElementById('svg')
+		let oPolyLine=null
+		let pointsNum=''
+		
+		function createTag(tag,objAttr){
+			let oTag=document.createElementNS(svgNS,tag)
+			for(let i in objAttr){//设置属性
+				oTag.setAttribute(i,objAttr[i])
+			}
+			return oTag
+		}
+		//鼠标点击的时候
+		oSvg.onmousedown=function(ev){
+			let ev=ev||window.evnet
+			if(!oPolyLine){//创建线段
+				oPolyLine=createTag(polyline,{'fill':'none','stroke':'red','stroke-width':'2'})
+				oSvg.appendChild(oPolyLine)
+			}
+			//计算点击坐标再svg画布位置
+			let x=ev.clientX-oParent.offsetLeft
+			let y=ev.clientY-oParent.offsetLeft
+			if(pointsNum==''){
+				pointsNum=x+','+y
+			}else{
+				pointsNum+=','+x+','+y
+			}
+			oPolyLine.setAttribute('points',pointsNum)
+		}
+		
+		//鼠标经过的时候
+		oSvg.onmousemove=function(ev){
+			let ev=ev||window.evnet
+			if(oPolyLine){
+				let x=ev.clientX-oParent.offsetLeft
+				let y=ev.clientY-oParent.offsetLeft
+				
+				oPolyLine.setAttribute('points',pointsNum+','+x+','+y)
+			}
+		}
+	}			
+				</pre>
+			</div>
+			<div>
+				<h4 id="toCanvas">SVG 图像转为 Canvas 图像</h4>
+				<p>
+					新建一个Image对象，将 SVG 图像指定到该Image对象的src属性.
+					当图像加载完成后，再将它绘制到&lt;canvas&gt;元素。
+				</p>
+				<pre>
+	var img = new Image();
+	var svg = new Blob([svgString], {type: "image/svg+xml;charset=utf-8"});
+	
+	var DOMURL = self.URL || self.webkitURL || self;
+	var url = DOMURL.createObjectURL(svg);
+	
+	img.src = url;	
+	img.onload = function () {
+	  var canvas = document.getElementById('canvas');
+	  var ctx = canvas.getContext('2d');
+	  ctx.drawImage(img, 0, 0);
+	};		
+			
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function() {
+				return {
+					list: [
+						{ name: "创建svg",id: "use",explain: '用于复制一个形状'},
+						{ name: "<image>",id: "image",explain: '图片的引用'},
+						{ name: "读取svg dom",id: "svgDom",explain: '获取svg代码'},
+						{ name: "地图量尺的实现",id: "ruler",explain: ''},
+						{ name: "SVG 图像转为 Canvas 图像",id: "toCanvas",explain: ''},
+					],
+					oParent:null,
+					oPolyLine:null
+				}
+			},
+			mounted() {
+				this.oParent=document.getElementById('svgDiv')
+				this.oParent.onmousedown=this.createRuler()
+			},
+			methods:{
+				createRuler(){
+					let that=this
+					let svgNS='http://www.w3.org/2000/svg'
+					let oSvg=document.getElementById('svg')
+					// let oPolyLine=null
+					let pointsNum=''
+					
+					function createTag(tag,objAttr){
+						var oTag=document.createElementNS(svgNS,tag)
+						for(var i in objAttr){//设置属性
+							oTag.setAttribute(i,objAttr[i])
+						}
+						return oTag
+					}
+					// createTag('polyline',{'fill':'none','stroke':'red','stroke-width':'2','d':'M50,150 L70,240'})
+					//鼠标点击的时候
+					oSvg.onmousedown=function(ev){
+						// let ev=ev||window.evnet
+						if(!that.oPolyLine){//创建线段
+							that.oPolyLine=createTag('polyline',{'fill':'none','stroke':'red','stroke-width':'2'})
+							oSvg.appendChild(that.oPolyLine)
+						}
+						//计算点击坐标再svg画布位置
+						let x=ev.clientX-that.oParent.offsetLeft-110
+						let y=ev.clientY-that.oParent.offsetLeft-150
+						if(pointsNum==''){
+							pointsNum=x+','+y
+						}else{
+							pointsNum+=','+x+','+y
+						}
+						that.oPolyLine.setAttribute('points',pointsNum)
+					}
+					//鼠标经过的时候
+					oSvg.onmousemove=function(ev){
+						// let ev=ev||window.evnet
+						if(that.oPolyLine){
+							let x=ev.clientX-that.oParent.offsetLeft-110
+							let y=ev.clientY-that.oParent.offsetLeft-150
+							that.oPolyLine.setAttribute('points',pointsNum+','+x+','+y)
+						}
+					}
+					oSvg.ondblclick=function(){
+						oSvg.onmousedown=null
+						oSvg.onmousemove=null
+					}
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>
