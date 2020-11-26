@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+			padding: 5px 0;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow" v-cloak>
+			<div class="Table">
+				<div class="TableRow" v-for="(el,index) in list">
+					<span class="RowLeft">{{el.name}}</span>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"&lt;!--...--&gt;",explain:'定义注释'},
+						{name:"<!DOCTYPE>",explain:'定义文档类型'},
+						{name:"<a>",explain:'定义超文本链接'},
+						{name:"<abbr>",explain:'定义缩写'},
+						{name:"<acronym>",explain:'定义只取首字母的缩写，不支持HTML5'},
+						{name:"<address>",explain:'定义文档作者或拥有者的联系信息'},
+						{name:"<applet>",explain:'HTML5中不赞成使用。定义嵌入的 applet。'},
+						{name:"<area>",explain:'定义图像映射内部的区域'},
+						{name:"<article>",explain:'定义一个文章区域'},
+						{name:"<aside>",explain:'定义页面的侧边栏内容'},
+						{name:"<audio>",explain:'定义音频内容'},
+						{name:"<b>",explain:'定义文本粗体'},
+						{name:"<base>",explain:'定义页面中所有链接的默认地址或默认目标'},
+						{name:"<basefont>",explain:'HTML5不支持，不赞成使用。定义页面中文本的默认字体、颜色或尺寸。'},
+						{name:"<bdi>",explain:'允许您设置一段文本，使其脱离其父元素的文本方向设置。'},
+						{name:"<bdo>",explain:'定义文字方向'},
+						{name:"<big>",explain:'定义大号文本，HTML5不支持'},
+						{name:"<blockquote>",explain:'定义长的引用'},
+						{name:"<body>",explain:'定义文档的主体'},
+						{name:"<br>",explain:'定义换行'},
+						{name:"<button>",explain:'定义一个点击按钮'},
+						{name:"<canvas>",explain:'定义图形，比如图表和其他图像,标签只是图形容器，您必须使用脚本来绘制图形'},
+						{name:"<caption>",explain:'定义表格标题'},
+						{name:"<center>",explain:'HTML5不支持，不赞成使用。定义居中文本。'},
+						{name:"<cite>",explain:'定义引用(citation)'},
+						{name:"<code>",explain:'定义计算机代码文本'},
+						{name:"<col>",explain:'定义表格中一个或多个列的属性值'},
+						{name:"<colgroup>",explain:'定义表格中供格式化的列组'},
+						{name:"<command>",explain:'定义命令按钮，比如单选按钮、复选框或按钮'},
+						{name:"<datalist>",explain:'定义选项列表。请与 input 元素配合使用该元素，来定义 input 可能的值。'},
+						{name:"<dd>",explain:'定义定义列表中项目的描述'},
+						{name:"<del>",explain:'定义被删除文本'},
+						{name:"<details>",explain:'用于描述文档或文档某个部分的细节'},
+						{name:"<dfn>",explain:'定义定义项目'},
+						{name:"<dialog>",explain:'定义对话框，比如提示框'},
+						{name:"<dir>",explain:'HTML5不支持，不赞成使用。定义目录列表'},
+						{name:"<div>",explain:'定义文档中的节'},
+						{name:"<dl>",explain:'定义列表详情'},
+						{name:"<dt>",explain:'定义列表中的项目'},
+						{name:"<em>",explain:'定义强调文本'},
+						{name:"<embed>",explain:'定义嵌入的内容，比如插件。'},
+						{name:"<fieldset>",explain:'定义围绕表单中元素的边框'},
+						{name:"<figcaption>",explain:'定义<figure> 元素的标题'},
+						{name:"<figure>",explain:'规定独立的流内容（图像、图表、照片、代码等等）'},
+						{name:"<footer>",explain:'定义 section 或 document 的页脚'},
+						{name:"<form>",explain:'定义了HTML文档的表单'},
+						{name:"<frame>",explain:'定义框架集的窗口或框架'},
+						{name:"<frameset>",explain:'定义框架集'},
+						{name:"<h1> to <h6>",explain:'定义 HTML 标题'},
+						{name:"<head>",explain:'定义关于文档的信息'},
+						{name:"<header>",explain:'定义了文档的头部区域'},
+						{name:"<hr>",explain:'定义水平线'},
+						{name:"<html>",explain:'定义 HTML 文档'},
+						{name:"<i>",explain:'定义斜体字'},
+						{name:"<iframe>",explain:'定义内联框架'},
+						{name:"<img>",explain:'定义图像'},
+						{name:"<input>",explain:'定义输入控件'},
+						{name:"<ins>",explain:'定义被插入文本'},
+						{name:"<kbd>",explain:'定义键盘文本'},
+						{name:"<keygen>",explain:'规定用于表单的密钥对生成器字段'},
+						{name:"<label>",explain:'定义 input 元素的标注'},
+						{name:"<legend>",explain:'定义 fieldset 元素的标题'},
+						{name:"<li>",explain:'定义列表的项目'},
+						{name:"<link>",explain:'定义文档与外部资源的关系'},
+						{name:"<main>",explain:'定义文档的主体部分。'},
+						{name:"<map>",explain:'定义图像映射'},
+						{name:"<mark>",explain:'定义带有记号的文本。请在需要突出显示文本时使用 <m> 标签。'},
+						{name:"<marquee>",explain:'屏幕滚动标签'},
+						{name:"<menu>",explain:'不赞成使用。定义菜单列表。'},
+						{name:"<meta>",explain:'定义关于 HTML 文档的元信息。'},
+						{name:"<meter>",explain:'定义度量衡。仅用于已知最大和最小值的度量'},
+						{name:"<nav>",explain:'定义导航链接的部分'},
+						{name:"<noscript>",explain:'定义针对不支持客户端脚本的用户的替代内容。'},
+						{name:"<object>",explain:'定义内嵌对象'},
+						{name:"<ol>",explain:'定义有序列表。'},
+						{name:"<optgroup>",explain:'定义选择列表中相关选项的组合'},
+						{name:"<option>",explain:'定义选择列表中的选项'},
+						{name:"<output>",explain:'定义不同类型的输出，比如脚本的输出'},
+						{name:"<p>",explain:'定义段落'},
+						{name:"<param>",explain:'定义对象的参数'},
+						{name:"<pre>",explain:'定义预格式文本'},
+						{name:"<progress>",explain:'定义运行中的进度（进程）'},
+						{name:"<q>",explain:'定义短的引用'},
+						{name:"<rp>",explain:'<rp> 标签在 ruby 注释中使用，以定义不支持 ruby 元素的浏览器所显示的内容'},
+						{name:"<rt>",explain:'<rt> 标签定义字符（中文注音或字符）的解释或发音'},
+						{name:"<ruby>",explain:'<ruby> 标签定义 ruby 注释（中文注音或字符）'},
+						{name:"<s>",explain:'不赞成使用。定义加删除线的文本'},
+						{name:"<samp>",explain:'定义计算机代码样本'},
+						{name:"<script>",explain:'定义客户端脚本'},
+						{name:"<section>",explain:'<section> 标签定义文档中的节（section、区段）。比如章节、页眉、页脚或文档中的其他部分'},
+						{name:"<select>",explain:'定义选择列表（下拉列表）'},
+						{name:"<small>",explain:'定义小号文本'},
+						{name:"<source>",explain:'<source> 标签为媒介元素（比如 <video> 和 <audio>）定义媒介资源'},
+						{name:"<span>",explain:'定义文档中的节'},
+						{name:"<strong>",explain:'定义强调文本'},
+						{name:"<style>",explain:'定义文档的样式信息'},
+						{name:"<sub>",explain:'定义下标文本'},
+						{name:"<summary>",explain:'<summary> 标签包含 details 元素的标题，"details" 元素用于描述有关文档或文档片段的详细信息'},
+						{name:"<sup>",explain:'定义上标文本'},
+						{name:"<table>",explain:'定义表格'},
+						{name:"<tbody>",explain:'定义表格中的主体内容'},
+						{name:"<td>",explain:'定义表格中的单元'},
+						{name:"<textarea>",explain:'定义多行的文本输入控件'},
+						{name:"<tfoot>",explain:'定义表格中的表注内容（脚注）'},
+						{name:"<th>",explain:'定义表格中的表头单元格'},
+						{name:"<thead>",explain:'定义表格中的表头内容'},
+						{name:"<time>",explain:'定义日期或时间，或者两者'},
+						{name:"<title>",explain:'定义文档的标题'},
+						{name:"<tr>",explain:'定义表格中的行'},
+						{name:"<track>",explain:'track> 标签为诸如 video 元素之类的媒介规定外部文本轨道'},
+						{name:"<tt>",explain:'定义打字机文本'},
+						{name:"<ul>",explain:'定义无序列表'},
+						{name:"<var>",explain:'定义文本的变量部分'},
+						{name:"<video>",explain:'<video> 标签定义视频，比如电影片段或其他视频流'},
+						{name:"<wbr>",explain:'规定在文本中的何处适合添加换行符'},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

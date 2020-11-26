@@ -92,15 +92,16 @@
 	rect.replace(draw.circle(100))
 	rect.toParent(group) // looks the same as before
 	
+	//操作rect顺序
 	rect.after(circle)
 	rect.before(circle)
 	rect.insertAfter(circle)
 	rect.insertBefore(circle)
 	
-	rect.next()
-	rect.position()
-	rect.previous()
-	rect.siblings()
+	rect.next()//获取rect下一个元素
+	rect.position()//Get the position (a number) of rect between its siblings
+	rect.previous()//Get the previous sibling
+	rect.siblings()//To get all siblings of rect, including rect itself
 	
 	var point = path.point(e.pageX, e.pageY) // {x, y}
 	

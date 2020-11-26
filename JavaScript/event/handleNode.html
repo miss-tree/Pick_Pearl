@@ -5,14 +5,27 @@
 	<title>基础知识</title>
 	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../static/css/animate.css" rel="stylesheet">
+    <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
 </head>
 <body>
+	<!-- 回到顶部 -->
+	<div class="topBtn">
+		<a href="#top">
+			<i class="fa fa-long-arrow-up"></i>
+		</a>
+	</div>
 	<!--右边内容-->
 	<div id="app" class="main animated fadeInRight">
 		<div class="shadow">
+			<div class="Table" v-cloak id="top">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
 			<div>
-				<h4>动态操作DOM</h4>
+				<h4 id="handleDom">动态操作DOM</h4>
 				<pre>
 	appendChild(node)
 	removeChild(node)
@@ -39,7 +52,7 @@
 				</pre>
 			</div>
 			<div>
-				<h4>操作样式</h4>
+				<h4 id="handleAttr">操作样式</h4>
 				<pre>
 	用js的style属性可以获得html标签的样式，但是不能获取非行间样式。
 		解决方法：
@@ -62,11 +75,34 @@
 	简写==>
 	function getStyle(obj,arrt) {
 		return obj.currentStyle ? obj.currentStyle[arrt] : getComputedStyle(obj,null)[arrt];
-	}				
+	}	
+			
+			
+	<span class="red">直接设置style的属性：</span>
+	element.style.height = '100px';	
+	element.style['text-align'] = '100px';
+	
+	<span class="red">直接设置属性（只能用于某些属性，相关样式会自动识别）：</span>
+	element.setAttribute('height', 100);
+	element.setAttribute('height', '100px');
+	
+	<span class="red">设置style的属性：</span>
+	element.setAttribute('style', 'height: 100px !important');
+	
+	<span class="red">使用setProperty  如果要设置!important，推荐用这种方法设置第三个参数：</span>
+	element.style.setProperty('height', '300px', 'important');
+	
+	<span class="red">改变class   比如JQ的更改class相关方法：</span>
+	element.className = 'blue';
+	element.className += 'blue fb';
+	
+	<span class="red">设置cssText：</span>
+	element.style.cssText = 'height: 100px !important';
+	element.style.cssText += 'height: 100px !important';
 				</pre>
 			</div>
 			<div>
-				<h4>操作类名</h4>
+				<h4 id="rect">操作类名</h4>
 				<div>能操控类名就不要使用行内样式,减少js对浏览器的损耗</div>
 				<pre>
 	add()  添加
@@ -83,7 +119,7 @@
 				</pre>
 			</div>
 			<div>
-				<h4>classList与从className</h4>
+				<h4 id="classList">classList与从className</h4>
 				<div>classList是从className发展出来的,className：可以单个类名的添加，classList：可以多个类名添加，往下看adds()方法</div>
 				<pre>
 	item() 支持一个参数，为类名的索引，返回对应的类名
@@ -115,7 +151,12 @@
 			el: "#app",
 			data: function () {
 				return {
-					
+					list: [
+						{ name: "动态操作DOM",id: "handleDom",explain: '对元素增删改'},
+						{ name: "操作样式",id: "handleAttr",explain: ''},
+						{ name: "操作类名",id: "rect",explain: 'add()/remove()/contains()'},
+						{ name: "classList/className",id: "classList",explain: '两者区分'},
+					]
 				}
 			},
 		})

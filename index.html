@@ -41,11 +41,14 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-list"></i> <span class="nav-label">Html</span><span class="fa arrow"></span></a>
+                    <a class="linkhtml" href="#"><i class="fa fa-list"></i> 
+					<span class="nav-label">Html</span>
+					<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                     		<a class="dropdown-toggle" href="#"><span class="nav-label">html</span><span class="fa arrow"></span></a>
-                    		<ul class="animated fadeInRight m-t-xs S_slider">
+                    		<ul class="animated fadeInRight m-t-xs S_slider">								
+								<li><a class="J_menuItem" href="Html/labelTag.html">标签列表</a></li>
 								<li><a class="J_menuItem" href="Html/index.html">html基础</a></li>
                     		    <li><a class="J_menuItem" href="Html/form.html">表单元素</a></li>
                     		    <li><a class="J_menuItem" href="Html/input.html">input标签</a></li>
@@ -54,17 +57,18 @@
                     		</ul>
                     	</li>
 						<li>
-							<a class="dropdown-toggle" href="#">
-								<span class="nav-label">Svg</span><span class="fa arrow"></span>
+							<a class="dropdown-toggle linksvg" href="#">
+								<span class="nav-label">Svg</span>
+								<span class="fa arrow"></span>
 							</a>
 							<ul class="animated fadeInRight m-t-xs S_slider">								
-								<li><a class="J_menuItem" id='linkSvg' href="Html/svg/aboutSvg.html">关于svg</a></li>
+								<li><a class="J_menuItem" id='linksvg' href="Html/svg/aboutSvg.html">关于svg</a></li>
 								<li><a class="J_menuItem" href="Html/svg/attribute.html">常用属性</a></li>
 							    <li><a class="J_menuItem" href="Html/svg/text.html">text</a></li>
 								<li><a class="J_menuItem" href="Html/svg/rect.html">rect/polygon</a></li>
 								<li><a class="J_menuItem" href="Html/svg/polyline.html">line/polyline</a></li>
 								<li><a class="J_menuItem" href="Html/svg/circle.html">circle/ellipse</a></li>
-							    <li><a class="J_menuItem" href="Html/svg/path.html">path</a></li>
+							    <li><a class="J_menuItem" id='linkpath' href="Html/svg/path.html">path</a></li>
 							    <li><a class="J_menuItem" href="Html/svg/image.html">image</a></li>
 							    <li><a class="J_menuItem" href="Html/svg/animate.html">animate</a></li>
 							    <li><a class="J_menuItem" href="Html/svg/gradient.html">渐变|滤镜</a></li>
@@ -73,10 +77,14 @@
 							</ul>
 						</li>
 						<li>
-							<a class="dropdown-toggle" href="#"><span class="nav-label">svg.js使用</span><span class="fa arrow"></span></a>
+							<a class="dropdown-toggle linksvgjs" href="#">
+								<span class="nav-label">svg.js使用</span>
+								<span class="fa arrow"></span></a>
 							<ul class="animated fadeInRight m-t-xs S_slider">
-								<li><a class="J_menuItem" href="Html/graph/index.html">常用方法</a></li>
+								<li><a class="J_menuItem"  id='linksvgjs' href="Html/graph/index.html">常用方法</a></li>
 								<li><a class="J_menuItem" href="Html/graph/methods.html">操作方法</a></li>
+								<li><a class="J_menuItem" href="Html/graph/attrs.html">属性设置</a></li>
+								<li><a class="J_menuItem" href="Html/graph/attrs.html">设置视窗</a></li>
 							</ul>
 						</li>
 						<li>
@@ -295,12 +303,14 @@
 							<a class="dropdown-toggle" href="#"><span class="nav-label">鼠标控制</span><span class="fa arrow"></span></a>
 							<ul class="animated fadeInRight m-t-xs S_slider">
 								<li><a class="J_menuItem" href="Window/mousekey/index.html">基础</a></li>
+								<li><a class="J_menuItem" href="Window/mousekey/wheelDelta.html">鼠标滚动</a></li>
 							</ul>
 						</li>
 						<li>
 							<a class="dropdown-toggle" href="#"><span class="nav-label">浏览器对象</span><span class="fa arrow"></span></a>
 							<ul class="animated fadeInRight m-t-xs S_slider">
 								<li><a class="J_menuItem" href="Window/navigator/navigator.html">基础</a></li>
+								<li><a class="J_menuItem" href="Window/navigator/attribute.html">元素属性</a></li>
 								<li><a class="J_menuItem" href="Window/navigator/cookie.html">cookie</a></li>
 								<li><a class="J_menuItem" href="Window/navigator/printWin.html">打印预览</a></li>
 							</ul>
@@ -441,18 +451,35 @@
 	var page = link.search.split('=')[1]; //获取url中"?"符后的字串
 	if(page!=null){//带参数传过来
 		let message=''
+		let meaun = ''
 		let timer=null
 		switch(page){
 			case 'svg':
-				message='正在查看Html下的svg'
+				message='正在查看Html下的svg';
+				meaun = 'html'
+			break
+			case 'svgjs':
+				message='正在查看Svgjs';
+				meaun = 'html'
+			case 'path':
+				message='正在查看svg下path';
+				meaun = 'html'
 		}
-		let linkPage=document.querySelector('#'+page)
+		let linkMeaun=document.querySelector('.link'+meaun)
+		let linkPage=document.querySelector('#link'+page)
+		let linkbtn=document.querySelector('.link'+page)
+		if(page='page'){
+			linkbtn=document.querySelector('.linksvg')
+		}
 		// 手动添加一个点击事件
 		Element.prototype.trigger = function(eventName){
 			this.dispatchEvent(new Event(eventName));
 		}
+		console.log('linkPage===========>',page,linkPage);
 		timer=setTimeout(()=>{
-			linkSvg.trigger('click')
+			linkMeaun.trigger('click')
+			linkbtn.trigger('click')//点击左边菜单按钮
+			linkPage.trigger('click')
 			alert(message)
 			clearTimeout(timer)
 		},1000)

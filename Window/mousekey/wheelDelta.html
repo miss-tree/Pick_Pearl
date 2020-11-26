@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+		<link href="../../static/css/animate.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
+		<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+		<style type="text/css">
+		</style>
+	</head>
+
+	<body>
+		<div id="app" class="main">
+			<div class="shadow">
+				<div>
+					<h4>鼠标滚动监听</h4>
+					<label for="wheelDelta">滚动值:</label>(IE/Opera)<input type="text" id="wheelDelta" />
+					<label for="detail">滚动值:(Firefox)</label><input type="text" id="detail" />
+					<pre>
+		var val = 0
+		var scrollFunc = function(e) {
+			e = e || window.event;
+			var t1 = document.getElementById("wheelDelta");
+			var t2 = document.getElementById("detail");
+			if (e.wheelDelta) { //IE/Opera/Chrome
+				if (e.wheelDelta == 120) { //向下滚动
+					val = val + 1
+					t1.value = val / 2
+				} else {// 向上滚动
+					val = val - 1
+					t1.value = val / 2
+				}
+			} else if (e.detail) { //Firefox
+				t2.value = e.detail;
+				/**
+				 *  鼠标向下滚动值是 -3
+				 *	鼠标向上滚动值是 3
+				 */
+			}
+		}
+		/*注册事件*/
+		if (document.addEventListener) {
+			document.addEventListener('DOMMouseScroll', scrollFunc, true);
+		} //W3C
+		window.onmousewheel = document.onmousewheel = scrollFunc; //IE/Opera/Chrome				
+					</pre>
+				</div>
+			</div>
+		</div>
+		<!--页面加载进度条-->
+		<script src="../../static/js/plugins/pace/pace.min.js"></script>
+		<script type="text/javascript">
+			var val = 0
+			var scrollFunc = function(e) {
+				e = e || window.event;
+				var t1 = document.getElementById("wheelDelta");
+				var t2 = document.getElementById("detail");
+				if (e.wheelDelta) { //IE/Opera/Chrome
+					if (e.wheelDelta == 120) {
+						val = val + 1
+						t1.value = val / 2
+					} else {
+						val = val - 1
+						t1.value = val / 2
+					}
+				} else if (e.detail) { //Firefox
+					t2.value = e.detail;
+				}
+			}
+			/*注册事件*/
+			if (document.addEventListener) {
+				document.addEventListener('DOMMouseScroll', scrollFunc, true);
+			} //W3C
+			window.onmousewheel = document.onmousewheel = scrollFunc; //IE/Opera/Chrome
+		</script>
+	</body>
+
+</html>
