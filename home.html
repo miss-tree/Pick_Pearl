@@ -3,8 +3,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>基础知识</title>
-	<link href="./static/css/bootstrap.min.css" rel="stylesheet">
-	<link href="./static/css/font-awesome.min.css" rel="stylesheet">
+	<!-- <link href="./static/css/bootstrap.min.css" rel="stylesheet"> -->
+	<!-- <link href="./static/css/font-awesome.min.css" rel="stylesheet"> -->
 	<link href="./static/css/animate.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./static/css/public.css" />
 </head>
@@ -16,15 +16,79 @@
 				<h3>项目首页</h3>
 				<p>本项目主要是记录两年来前端除Vue、React、Node的知识，主要包括Html、Css、Js和Ui部分。
 				部分讲到了ES6的内容，但是ES6的主要内容是准备放到下个Vue笔记来总结的。
-				项目的框架用到了H+，做了修改，去除了一些功能。用XMind做了一个项目目录的展示，用PS连接了下</p>
+				项目的框架用到了H+，做了修改，去除了一些功能。下面使用了百度的Echart树状图显示</p>
 			</div>
-			<div>
+			<div id="main" style="width: 100%;min-height:700px;border: 1px solid #ccc;"></div>
+			<!-- <div>
 				<img src="./list.jpg"  style="width: 100%;">
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<!--页面加载进度条-->
+	<script src="./static/js/jquery.min.js"></script>
 	<script src="./static/js/plugins/pace/pace.min.js"></script>
+	<script src="./static/js/echarts.common.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function() {
+				return {
+				}
+			},
+			mounted() {
+				var myChart = echarts.init(document.getElementById('main'));
+				myChart.showLoading();
+				$.get('./static/json/list.json', function (data) {
+				    myChart.hideLoading();
+				    echarts.util.each(data.children, function (datum, index) {
+				        index % 2 === 0 && (datum.collapsed = true);
+				    });
+				
+				    myChart.setOption(option = {
+				        tooltip: {
+				            trigger: 'item',
+				            triggerOn: 'mousemove'
+				        },
+				        series: [
+				            {
+				                type: 'tree',
+				
+				                data: [data],
+				
+				                top: '1%',
+				                left: '7%',
+				                bottom: '1%',
+				                right: '20%',
+								roam:true,
+				                symbolSize: 7,
+				
+				                label: {
+				                    position: 'left',
+				                    verticalAlign: 'middle',
+				                    align: 'right',
+				                    fontSize: 12
+				                },
+				
+				                leaves: {
+				                    label: {
+				                        position: 'right',
+				                        verticalAlign: 'middle',
+				                        align: 'left'
+				                    }
+				                },
+				
+				                expandAndCollapse: true,
+								 initialTreeDepth:2,
+				                animationDuration: 550,
+				                animationDurationUpdate: 750
+				            }
+				        ]
+				    });
+				});
+			}
+		})
+	</script>
 </body>
 
 </html>
