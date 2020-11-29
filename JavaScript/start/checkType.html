@@ -7,6 +7,14 @@
 	<link href="../../static/css/animate.css" rel="stylesheet">
 	<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+		}
+		li~li{
+			margin-top: 15px;
+		}
+	</style>
 </head>
 <body>
 	<!-- 回到顶部 -->
@@ -77,8 +85,13 @@
 			<div>
 				<h4 id="instanceof">instanceof</h4>
 				<div>instanceof可以精准判断引用数据类型（Array，Function，Object），
-				而基本数据类型不能被instanceof精准判断。</div>
+				而基本数据类型不能被instanceof精准判断。instanceof 是用来判断 A 是否为 B 的实例， 
+				表达式为：A instanceof B，如果 A 是 B 的实例，
+				则返回 true,否则返回 false。 注意：instanceof()检测的是原型,修改后不能准确判断</div>
 				<pre>
+	[] instanceof Array; //true
+	{} instanceof Object;//true
+	new Date() instanceof Date;//true
 	console.log(2 instanceof Number);                    // false
 	console.log(true instanceof Boolean);                // false 
 	console.log('str' instanceof String);                // false  
@@ -108,6 +121,39 @@
 	[].valueOf() ===>[] ，[].toString() ===>""
 			
 				</pre>
+				<div>Object.prototype.toString</div>
+				<p>
+					toString()是 Object 的原型方法，调用该方法，默认返回当前对象的[[class]]。
+					这是一个内部属性，其格式为[object Xxx]，其中 Xxx 就是对象的类型。
+					对于 Object 对象，直接调用toString()就能返回[object Object]。
+					而对于其他对象，则需要通过call / apply来调用才能返回正确的类型信息。
+				</p>
+				<ul>
+					<li>Object.prototype.toString.call('') ;   // [object String]</li>
+					<li>Object.prototype.toString.call(1) ;    // [object Number]</li>
+					<li>Object.prototype.toString.call(true) ; // [object Boolean]</li>
+					<li>Object.prototype.toString.call(Symbol()); //[object Symbol]</li>
+					<li>Object.prototype.toString.call(undefined) ; // [object Undefined]</li>
+					<li>Object.prototype.toString.call(null) ; // [object Null]</li>
+					<li>Object.prototype.toString.call(newFunction()) ; // [object Function]</li>
+					<li>Object.prototype.toString.call(newDate()) ; // [object Date]</li>
+					<li>Object.prototype.toString.call([]) ; // [object Array]</li>
+					<li>Object.prototype.toString.call(newRegExp()) ; // [object RegExp]</li>
+					<li>Object.prototype.toString.call(newError()) ; // [object Error]</li>
+					<li>Object.prototype.toString.call(document) ; // [object HTMLDocument]</li>
+					<li>Object.prototype.toString.call(window) ; //[object global] window 是全局对象 global 的引用</li>
+				</ul>
+			</div>
+			<div>
+				<h4 id="constructor">constructor</h4>
+				<p>
+					当一个函数F被定义时，JS引擎会为F添加prototype 原型，
+					然后再在prototype上添加一个 constructor 属性，并让其指向 F 的引用。
+					当执行var f = new F()时，F被当成了构造函数，f是F的实例对象，
+					此时F原型上的 constructor 传递到了f上，因此f.constructor == F.
+					当执行 var f = new F() 时，F 被当成了构造函数，f 是F的实例对象，
+					此时 F 原型上的 constructor 传递到了 f 上，因此 f.constructor == F
+				</p>
 			</div>
 		</div>
 	</div>
@@ -123,10 +169,8 @@
 						{ name: "typeof",id: "typeof",explain: ''},
 						{ name: "判断数组",id: "array",explain: ''},
 						{ name: "instanceof",id: "instanceof",explain: ''},
-						{ name: "valueOf与toString",id: "compail",explain: ''},
-						{ name: "投影",id: "boxshadow",explain: ''},
-						{ name: "图片蒙版",id: "imageGrad",explain: ''},
-						{ name: "图片图形混合搭配",id: "imagemixd",explain: ''},
+						{ name: "valueOf与toString",id: "compail",explain: 'Object.prototype.toString判断类型，推荐'},
+						{ name: "constructor",id: "constructor",explain: ''},
 					]
 				}
 			},

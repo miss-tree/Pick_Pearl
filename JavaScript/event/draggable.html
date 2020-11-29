@@ -5,8 +5,16 @@
 	<title>基础知识</title>
 	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../static/css/animate.css" rel="stylesheet">
+    <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
 	<style type="text/css">
+		li{
+			text-indent: 2em;
+			list-style: none;
+		}
+		li~li{
+			margin-top: 15px;
+		}
 		.draggable {
 			width: 120px;
 			height: 120px;
@@ -16,17 +24,80 @@
 			color: white;
 			border: 5px solid yellowgreen;
 			position: absolute;
-			top: 30px;
-			left: 60px;
+			top: 950px;
+			right: 160px;
 		}
 	</style>
 </head>
 <body>
+	<!-- 回到顶部 -->
+	<div class="topBtn">
+		<a href="#top">
+			<i class="fa fa-long-arrow-up"></i>
+		</a>
+	</div>
 	<!--右边内容-->
 	<div id="app" class="main animated fadeInRight">
 		<div class="shadow">
+			<div class="Table" v-cloak id="top">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id"
+					:title="el.name"
+					>{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
 			<div>
-				<h4>拖动div</h4>
+				<h4 id="drag">拖拽--drag</h4>
+				<p>
+					拖拽是前端跟用户之间的一个交互动作，方便用户操作界面达到喜欢的方式。
+					在内部有以下几种交互的API提供：
+				</p>
+				<ul>
+					<li><code>ondragstart</code>： 元素开始被拖动时触发 作用在拖拽元素上</li>
+					<li><code>ondragenter</code>：当拖曳元素进入目标元素的时候触发的事件，作用在目标元素上</li>
+					<li><code>ondragover</code>：拖拽元素在目标元素上移动的时候触发的事件，作用在目标元素上</li>
+					<li><code>ondragleave</code>：拖拽元素拖离开了目标元素时触发，作用在目标元素上</li>
+					<li><code>ondrop</code>：被拖拽的元素在目标元素上同时鼠标放开触发的事件，作用在目标元素上</li>
+					<li><code>ondragend</code>：当拖拽完成后触发的事件，作用在被拖曳元素上</li>
+				</ul>
+			</div>
+			<div>
+				<h4 id="dataTransfer">drag属性</h4>
+				<div>dataTransfer对象的属性</div>
+				<ul>
+					<li>dropEffect：拖放的操作类型，决定了浏览器如何显示鼠标形状，可能的值为copy、move、link和none。</li>
+					<li>effectAllowed：指定所允许的操作，可能的值为copy、move、link、copyLink、copyMove、linkMove、
+					all、none和uninitialized（默认值，等同于all，即允许一切操作）。</li>
+					<li>files：包含一个FileList对象，表示拖放所涉及的文件，主要用于处理从文件系统拖入浏览器的文件</li>
+					<li>types：储存在DataTransfer对象的数据的类型</li>
+				</ul>
+				<div>dataTransfer对象的方法</div>
+				<ul>
+					<li>setData(format, data)：在dataTransfer对象上储存数据。第一个参数format用来指定储存的数据类型，
+					比如text、url、text/html等</li>
+					<li>getData(format)：从dataTransfer对象取出数据</li>
+					<li>clearData(format)：清除dataTransfer对象所储存的数据。如果指定了format参数，则只清除该格式的数据，否则清除所有数据</li>
+					<li>setDragImage(imgElement, x, y)：指定拖动过程中显示的图像。默认情况下，许多浏览器显示一个被拖动元素的半透明版本。
+					参数imgElement必须是一个图像元素，而不是指向图像的路径，参数x和y表示图像相对于鼠标的位置。</li>
+				</ul>
+				<div style="font-weight: 700;">
+					dataTransfer对象允许在其上存储数据，这使得在被拖动元素与目标元素之间传送信息成为可能。例如拖拽文件上传
+				</div>
+			</div>
+			<div>
+				<h4 id="link">拖拽出现禁止符号</h4>
+				<p>
+					在拖放的过程中遇到当一个div上有其他元素，例如P、label、img等，在拖动到P、label时会出现禁止拖动的图标
+				</p>
+				<p>解决：<br>
+					拖动到的“目的地”并不接受拖动的元素-----这是因为当拖动元素经过document时，
+					document对象默认阻止了拖动事件，而其他HTML组件也位于document对象内，因此它们也不能接受“放”。
+					因此我们需要将目标元素加两个事件ondragenter ondragover事件内容为event.preventDefault()
+				</p>
+			</div>
+			<div>
+				<h4 id="dragMove">拖动div示例</h4>
 				<pre>
 	css
 	.draggable {
@@ -58,6 +129,13 @@
 		var x = e.clientX, y = e.clientY; 
 		this.style.left = x - l + 'px'; 
 		this.style.top = y - t + 'px'; 
+		e.dataTransfer.setData('data',this.nodeName);
+	}
+	dragEl.ondragenter = function (event) { // 拖拽进行时
+		event.preventDefault()
+	}
+	dragEl.ondragover = function (event) { // 拖拽进行时
+		event.preventDefault()
 	}
 	dragEl.ondragend = function (e) { // 拖拽结束时 
 		var x = e.clientX, y = e.clientY;
@@ -73,7 +151,9 @@
 				</pre>
 			</div>
 			<div>
-				<div id="draggable" class="draggable" draggable="true">
+				<div id="draggable" 
+				ondragenter="dragenter()" ondragover="dragover()"
+				class="draggable" draggable="true">
 					draggable
 				</div>	
 			</div>
@@ -81,33 +161,56 @@
 	</div>
 	<!--页面加载进度条-->
 	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		var dragEl = document.getElementById('draggable');
-		var l = null,
-			t = null;
-		dragEl.ondragstart = function(e) { // 准备推拽时 
-			l = e.clientX - this.offsetLeft, 
-			t = e.clientY - this.offsetTop; 
-		}  
-		dragEl.ondrag = function (e) { // 拖拽进行时 
-			var x = e.clientX, y = e.clientY; 
-			this.style.left = x - l + 'px'; 
-			this.style.top = y - t + 'px'; 
-			e.dataTransfer.setData('data',this.nodeName);
-		}
-		dragEl.ondragend = function (e) { // 拖拽结束时 
-			var x = e.clientX, y = e.clientY;
-			console.log(e)
-			console.log(e.dataTransfer.getData('data'))
-			console.log(x,y)
-			if(x<0||y<0){//超出屏幕时直接设定位置
-				this.style.left = 30 + 'px'; 
-				this.style.top = 30+ 'px'; 
-			}else{
-				this.style.left = x - l + 'px'; 
-				this.style.top = y - t + 'px'; 
-			}
-		}
+			var app = new Vue({
+				el: "#app",
+				data: function() {
+					return {
+						list: [
+							{ name: "拖拽--drag",id: "drag",explain: ''},
+							{ name: "drag属性",id: "dataTransfer",explain: ''},
+							{ name: "拖拽出现禁止符号",id: "link",explain: ''},
+							{ name: "拖动div示例",id: "dragMove",explain: ''},
+						]
+					}
+				},
+				mounted() {
+					var dragEl = document.getElementById('draggable');
+					var l = null,
+						t = null;
+					dragEl.ondragstart = function(e) { // 准备推拽时 
+						l = e.clientX - this.offsetLeft, 
+						t = e.clientY - this.offsetTop; 
+					}  
+					dragEl.ondrag = function (e) { // 拖拽进行时 
+						var x = e.clientX, y = e.clientY; 
+						this.style.left = x - l + 'px'; 
+						this.style.top = y - t + 'px'; 
+						e.dataTransfer.setData('data',this.nodeName);
+						console.log(this.nodeName)
+					}
+					dragEl.ondragenter = function (event) { // 拖拽进行时
+						event.preventDefault()
+					}
+					dragEl.ondragover = function (event) { // 拖拽进行时
+						event.preventDefault()
+					}
+					dragEl.ondragend = function (e) { // 拖拽结束时 
+						var x = e.clientX, y = e.clientY;
+						console.log(e)
+						console.log(e.dataTransfer.getData('data'))
+						console.log(x,y)
+						if(x<0||y<0){//超出屏幕时直接设定位置
+							this.style.left = 30 + 'px'; 
+							this.style.top = 30+ 'px'; 
+						}else{
+							this.style.left = x - l + 'px'; 
+							this.style.top = y - t + 'px'; 
+						}
+					}
+				}
+			})
 	</script>
 </body>
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+		}
+		li~li{
+			margin-top: 15px;
+		}
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>return | return false</h4>
+				<ul>
+					<li>都可以终止执行当前方法；</li>
+					<li>如果方法A调用了方法B，则在方法A中使用return可以终止程序，
+					但是在方法B中使用return则终止执行B方法，A方法继续执行，
+					这个时候需要在方法B中return false,方法A根据B方法的返回boolean值
+					决定是否终止A方法即可；</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>
