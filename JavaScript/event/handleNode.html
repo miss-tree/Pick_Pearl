@@ -105,11 +105,16 @@
 				<h4 id="rect">操作类名</h4>
 				<div>能操控类名就不要使用行内样式,减少js对浏览器的损耗</div>
 				<pre>
+	let contain = document.createElement('div')	
+	// 设置类名 className 只能设置一个 重复设置只是设置了最后一个
+	contain.className = 'newClass'			
+	
+	// 	classList可以设置多个			
 	add()  添加
-	classList.add("active")		
+	contain.classList.add("active")		
 			
 	remove()  删除
-	classList.remove("abc")
+	contain.classList.remove("abc")
 	
 	contains() 判断是否包含元素，有责删除，没有就添加
 	this.classList.contains("active")?this.classList.remove("active"):this.classList.add("active");

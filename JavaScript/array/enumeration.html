@@ -8,6 +8,12 @@
 	<link href="../../static/css/animate.css" rel="stylesheet">
     <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+			list-style: none;
+		}
+	</style>
 </head>
 <body>
 	<!-- 回到顶部 -->
@@ -214,13 +220,39 @@
 				</pre>
 			</div>
 			<div>
+				<h4 class="" id="find">find(currentValue, index,arr)</h4>
+				<div>
+				find() 方法返回通过测试（函数内判断）的数组的第一个元素的值。
+				</div>
+				<div>
+				find() 方法为数组中的每个元素都调用一次函数执行：
+					<ul>
+						<li>当数组中的元素在测试条件时返回 true 时, find() 返回符合条件的元素，
+						之后的值不会再调用执行函数。
+						</li>
+						<li>如果没有符合条件的元素返回 undefined</li>
+					</ul>
+				</div>
+				<div>
+				注意: find() 对于空数组，函数是不会执行的。
+				</div>
+				<div>
+				注意: find() 并没有改变数组的原始值。
+				</div>
+				<pre>
+	let arr = [0,2,3,5,6,9,22,35]	
+	let val = arr.find(x=>x>20)	
+	console.log(val)==>22
+				</pre>
+			</div>
+			<div>
 				<h4 class="" id="every">every()</h4>
 				<pre>
 	function isBigEnough(element, index, array) {
 	  return element >= 10;
 	}			
 	[12, 5, 8, 130, 44].every(isBigEnough);   // false
-	[12, 54, 18, 130, 44].every(isBigEnough); // true			
+	[12, 54, 18, 130, 44].every(isBigEnough); // true
 				</pre>
 			</div>
 			<div>
@@ -278,6 +310,7 @@
 						{name:"for",id:"for",explain:''},
 						{name:"forEach",id:"forEach",explain:''},
 						{name:"filter()",id:"filter",explain:'过滤'},
+						{name:"find()",id:"find",explain:'过滤,'},
 						{name:"every()",id:"every",explain:'只要一个不符合条件，返回false'},
 						{name:"some()",id:"some",explain:'只有一个符合条件，返回true'},
 						{name:"map",id:"map",explain:''},

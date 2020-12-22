@@ -10,6 +10,10 @@
 	<style type="text/css">
 		li{
 			text-indent: 2em;
+			list-style: none;
+		}
+		div:has(h4){
+			padding: 8px 0;
 		}
 	</style>
 </head>
@@ -32,9 +36,8 @@
 				</div>
 			</div>	
 			<div>
-				<div>
-					<h4  id="show">上传前显示图片</h4>
-					<pre>
+				<h4  id="show">上传前显示图片</h4>
+				<pre>
 	file=upload.files;
 	upload.onchange=function(e){
 		var imgUrl=URL.createObjectURL(e.target.files[0])
@@ -53,36 +56,43 @@
 		img.src = URL.createObjectURL(file)
 		console.log(img.src)
 	})
-					</pre>
-				</div>
-				<div>
-					<h4  id="Blob">Blob上传</h4>
-					<pre>
-	btn.onclick = function () {//btn 保存按钮
-		var file = document.querySelector('[type=file]');// 文件元素
-		var formData = new FormData();
-		// 将文件转二进制
-		formData.append('upload', file.files[0]);
-		// JavaScript file-like 对象
-		var content = '<a id="a"><b id="b">hey!</b></a>'; // 新文件的正文...
-		var blob = new Blob([content], { type: "text/xml"});
-		formData.append("webmasterfile", blob);// 通过FormData将文件转成二进制数据
+				</pre>
+			</div>
+			<div>
+				<h4 id="file">大文件上传</h4>
+				<p>
+					对于10M左右的文件，一般都会上传很快，但是在遇到大文件上传的时候处理就会有点麻烦。
+					要考虑分片上传，掘金上就有一篇很好的文章。
+					<a href="https://juejin.cn/post/6844904155086061576" target="_new">大规格文件的上传优化</a>
+				</p>
+			</div>
+			<div>
+				<h4  id="Blob">Blob上传</h4>
+				<pre>
+btn.onclick = function () {//btn 保存按钮
+	var file = document.querySelector('[type=file]');// 文件元素
+	var formData = new FormData();
+	// 将文件转二进制
+	formData.append('upload', file.files[0]);
+	// JavaScript file-like 对象
+	var content = '<a id="a"><b id="b">hey!</b></a>'; // 新文件的正文...
+	var blob = new Blob([content], { type: "text/xml"});
+	formData.append("webmasterfile", blob);// 通过FormData将文件转成二进制数据
 
-		var xhr = new XMLHttpRequest;
-		xhr.open('post', './file.php');
-		xhr.upload.onprogress = function (ev) {// 监听上传进度
-			var percent = (ev.loaded / ev.total) * 100 + '%';
-			progress.style.width = percent;
+	var xhr = new XMLHttpRequest;
+	xhr.open('post', './file.php');
+	xhr.upload.onprogress = function (ev) {// 监听上传进度
+		var percent = (ev.loaded / ev.total) * 100 + '%';
+		progress.style.width = percent;
+	}
+	xhr.send(formData);
+	xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			//code
 		}
-		xhr.send(formData);
-		xhr.onreadystatechange = function () {
-			if(xhr.readyState == 4 && xhr.status == 200) {
-				//code
-			}
-		}
-	}	
-					</pre>
-				</div>
+	}
+}	
+				</pre>
 			</div>
 			<div>
 				<h4 id="preView">图片预览</h4>
@@ -111,6 +121,7 @@
 				return {
 					list:[
 						{name:"上传前显示图片",id:"show",explain:'使用 URL的URL.createObjectURL()方法'},
+						{name:"大文件上传",id:"file",explain:'掘金上的方法'},
 						{name:"利用Blob上传",id:"Blob",explain:''},
 						{name:"图片预览",id:"preView",explain:''},
 					]
