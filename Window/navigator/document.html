@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+    <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 3em;
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+	<!-- 回到顶部 -->
+	<div class="topBtn">
+		<a href="#top">
+			<i class="fa fa-long-arrow-up"></i>
+		</a>
+	</div>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow" v-cloak>
+			<div class="Table" v-cloak id="top">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="defaultView">defaultView</h4>
+				<p>
+					document.defaultView
+					属性返回document对象所属的window对象。
+					如果当前文档不属于window对象，该属性返回null。
+				</p>
+				<pre>
+	document.defaultView === window // true			
+				</pre>
+			</div>
+			<div>
+				<h4 id="scrollingElement">scrollingElement</h4>
+				<p>
+				document.scrollingElement
+				属性返回文档的滚动元素。也就是说，
+				当文档整体滚动时，到底是哪个元素在滚动。	
+				</p>
+				<pre>
+	// 页面滚动到浏览器顶部
+	document.scrollingElement.scrollTop = 0;			
+				</pre>
+			</div>
+			<div>
+				<h4 id="activeElement">activeElement</h4>
+				<p>
+				document.activeElement
+				属性返回获得当前焦点（focus）的 DOM 元素。
+				通常，这个属性返回的是input、textarea、select等表单元素，
+				如果当前没有焦点元素，返回body元素或null。	
+				</p>
+			</div>
+			<div>
+				<h4 id="fullscreenElement">fullscreenElement</h4>
+				<p>
+				document.fullscreenElement
+				属性返回当前以全屏状态展示的 DOM 元素。
+				如果不是全屏状态，该属性返回null。	
+				</p>
+				<pre>
+	if (document.fullscreenElement.nodeName == 'VIDEO') {
+	  console.log('全屏播放视频');
+	}			
+				</pre>
+			</div>
+			<div>
+				<h4 id="domain">domain</h4>
+				<p>
+				document.domain
+				返回当前文档的域名，不包含协议和接口
+				http://www.example.com:80/hello.html，
+				那么domain属性就等于www.example.com。
+				如果无法获取域名，该属性返回null
+				</p>
+			</div>lastModified
+			<div>
+				<h4 id="location">location</h4>
+				<p>
+				document.location
+				Location对象是浏览器提供的原生对象，
+				提供 URL 相关的信息和操作方法。
+				通过window.location和document.location属性，
+				可以拿到这个对象
+				</p>
+			</div>
+			<div>
+				<h4 id="lastModified">lastModified</h4>
+				<p>
+				document.lastModified
+				当前文档最后修改的时间。
+				不同浏览器的返回值，日期格式是不一样的。	
+				</p>
+				<pre>
+	document.lastModified
+	
+	"12/22/2020 15:44:47"
+	
+	var lastVisitedDate = Date.parse('01/01/2018');
+	if (Date.parse(document.lastModified) > lastVisitedDate) {
+	  console.log('网页已经变更');
+	}			
+				</pre>
+			</div>
+			<div>
+				<h4 id="createEvent">createEvent</h4>
+				<p>
+				document.createEvent()
+				方法生成一个事件对象（Event实例），
+				该对象可以被element.dispatchEvent方法使用，
+				触发指定事件。
+				</p>
+				<pre>
+	var event = document.createEvent('Event');
+	event.initEvent('build', true, true);
+	document.addEventListener('build', function (e) {
+	  console.log(e.type); // "build"
+	}, false);
+	document.dispatchEvent(event);
+	
+	// 触发事件
+	var event = new Event('click');
+	document.dispatchEvent(event);			
+				</pre>
+			</div>
+			<div>
+				<h4 id="hasFocus">hasFocus</h4>
+				<p>
+				document.hasFocus()
+				返回一个布尔值，表示当前文档之中是否有元素被激活或获得焦点。
+				有焦点的文档必定被激活（active），
+				反之不成立，激活的文档未必有焦点。
+				比如，用户点击按钮，从当前窗口跳出一个新窗口，
+				该新窗口就是激活的，但是不拥有焦点。
+				</p>
+				<pre>
+	var focused = document.hasFocus();		
+				</pre>
+			</div>
+			<div>
+				<h4 id="getSelection">getSelection</h4>
+				<p>
+				selection代表了当前激活选中区，即高亮文本块，
+				和/或文档中用户可执行某些操作的其它元素
+				</p>
+				<pre>
+	document.selection : IE
+	window.getSelection() ：Chrome、Safari、FireFox		
+	
+				</pre>
+			</div>
+			<div>
+				<h4 id="other">其他</h4>
+				<p>
+				</p>
+				<pre>
+	document.open() // 将当前文档重置	 常配合下面API
+	document.write('hello world') //整个页面只显示  hello world
+	document.close()
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function() {
+				return {
+					list: [
+						{ name: "defaultView",id: "defaultView",explain: ''},
+						{ name: "scrollingElement",id: "scrollingElement",explain: ''},
+						{ name: "activeElement",id: "activeElement",explain: ''},
+						{ name: "fullscreenElement",id: "fullscreenElement",explain: ''},
+						{ name: "domain",id: "domain",explain: ''},
+						{ name: "location",id: "location",explain: ''},
+						{ name: "lastModified",id: "lastModified",explain: 'HTML页面最终修改的时间'},
+						{ name: "createEvent",id: "createEvent",explain: '创建事件'},
+						{ name: "hasFocus",id: "hasFocus",explain: '获取激活的元素'},
+						{ name: "getSelection",id: "getSelection",explain: '获取光标选中'},
+						{ name: "其他",id: "other",explain: 'open、write、close'},
+					]
+				}
+			},
+			mounted() {
+			}
+		})
+	</script>
+</body>
+
+</html>
