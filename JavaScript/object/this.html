@@ -17,20 +17,83 @@
 				<p>不管在工作中还是面试中，我们经常会遇到this指向问题，this的绑定有这么几种方法：
 				new > 显示绑定(apply,call,bind) > 隐式绑定  >  默认绑定。下面先来一道经典的面试题</p>
 				<pre>
-					
-				</pre>
-				<pre>
-	ar name = '李四'
-	 var foo = {
+	var name = '李四'
+	    var foo = {
 	   name: "张三",
 	   logName: function(age) {
+	//嵌套函数中的this是不会继承的，指向的就是window 
 	   console.log(this.name, age);//没有age，this指向window
 	   }
 	 }
 	 var fooNew = foo.logName;
 	 var fooNewBind = foo.logName.bind(foo);
 	 fooNew(10)//李四,10
-	 fooNewBind(11)//张三,11  因为bind改变了fooNewBind里面的this指向
+	 fooNewBind(11)//张三,11  因为bind改变了fooNewBind里面的this指向				
+				</pre>
+				<pre>
+	function sayHi(){
+	    console.log('Hello,', this.name);
+	}
+	var person = {
+	    name: 'vue',
+	    sayHi: sayHi
+	}
+	var name = 'miss';
+	person.sayHi();
+	====>Hello, vue
+	在调用sayHi时,调用位置会使用person的上下文来引用函数，
+	隐式绑定会把函数调用中的this(即此例sayHi函数中的this)绑定到这个上下文对象（即此例中的person）
+	所以显示不是 Hello, Wiliam
+				</pre>
+				<pre>
+	function sayHi(){
+	    console.log('Hello,', this.name);
+	}
+	var person2 = {
+	    name: 'react',
+	    sayHi: sayHi
+	}
+	var person1 = {
+	    name: 'vue',
+	    friend: person2
+	}
+	person1.friend.sayHi();
+	结果是：Hello, react.
+	因为只有最后一层会确定this指向的是什么，不管有多少层，在判断this的时候，我们只关注最后一层，即此处的friend。
+	隐式绑定有一个大陷阱，绑定很容易丢失(或者说容易给我们造成误导，我们以为this指向的是什么，但是实际上并非如此).				
+				</pre>
+				<pre>
+	function sayHi(){
+	    console.log('Hello,', this.name);
+	}
+	var person = {
+	    name: 'vue',
+	    sayHi: sayHi
+	}
+	var name = 'miss';
+	var Hi = function(fn) {
+	    fn();
+	}
+	Hi.call(person, person.sayHi); 
+	==>Hello, miss
+	Hi.call(person, person.sayHi)的确是将this绑定到Hi中的this了。但是在执行fn的时候，
+	相当于直接调用了sayHi方法(记住: person.sayHi已经被赋值给fn了，隐式绑定也丢了)，没有指定this的值，对应的是默认绑定				
+				</pre>
+				<pre>
+	function sayHi(){
+	    console.log('Hello,', this.name);
+	}
+	var person = {
+	    name: 'Tree',
+	    sayHi: sayHi
+	}
+	var name = 'Wiliam';
+	var Hi = function(fn) {
+	    fn.call(this);
+	}
+	Hi.call(person, person.sayHi);
+	输出的结果为: Hello, Tree
+	因为person被绑定到Hi函数中的this上，fn又将这个对象绑定给了sayHi的函数。这时，sayHi中的this指向的就是person对象				
 				</pre>
 			</div>
 			<div>

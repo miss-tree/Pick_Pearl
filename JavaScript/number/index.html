@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+    <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+	<style type="text/css">
+		li{
+			text-indent: 2em;
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+	<!-- 回到顶部 -->
+	<div class="topBtn">
+		<a href="#top">
+			<i class="fa fa-long-arrow-up"></i>
+		</a>
+	</div>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow" v-cloak>
+			<div class="Table" v-cloak id="top">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" 
+					:title="el.name"
+					:href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>	
+			<div>
+				<h4 id="Number">Number()</h4>
+				<p>
+					主要是将字符串转数值：
+				</p>
+				<pre>
+	let boolean=Number(true)				// 1 false:0
+	let boolean=Number(5)					// 5
+	let boolean=Number(null)				// 0
+	let boolean=Number(undefined)				// null
+	let boolean=Number("0000011")				// 11
+	let boolean=Number(" ")					// 0
+	let boolean=Number("Hello world")			// NaN
+				</pre>
+				<ul>
+					<li>如果字符串中只包含数字时，将其转换为十进制数值，忽略前导0</li>
+					<li>如果字符串中包含有效浮点格式，如“1.1”，将其转换为对应的浮点数字，忽略前导0</li>
+					<li>如果字符串中包含有效的十六进制格式，如“0xf”，将其转换为相同大小的十进制数值</li>
+					<li>如果字符串为空，将其转换为0</li>
+					<li>如果字符串中包含除上述格式之外的字符，则将其转换为NaN</li>
+				</ul>
+			</div>
+			<div>
+				<h4 id="unshift">parseInt()</h4>
+				<ul>
+					<li>parseInt()函数在转换字符串时，会忽略字符串前面的空格，知道找到第一个非空格字符</li>
+					<li>如果第一个字符不是数字或者负号，parseInt() 就会返回NaN，同样的，用parseInt() 转换空字符串也会返回NaN</li>
+					<li>如果第一个字符是数字字符，parseInt() 会继续解析第二个字符，直到解析完所有后续字符串或者遇到了一个非数字字符。</li>
+					<li>parseInt()方法还有基模式，可以把二进制、八进制、十六进制或其他任何进制的字符串转换成整数</li>
+				</ul>
+				<pre>
+     var num1 = parseInt("AF",16);　　　　　　 　　　　//175
+　　 var num2 = parseInt("AF");　　　　　　　　　　　　//NaN
+　　 var num3 = parseInt("10",2);　　　　　　　 　　　//2　　(按照二进制解析)
+　　 var num4 = parseInt("sdasdad");　　　　　　　　　//NaN
+				</pre>
+			</div>
+			<div>
+				<h4 id="pop">parseFloat()</h4>
+				<p>
+					parseFloat() 也是从第一个字符（位置0）开始解析每一个字符。
+					也是一直解析到字符串末尾，或者解析到遇见一个无效的浮点数字字符为止。
+					parseFloat() 只解析十进制，因此它没有第二个参数指定基数的用法。
+					如果字符串中包含的是一个可解析为正数的数（没有小数点，或者小数点后都是零），parseFloat() 会返回整数。
+				</p>
+				<pre>
+	var num1 = parseFloat("123AF");　　　　　　 　　　　//123
+	var num2 = parseFloat("0xA");　　　　　　　　　　　　//0
+	var num3 = parseFloat("22.5");　　　　　　　 　　　 //22.5
+	var num4 = parseFloat("22.3.56");　　　　　　　　　//22.3
+	var num5 = parseFloat("0908.5");　　　　　　　　　 //908.5
+				</pre>
+				<div>parseInt() 和parseFloat() 的区别在于：</div>
+				<ul>
+					<li>parseFloat() 所解析的字符串中第一个小数点是有效的，而parseInt() 
+					遇到小数点会停止解析，因为小数点并不是有效的数字字符。</li>
+					<li>parseFloat() 始终会忽略前导的零，十六进制格式的字符串始终会被转换成0，
+					而parseInt() 第二个参数可以设置基数，按照这个基数的进制来转换</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"Number()",id:"Number",explain:'转数值'},
+						{name:"parseInt()",id:"parseInt",explain:''},
+						{name:"parseFloat()",id:"pop",explain:''},
+						// {name:"shift()",id:"shift",explain:'头部删除'},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>
