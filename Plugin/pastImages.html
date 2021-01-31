@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/public.css" />
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div>
+				<h4>复制图片粘贴</h4>
+				<p>
+					复制图片粘贴的用法在工作中很少用到，下面方法是张鑫旭空间文章提供的方法。
+				</p>
+				<div id="preview"></div>
+				<p id="log"></p>
+				<div>
+					<pre>
+	html
+	&lt;div id="preview"&gt;&lt;/div&gt;
+	&lt;p id="log"&gt;&lt;/p&gt;	
+					
+	let img =document.querySelector('#hello')
+	let log=document.querySelector('#log')
+	let preview=document.querySelector('#preview')
+	document.addEventListener('paste', function (event) {
+		    var items = (event.clipboardData || window.clipboardData).items;
+		    var file = null;
+		    if (items && items.length) {
+		        // 搜索剪切板items
+		        for (var i = 0; i &lt; items.length; i++) {
+		            if (items[i].type.indexOf('image') !== -1) {
+		                file = items[i].getAsFile();
+		                break;
+		            }
+		        }
+		    } else {
+		        log.innerHTML = '&lt;span style="color:red;"&gt;当前浏览器不支持&lt;/span&gt;';
+		        return;
+		    }
+		    if (!file) {
+		        log.innerHTML = '&lt;span style="color:red;"&gt;粘贴内容非图片&lt;/span&gt;';
+		        return;
+		    }
+		    // 此时file就是我们的剪切板中的图片对象
+		    // 如果需要预览，可以执行下面代码
+		    var reader = new FileReader()
+		    reader.onload = function(event) {
+		        preview.innerHTML = '&lt;img src="' + event.target.result + '" class="upload-image"&gt;';
+		    }
+		    reader.readAsDataURL(file);
+		    // 如果不需要预览，上面这段可以忽略
+		
+		    // 这里是上传
+		    var xhr = new XMLHttpRequest();
+		    // 上传进度
+		    if (xhr.upload) {
+		        xhr.upload.addEventListener('progress', function (event) {
+		            log.innerHTML = '正在上传，进度：' + Math.round(100 * event.loaded / event.total) / 100 + '%';
+		        }, false);
+		    }
+		    // 上传结束
+		    xhr.onload = function () {
+		        var responseText = xhr.responseText;
+		        log.innerHTML = '上传成功，地址是：' + responseText;
+		    };
+		    xhr.onerror = function () {
+		        log.innerHTML = '&lt;span style="color:red;"&gt;网络异常，上传失败&lt;/span&gt;';
+		    };
+		    xhr.open('POST', './upload.php', true);
+		    xhr.setRequestHeader('FILENAME', encodeURIComponent(file.name));
+		    xhr.send(file);
+		});					
+					</pre>
+					<div>
+					<img  id="hello" >	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--第三方插件-->
+	<!--页面加载进度条-->
+	<script src="../static/js/plugins/pace/pace.min.js"></script>
+	<!--定义数据-->
+	<script src="../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"execCommand()",id:"Number",explain:''},
+					]
+				}
+			},
+			mounted(){
+			let img =document.querySelector('#hello')
+			let log=document.querySelector('#log')
+			let preview=document.querySelector('#preview')
+			document.addEventListener('paste', function (event) {
+			    var items = (event.clipboardData || window.clipboardData).items;
+			    var file = null;
+			    if (items && items.length) {
+			        // 搜索剪切板items
+			        for (var i = 0; i < items.length; i++) {
+			            if (items[i].type.indexOf('image') !== -1) {
+			                file = items[i].getAsFile();
+			                break;
+			            }
+			        }
+			    } else {
+			        log.innerHTML = '<span style="color:red;">当前浏览器不支持</span>';
+			        return;
+			    }
+			    if (!file) {
+			        log.innerHTML = '<span style="color:red;">粘贴内容非图片</span>';
+			        return;
+			    }
+			    // 此时file就是我们的剪切板中的图片对象
+			    // 如果需要预览，可以执行下面代码
+			    var reader = new FileReader()
+			    reader.onload = function(event) {
+			        preview.innerHTML = '<img src="' + event.target.result + '" class="upload-image">';
+			    }
+			    reader.readAsDataURL(file);
+				return
+			    // 如果不需要预览，上面这段可以忽略
+			
+			    // 这里是上传
+			    var xhr = new XMLHttpRequest();
+			    // 上传进度
+			    if (xhr.upload) {
+			        xhr.upload.addEventListener('progress', function (event) {
+			            log.innerHTML = '正在上传，进度：' + Math.round(100 * event.loaded / event.total) / 100 + '%';
+			        }, false);
+			    }
+			    // 上传结束
+			    xhr.onload = function () {
+			        var responseText = xhr.responseText;
+			        log.innerHTML = '上传成功，地址是：' + responseText;
+			    };
+			    xhr.onerror = function () {
+			        log.innerHTML = '<span style="color:red;">网络异常，上传失败</span>';
+			    };
+			    xhr.open('POST', './upload.php', true);
+			    xhr.setRequestHeader('FILENAME', encodeURIComponent(file.name));
+			    xhr.send(file);
+			});			
+			}
+		})
+	</script>
+</body>
+
+</html>

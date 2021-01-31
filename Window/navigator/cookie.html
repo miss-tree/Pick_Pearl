@@ -10,6 +10,7 @@
 	<style type="text/css">
 		li{
 			text-indent: 3em;
+			list-style: none;
 		}
 	</style>
 </head>
@@ -127,7 +128,9 @@
 							<li>sessionStorage：仅在当前浏览器窗口关闭之前有效； 
 							localStorage：始终有效，窗口或浏览器关闭也一直保存，
 							本地存储，因此用作持久数据；</li>
-							<li>cookie：只在设置的cookie过期时间之前有效，即使窗口关闭或浏览器关闭</li>
+							<li>cookie：只在设置的cookie过期时间之前有效，即使窗口关闭或浏览器关闭。
+							当cookie没有设置expires的时候，该cookie只会在网页会话期间存在，
+							当浏览器退出的时候，该cookie就会消失。</li>
 						</ul>
 					</li>
 					<li>

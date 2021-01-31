@@ -32,58 +32,72 @@
 				</div>
 			</div>
 			<div>
-				<h4 id="defaultView">defaultView</h4>
+				<h4 id="defaultView">beforeunload</h4>
 				<p>
-					document.defaultView
-					属性返回document对象所属的window对象。
-					如果当前文档不属于window对象，该属性返回null。
+					onbeforeunload在onunload之前执行，onunload是无法阻止页面的更新和关闭的，它还可以阻止onunload的执行。
+					事件调用包括：页面刷新或关闭、正要去服务器读取新的页面、
 				</p>
+				<ul>
+					<li>页面加载时只执行onload </li>
+					<li>页面关闭时先执行onbeforeunload，最后onunload </li>
+					<li>页面刷新时先执行onbeforeunload，然后onunload，最后onload</li>
+				</ul>
 				<pre>
-	document.defaultView === window // true			
+	//  在用户点击刷新提示				
+	window.addEventListener('beforeunload',(e)=>{
+		e=window.event||e
+		e.preventDefault()
+		e.returnValue=false
+		// 或  e.returnValue='正在离开页面'
+	},false)			
 				</pre>
 			</div>
 			<div>
-				<h4 id="scrollingElement">scrollingElement</h4>
+				<h4 id="scrollingElement">popstate</h4>
 				<p>
-				document.scrollingElement
-				属性返回文档的滚动元素。也就是说，
-				当文档整体滚动时，到底是哪个元素在滚动。	
+				监听浏览器前进或后退	
 				</p>
 				<pre>
-	// 页面滚动到浏览器顶部
-	document.scrollingElement.scrollTop = 0;			
+	window.addEventListener('popstate',(e)=>{
+		e=window.event||e
+		e.preventDefault()
+		history.pushState(null,null,document.URL)//取消前进后退
+		TODO.....
+	},false)
+			
+			
+					
+	参数：
+	const state = { 'page_id': 1, 'user_id': 5 }
+	const title = ''
+	const url = 'hello-world.html'
+	history.pushState(state, title, url)				
+					
+					
+	const url = new URL(window.location);
+	url.searchParams.set('foo', 'bar');
+	window.history.pushState({}, '', url);				
 				</pre>
 			</div>
 			<div>
 				<h4 id="activeElement">activeElement</h4>
 				<p>
-				document.activeElement
-				属性返回获得当前焦点（focus）的 DOM 元素。
-				通常，这个属性返回的是input、textarea、select等表单元素，
-				如果当前没有焦点元素，返回body元素或null。	
+				 	
 				</p>
 			</div>
 			<div>
 				<h4 id="fullscreenElement">fullscreenElement</h4>
 				<p>
-				document.fullscreenElement
-				属性返回当前以全屏状态展示的 DOM 元素。
-				如果不是全屏状态，该属性返回null。	
+				 	
 				</p>
 				<pre>
-	if (document.fullscreenElement.nodeName == 'VIDEO') {
-	  console.log('全屏播放视频');
-	}			
+	 		
 				</pre>
 			</div>
 			<div>
 				<h4 id="domain">domain</h4>
 				<p>
-				document.domain
-				返回当前文档的域名，不包含协议和接口
-				http://www.example.com:80/hello.html，
-				那么domain属性就等于www.example.com。
-				如果无法获取域名，该属性返回null
+				
 				</p>
 			</div>
 			<div>
@@ -192,17 +206,17 @@
 			data: function() {
 				return {
 					list: [
-						{ name: "defaultView",id: "defaultView",explain: ''},
-						{ name: "scrollingElement",id: "scrollingElement",explain: ''},
-						{ name: "activeElement",id: "activeElement",explain: ''},
-						{ name: "fullscreenElement",id: "fullscreenElement",explain: ''},
-						{ name: "domain",id: "domain",explain: ''},
-						{ name: "location",id: "location",explain: ''},
-						{ name: "lastModified",id: "lastModified",explain: 'HTML页面最终修改的时间'},
-						{ name: "createEvent",id: "createEvent",explain: '创建事件'},
-						{ name: "hasFocus",id: "hasFocus",explain: '获取激活的元素'},
-						{ name: "getSelection",id: "getSelection",explain: '获取光标选中'},
-						{ name: "其他",id: "other",explain: 'open、write、close'},
+						{ name: "beforeunload",id: "defaultView",explain: '页面刷新或后退'},
+						{ name: "popstate",id: "scrollingElement",explain: '监听页面历史前进后退'},
+						// { name: "activeElement",id: "activeElement",explain: ''},
+						// { name: "fullscreenElement",id: "fullscreenElement",explain: ''},
+						// { name: "domain",id: "domain",explain: ''},
+						// { name: "location",id: "location",explain: ''},
+						// { name: "lastModified",id: "lastModified",explain: 'HTML页面最终修改的时间'},
+						// { name: "createEvent",id: "createEvent",explain: '创建事件'},
+						// { name: "hasFocus",id: "hasFocus",explain: '获取激活的元素'},
+						// { name: "getSelection",id: "getSelection",explain: '获取光标选中'},
+						// { name: "其他",id: "other",explain: 'open、write、close'},
 					]
 				}
 			},
