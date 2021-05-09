@@ -60,6 +60,44 @@
 				</div>
 			</div>
 			<div>
+				<h4 id="hand">批量设置属性操作</h4>
+				<div>
+					<pre>
+	以常用的axios为例封装的http					
+	//方法1  common.js
+	import http from 'httpRequire'
+	http.prototype={
+	    属性名: 值,
+	    方法名:function(){
+	        //方法体...   这里的this是什么要看执行的时候谁调用了这个函数
+	    },
+	    方法名:function(){
+	       //方法体...   这里的this是什么要看执行的时候谁调用了这个函数
+	    }
+	}
+	
+	或在定义方法时直接使用
+	
+	export http.post=()=>{....code...}
+	
+	
+	方法2：common.js文件是以 export default ={ post:()=>{...}} 方式导出
+	在 httpRequire.js
+	import common from 'common'
+	Object.entries(common).forEach(key=>{
+		http[key]=common[key]
+	})
+	或调用方法一的：http.prototype=common
+	
+	/****!!!注意!!!*****/
+	如果是自定义构造函数，并且使用{ }这种方式批量的在prototype中定义属性和方法， 
+	会改变原型中constructor对构造函数的指向!
+	http.prototype就指向了common ，constructor这个属性就没有了!
+	/****!!!注意!!!*****/
+					</pre>
+				</div>
+			</div>
+			<div>
 				<h4>对象原型方法</h4>
 				<div>
 					<ol>
@@ -124,6 +162,7 @@
 					catalog:[
 						{name:"对象属性",id:"attritbue",explain:'查看对象属性使用的方法'},
 						{name:"对象属性操作",id:"handler",explain:'操作对象属性使用的方法'},
+						{name:"批量设置属性操作",id:"hand",explain:'给对象设置多个方法，要另外在js文件写'},
 						{name:"对象原型",id:"property",explain:'获取对象原型的方法'},
 						{name:"defineProperty",id:"defineProperty",explain:'设置对象属性'},
 					],

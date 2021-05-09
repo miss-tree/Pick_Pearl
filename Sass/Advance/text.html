@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../css/polygon.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!-- 回到顶部 -->
+	<div class="topBtn">
+		<a href="#top">
+			<i class="fa fa-long-arrow-up"></i>
+		</a>
+	</div>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div class="Table">
+				<div class="TableRow" v-for="(el,index) in list" v-cloak>
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="filter">奇思妙想 CSS 文字动画</h4>
+				<p>
+					在互联网项目中经常有文字的一些特效，作为项目的一个亮点吸引用户查看，
+					个人经历原因使用较少，掘金上作者：chokcoco  给了许多使用示例：
+					<a href="https://juejin.cn/post/6937102296442470413?utm_source=gold_browser_extension"
+					target="_blank">
+						参考地址	
+					</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<!--定义数据-->
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"奇思妙想 CSS 文字动画",id:"filter",explain:''},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

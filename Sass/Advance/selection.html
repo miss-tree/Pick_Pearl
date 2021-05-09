@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/polygon.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!--右边内容-->
+	<div id="app" class="main">
+		<div class="shadow">
+			<div class="Table">
+				<div class="TableRow" v-for="(el,index) in list" v-cloak>
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="filter">点击样式选择</h4>
+				<pre>
+	*{
+		user-select: all;	//点击快速选择一段文字
+		user-select: none; 	//添加禁止选择
+	}
+	*::selection{//选中样式优化
+		
+	}
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<!--定义数据-->
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"点击样式选择",id:"filter",explain:''},
+						// {name:"三角形",id:"triangle",explain:''},
+						// {name:"多边形",id:"polygon",explain:''},
+						// {name:"平行边形",id:"parallelogram",explain:''},
+					]
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

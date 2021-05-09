@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基础知识</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/animate.css" rel="stylesheet">
+	<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+</head>
+<body>
+	<!-- 回到顶部 -->
+	<div class="topBtn">
+		<a href="#top">
+			<i class="fa fa-long-arrow-up"></i>
+		</a>
+	</div>
+	<!--右边内容-->
+	<div id="app" class="main animated fadeInRight">
+		<div class="shadow">
+			<div class="Table" v-cloak id="top">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
+			<div>
+				<h4 id="constructor">类继承</h4>
+				<pre>
+		class Person{
+		  //static sCount=0 //1
+		  constructor(name){
+		     this.name=name; 
+		     this.sCount++;
+		  }
+		  //实例方法 //2
+		  getName(){
+		   console.log(this.name)
+		  }
+		  static sTest(){
+		    console.log("static method test")
+		  }
+		}
+		
+		class Man extends Person{
+		  constructor(name){
+		    super(name)//3
+		    this.sex="male"
+		  }
+		}
+		var man=new Man("Davin")
+		man.getName()
+		//man.sTest()
+		Man.sTest()//4
+		输出结果：
+		Davin
+		static method test			
+				</pre>
+			</div>
+			<div>
+				<h4 id="typeof">构造函数继承</h4>
+				<p>
+					构造函数继承的核心思想就是SuperClass.call(this,id),直接改变this的指向，
+					使通过this创建的属性和方法在子类中复制一份，因为是单独复制的，
+					所以各个实例化的子类互不影响。但是会造成内存浪费的问题
+				</p>
+				<pre>
+		//构造函数继承
+		//声明父类
+		function SuperClass(id) {
+			var name = 'javascript'  //相当于calss的 static 方法 子类无法获取
+			this.books=['javascript','html','css'];
+			this.id = id
+		}
+	
+		//声明父类原型方法
+		SuperClass.prototype.showBooks = function () {
+			console.log(this.books)
+		}
+	
+		//声明子类
+		function SubClass(id) {
+			SuperClass.call(this,id)
+		}
+	
+		//创建第一个子类实例
+		var subclass1 = new SubClass(10);
+		var subclass2 = new SubClass(11);
+	
+		console.log(subclass1.books);
+		console.log(subclass2.id);
+		console.log(subclass1.name);  // undefined
+		subclass2.showBooks();	// Uncaught TypeError: subclass2.showBooks is not a function		
+				</pre>
+				<div>
+					上面方法缺陷：没办法继承构造函数上的方法 showBooks()
+				</div>
+			</div>
+			<div>
+				<h4 id="array">组合继承</h4>
+				<pre>
+		//组合式继承
+		//声明父类
+		var SuperClass = function (name) {
+			this.name = name;
+			this.books=['javascript','html','css']
+		};
+		//声明父类原型上的方法
+		SuperClass.prototype.showBooks = function () {
+			console.log(this.books)
+		};
+	
+		//声明子类
+		var SubClass = function (name) {
+			SuperClass.call(this, name)
+	
+		};
+	
+		//子类继承父类（链式继承）
+		SubClass.prototype = new SuperClass();
+	
+		//实例化子类
+		var subclass1 = new SubClass('java');
+		var subclass2 = new SubClass('php');
+		subclass2.showBooks();
+		subclass1.books.push('ios');    //["javascript", "html", "css"]
+		console.log(subclass1.books);  //["javascript", "html", "css", "ios"]
+		console.log(subclass2.books);   //["javascript", "html", "css"]		
+				</pre>
+			</div>
+			<div>
+				<h4 id="instanceof">寄生组合继承</h4>
+				<pre>
+		//原型式继承
+		//原型式继承其实就是类式继承的封装,实现的功能是返回一个实例，改实例的原型继承了传入的o对象
+		function inheritObject(o) {
+			//声明一个过渡函数对象
+			function F() {}
+			//过渡对象的原型继承父对象
+			F.prototype = o;
+			//返回一个过渡对象的实例，该实例的原型继承了父对象
+			return new F();
+		}
+		//寄生式继承
+		//寄生式继承就是对原型继承的第二次封装，使得子类的原型等于父类的原型。并且在第二次封装的过程中对继承的对象进行了扩展
+		function inheritPrototype(subClass, superClass){
+			//复制一份父类的原型保存在变量中，使得p的原型等于父类的原型
+			var p = inheritObject(superClass.prototype);
+			//修正因为重写子类原型导致子类constructor属性被修改
+			p.constructor = subClass;
+			//设置子类的原型
+			subClass.prototype = p;
+		}
+		//定义父类
+		var SuperClass = function (name) {
+			this.name = name;
+			this.books = ['javascript','html','css']
+		};
+		//定义父类原型方法
+		SuperClass.prototype.getBooks = function () {
+			console.log(this.books)
+		};
+	
+		//定义子类
+		var SubClass = function (name) {
+			SuperClass.call(this,name)
+		}
+	
+		inheritPrototype(SubClass,SuperClass);
+	
+		var subclass1 = new SubClass('php')		
+				</pre>
+			</div>
+		</div>
+	</div>
+	<!--页面加载进度条-->
+	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function() {
+				return {
+					list: [
+						{ name: "类继承",id: "constructor",explain: ''},
+						{ name: "构造函数继承",id: "typeof",explain: ''},
+						{ name: "组合继承",id: "array",explain: ''},
+						{ name: "寄生组合继承",id: "instanceof",explain: ''},
+					]
+				}
+			},
+			mounted() {
+			}
+		})
+	</script>
+</body>
+
+</html>

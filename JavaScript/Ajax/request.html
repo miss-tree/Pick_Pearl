@@ -9,13 +9,26 @@
 	<style type="text/css">
 		li{
 			text-indent: 3em;
+			list-style: none;
 		}
 	</style>
 </head>
 <body>
+	<!-- 回到顶部 -->
+	<div class="topBtn">
+		<a href="#top">
+			<i class="fa fa-long-arrow-up"></i>
+		</a>
+	</div>
 	<!--右边内容-->
 	<div id="app" class="main animated fadeInRight">
 		<div class="shadow">
+			<div class="Table" v-cloak id="top">
+				<div class="TableRow" v-for="(el,index) in list">
+					<a class="RowLeft" :href="'#'+el.id">{{el.name}}</a>
+					<span class="RowRight">{{el.explain}}</span>
+				</div>
+			</div>
 			<div>
 				<h4>原生Ajax请求</h4>
 				<pre>
@@ -69,7 +82,39 @@
 				</pre>
 			</div>
 			<div>
-				<div class="code">状态值<span>含义</span></div>			  
+				<h4 id="Promise">Promise封装</div>
+				<pre>
+	// 封装一个get请求的方法
+	function HttpRequest(url,data) {
+		return new Promise(function (resolve, reject) {
+			var XHR = XMLHttpRequest ? new XMLHttpRequest() : new window.ActiveXObject('Microsoft.XMLHTTP');
+			XHR.onreadystatechange = function () {
+				//readyState属性表示请求/响应过程的当前活动阶段。
+				if (XHR.readyState == 4) {
+					if ((XHR.status >= 200 && XHR.status &lt; 300) ) {
+						var response = JSON.parse(XHR.responseText);
+						resolve(response);
+					} else {
+						//reject(new Error("Request was unsuccessful: " + XHR.statusText));
+						var err = JSON.parse(XHR.responseText);
+						reject(err);
+					}
+				}
+			}
+			XHR.open('GET', url , true);
+			XHR.send(data);
+		})
+	}
+	
+	HttpRequest(url,data).then(res => console.log(res))
+		.catch((err)=>{
+			console.log(err)
+		})
+				</pre>
+			</div>
+			<div id="status">
+				<div class="code">状态值、状态码</div>
+				<div>状态值:</div>			  
 				<ul>
 					<li>0		已创建XMLHttpRequest对象,但未调用open</li>
 					<li>1		已调用open,未send</li>
@@ -77,7 +122,7 @@
 					<li>3		下载中</li>
 					<li>4		下载完成,前端可以处理数据</li>
 				</ul>
-				<div class="code">状态码<span>含义</span></div>	
+				<div>状态码:</div>	
 				<ul>
 					<li>1xx	接收到请求并继续处理</li>
 					<li>2xx	处理成功响应类</li>
@@ -90,6 +135,26 @@
 	</div>
 	<!--页面加载进度条-->
 	<script src="../../static/js/plugins/pace/pace.min.js"></script>
+	<script src="../../static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					list:[
+						{name:"原生Ajax请求",id:"ajax",explain:''},
+						{name:"Promise封装",id:"Promise",explain:''},
+						{name:"状态值、状态码",id:"status",explain:''},
+						// {name:"find()",id:"find",explain:'过滤,'},
+						// {name:"every()",id:"every",explain:'只要一个不符合条件，返回false'},
+						// {name:"some()",id:"some",explain:'只有一个符合条件，返回true'},
+						// {name:"map",id:"map",explain:''},
+						// {name:"遍历按顺序执行",id:"await",explain:'让遍历可以按顺序执行'},
+					]
+				}
+			},
+		})
+	</script>
 </body>
 
 </html>

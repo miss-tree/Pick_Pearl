@@ -10,6 +10,7 @@
 	<style type="text/css">
 		li{
 			text-indent: 2em;
+			list-style: none;
 		}
 	</style>
 </head>
@@ -160,6 +161,7 @@
 			</div>
 			<div>
 				<h4 id="JSONP">JSONP</h4>
+				<div>jsonp缺点：只能实现get一种请求。</div>
 				<pre>
 	&lt;script type="text/javascript"&gt;
 		window.jsonpCallback = function(res) {    
@@ -169,6 +171,23 @@
 	&lt;script  
 	src="http://localhost:8080/api/jsonp?msg=hello&cb=jsonpCallback"  
 	type="text/javascript"&gt;&lt;/script&gt;
+	
+	jquery ajax：
+	$.ajax({
+	    url: 'http://www.domain2.com:8080/login',
+	    type: 'get',
+	    dataType: 'jsonp',  // 请求方式为jsonp
+	    jsonpCallback: "handleCallback",    // 自定义回调函数名
+	    data: {}
+	});
+	
+	vue.js：
+	this.$http.jsonp('http://www.domain2.com:8080/login', {
+	    params: {},
+	    jsonp: 'handleCallback'
+	}).then((res) => {
+	    console.log(res); 
+	})
 				</pre>
 			</div>
 			<div>
