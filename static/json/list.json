@@ -148,6 +148,10 @@
 							"value": 449
 						},
 						{
+							"name": "box-shadow",
+							"value": 442349
+						},
+						{
 							"name": "css全站变灰",
 							"value": 5593
 						},
@@ -184,8 +188,20 @@
 							"value": 2165
 						},
 						{
+							"name": "快速多选",
+							"value": 216511
+						},
+						{
 							"name": "多边形",
-							"value": 586
+							"value": 583426
+						},
+						{
+							"name": "边框动画",
+							"value": 216511
+						},
+						{
+							"name": "文字动画",
+							"value": 58642
 						}
 					]
 				},
@@ -275,15 +291,15 @@
 				},
 				{
 					"name": "3D单位",
-					"children": [{
-							"name": "移动端常用",
-							"value": 1759
-						},
-						{
-							"name": "移动端坑点",
-							"value": 2165
-						}
-					]
+					"value": 21655432
+				},
+				{
+          "name": "移动端常用",
+          "value": 1759634
+				},
+				{
+          "name": "移动端坑点",
+          "value": 2165123
 				}
 			]
 		},
@@ -410,6 +426,14 @@
 							"value": 1082
 						},
 						{
+							"name": "继承",
+							"value": 6221336
+						},
+						{
+							"name": "call/bind/apply",
+							"value": 1336094
+						},
+						{
 							"name": "闭包",
 							"value": 1336
 						},
@@ -454,12 +478,20 @@
 							"value": 3151
 						},
 						{
+							"name": "回到顶部",
+							"value": 315121
+						},
+						{
 							"name": "操作DOM性能优化",
 							"value": 3770
 						},
 						{
 							"name": "draggable拖动",
-							"value": 2435
+							"value": 123124421
+						},
+						{
+							"name": "光标操作",
+							"value": 2435231
 						},
 						{
 							"name": "事件委托",
@@ -549,7 +581,7 @@
 				}
 			]
 		},
-		{
+		{ 
 			"name": "Window对象",
 			"children": [{
 					"name": "按键控制",
@@ -578,11 +610,19 @@
 						},
 						{
 							"name": "元素属性",
-							"value": 19118
+							"value": 191180
+						},
+						{
+							"name": "document属性",
+							"value": 1911833
+						},
+						{
+							"name": "浏览器事件",
+							"value": 19118003
 						},
 						{
 							"name": "cookie",
-							"value": 19118
+							"value": 1139118
 						},
 						{
 							"name": "打印预览",
@@ -602,20 +642,28 @@
 					"name": "表格拖拽",
 					"children": [{
 						"name": "表格表头拖动",
-						"value": 1302
+						"value": 13024254
 					}]
 				},
 				{
-					"name": "Dayjs时间插件"
+					"name": "Dayjs时间插件",
+						"value": 1302234
 				},
 				{
-					"name": "百度地图封装"
+					"name": "百度地图封装",
+						"value": 1302234
 				},
 				{
-					"name": "三级联动"
+					"name": "三级联动",
+						"value": 13022435
 				},
 				{
-					"name": "鼠标预览图片"
+					"name": "鼠标预览图片",
+						"value": 130242
+				},
+				{
+					"name": "复制图片粘贴",
+						"value": 1302987
 				}
 
 			]
@@ -626,11 +674,11 @@
 					"name": "Bootstrap",
 					"children": [{
 							"name": "基础",
-							"value": 4461
+							"value": 4461423
 						},
 						{
 							"name": "xx",
-							"value": 6314
+							"value": 6314123
 						}
 					]
 				},
@@ -638,11 +686,11 @@
 					"name": "layui",
 					"children": [{
 							"name": "基础",
-							"value": 4461
+							"value": 4461123
 						},
 						{
 							"name": "xx",
-							"value": 6314
+							"value": 6314132
 						}
 					]
 				},
@@ -650,7 +698,7 @@
 					"name": "xx",
 					"children": [{
 						"name": "Bootstrap",
-						"value": 4461
+						"value": 4461123
 					}]
 				}
 			]
@@ -660,32 +708,46 @@
 			"children": [{
 					"name": "文件上传下载",
 					"children": [{
-						"name": "文件上传"
+						"name": "文件上传",
+						"value": 4461563
 					}, {
-						"name": "图片压缩"
+						"name": "图片压缩",
+						"value": 446134
 					}, {
-						"name": "文件下载"
+						"name": "文件下载",
+						"value": 44615
 					}, {
-						"name": "导出EXCEL"
+						"name": "导出EXCEL",
+						"value": 4461678
 					}]
 				},
 				{
-					"name": "模块加载"
+					"name": "模块加载",
+						"value": 446198
 				},
 				{
-					"name": "跨域方案"
+					"name": "跨域方案",
+						"value": 446167
 				},
 				{
-					"name": "H5.2特性dialog"
+					"name": "H5.2特性dialog",
+						"value": 4461345
 				},
 				{
-					"name": "复制粘贴板"
+					"name": "复制粘贴板",
+						"value": 44617674
 				},
 				{
-					"name": "JSON.stringify()"
+					"name": "JSON.stringify()",
+						"value": 44614565
 				},
 				{
-					"name": "解析 URL 参数"
+					"name": "Blob二进制",
+						"value": 446165
+				},
+				{
+					"name": "解析 URL 参数",
+						"value": 4461865
 				}
 			]
 		}
