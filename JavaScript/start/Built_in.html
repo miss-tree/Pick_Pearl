@@ -18,7 +18,26 @@
 				<pre>
 	var i = 1;	
 	eval("i = i + 1");
-	eval("alert(i)");	=>2			
+	eval("alert(i)");	=>2		
+  
+  const geval = eval;
+  let x = "global", y = "global"
+
+  <!-- eval 修改局部变量 -->
+   function f(){
+     let x = "local"
+     eval("x += 'changed'")
+     return x
+   }       
+   console.log(f(),x) // global localchanged
+
+  <!-- eval 修改全局变量 -->
+  function g(){
+    let y = "local"
+    geval("y += changed")
+    return y
+  }
+  console.log(g(),y) // localchanged global
 				</pre>
 			</div>
 			<div>
