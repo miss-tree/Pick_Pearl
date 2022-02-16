@@ -12,6 +12,12 @@
 	<!--右边内容-->
 	<div id="app" class="main animated fadeInRight">
 		<div class="shadow">
+      <div class="Table">
+          <div class="TableRow" v-for="(el,index) in list" :key="el.name" v-cloak>
+              <span class="RowLeft" :href="'#'+el.id">{{el.name}}</span>
+              <span class="RowRight">{{el.explain}}</span>
+          </div>
+      </div>
 			<div>
 				<h4>Math 对象</h4>
 				<pre>
@@ -56,6 +62,126 @@
 	</div>
 	<!--页面加载进度条-->
 	<script src="https://cdn.bootcdn.net/ajax/libs/pace/0.5.0/pace.min.js"></script>
+	<!--定义数据-->
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.17/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	    var app = new Vue({
+	        el: "#app",
+	        data: function() {
+	            return {
+	                list: [{
+	                        name: "Math.pow(2,53)",
+	                        explain: '2的53次方'
+	                    },
+	                    {
+                        name: "Math.round(2.53)",
+                        explain: '四舍五入 ==> 3'
+	                    },
+	                    {
+                        name: "Math.ceil(2.53)",
+                        explain: '取大整 ==> 3'
+                      },
+                      {
+                        name: "Math.floor(2.53)",
+                        explain: '取小整 == 2'
+                      },
+                      {
+                        name: "Math.abs(-53)",
+                        explain: '绝对值 == 53'
+                      },
+                      {
+                        name: "Math.max(3,4,5)",
+                        explain: '返回最大值 ==> 5'
+                      },
+                      {
+                        name: "Math.min(2,53,0)",
+                        explain: '返回最小值 ==> 0'
+                      },
+                      {
+                        name: "Math.random()",
+                        explain: '返回[0,1) 内随机数'
+                      },
+                      {
+                        name: "Math.PI",
+                        explain: 'π 圆周率'
+                      },
+                      {
+                        name: "Math.E",
+                        explain: 'e:自然对数的底数'
+                      },
+                      {
+                        name: "Math.sqrt(3)",
+                        explain: '3**0.5:3的平方根'
+                      },
+                      {
+                        name: "Math.pow(3,1/3)",
+                        explain: '3**(1/3):3 的立方根'
+                      },
+                      {
+                        name: "Math.sin(0)",
+                        explain: '三角函数：Math.cos、Math.atan等  '
+                      },
+                      {
+                        name: "Math.log(10)",
+                        explain: '10的自然对数'
+                      },
+                      {
+                        name: "Math.log(100)/Math.LN10",
+                        explain: '以10为底100的对数'
+                      },
+                      {
+                        name: "Math.exp(3)",
+                        explain: 'Math.E的立方'
+                      },
+                      {
+                        name: "Math.cbrt(27)",
+                        explain: '==> 3:立方根'
+                      },
+                      {
+                        name: "Math.hypot(3,4)",
+                        explain: '5: 所有参数平方和的平方根'
+                      },
+                      {
+                        name: "Math.log10(100)",
+                        explain: ' ==> 2 以10为底的对数'
+                      },
+                      {
+                        name: "Math.log2(1024)",
+                        explain: '==> 10:以2为底的对数'
+                      },
+                      {
+                        name: "Math.log1p(x)",
+                        explain: '(1+x)的自然对数，精确到非常小的x'
+                      },
+                      {
+                        name: "Math.expm1(x)",
+                        explain: 'Math.exp(x)-1;Math.log1p()的逆运算'
+                      },
+                      {
+                        name: "Math.sign(x)",
+                        explain: '对 <、==或>0的参数返回-1,0或1'
+                      },
+                      {
+                        name: "Math.imul(2,3)",
+                        explain: '==>6 优化的32位整数乘法'
+                      },
+                      {
+                        name: "Math.fround(x)",
+                        explain: '舍入到最接近的32位浮点数'
+                      },
+                      {
+                        name: "Math.sinh(x)",
+                        explain: '双曲线正弦 还有 Math.cosh(),Math.tanh()'
+                      },
+                      {
+                        name: "Math.asinh(x)",
+                        explain: '双曲线反弦 还有 Math.acosh(),Math.atanh()'
+                      },
+	                ],
+	            }
+	        }
+	    })
+	</script>
 </body>
 
 </html>
