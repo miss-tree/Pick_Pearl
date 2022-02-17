@@ -2,57 +2,49 @@
 <html>
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>基础知识</title>
-	<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"" rel="stylesheet">
-	<link href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.2.3/animate.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>基础知识</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"" rel=" stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.2.3/animate.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
 </head>
+
 <body>
-	<!--右边内容-->
-	<div id="app" class="main animated fadeInRight">
-		<div class="shadow">
-			<div>
-				<h4>eval()</h4>
-				<p>eval函数 学会他,并且远离他!因为它会将值暴露出来，不安全</p>
-				<pre>
-	var i = 1;	
-	eval("i = i + 1");
-	eval("alert(i)");	=>2		
+    <!--右边内容-->
+    <div id="app" class="main animated fadeInRight">
+        <div class="shadow">
+            <div>
+                <h4>eval()</h4>
+                <p>eval函数 学会他,并且远离他!因为它会将值暴露出来，不安全</p>
+                <pre>
+        var i = 1;	
+        eval("i = i + 1");
+        eval("alert(i)");	=>2		
   
-  const geval = eval;
-  let x = "global", y = "global"
+        const geval = eval;
+        let x = "global", y = "global"
 
-  <!-- eval 修改局部变量 -->
-   function f(){
-     let x = "local"
-     eval("x += 'changed'")
-     return x
-   }       
-   console.log(f(),x) // global localchanged
+        <!-- eval 修改局部变量 -->
+        function f(){
+          let x = "local"
+          eval("x += 'changed'")
+          return x
+        }       
+        console.log(f(),x) // global localchanged
 
-  <!-- eval 修改全局变量 -->
-  function g(){
-    let y = "local"
-    geval("y += changed")
-    return y
-  }
-  console.log(g(),y) // localchanged global
+        <!-- eval 修改全局变量 -->
+        function g(){
+          let y = "local"
+          geval("y += changed")
+          return y
+        }
+        console.log(g(),y) // localchanged global
 				</pre>
-			</div>
-			<div>
-				<h4>escape(编码) 和 unescape(解码)</h4>
-				<pre>
-	var url = "http://www.baidu.com/s?name=小米";	
-	url = escape(url);	
-	alert(url);	=>"http%3A//www.baidu.com/s%3Fname%3D%u5C0F%u7C73"
-	alert(unescape(url));=>"http://www.baidu.com/s?name=小米"			
-				</pre>
-			</div>
-		</div>
-	</div>
-	<!--页面加载进度条-->
-	<script src="https://cdn.bootcdn.net/ajax/libs/pace/0.5.0/pace.min.js"></script>
+            </div>
+        </div>
+    </div>
+    <!--页面加载进度条-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/pace/0.5.0/pace.min.js"></script>
 </body>
 
 </html>
