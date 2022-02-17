@@ -2,34 +2,33 @@
 <html>
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>基础知识</title>
-	<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"" rel="stylesheet">
-	<link href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.2.3/animate.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>基础知识</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"" rel=" stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.2.3/animate.css" rel="stylesheet">
     <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/public.css" />
 </head>
+
 <body>
-	<!-- 回到顶部 -->
-	<div class="topBtn">
-		<a href="#top">
-			<i class="fa fa-long-arrow-up"></i>
-		</a>
-	</div>
-	<!--右边内容-->
-	<div id="app" class="main animated fadeInRight">
-		<div class="shadow" v-cloak>
-			<div class="Table" v-cloak id="top">
-				<div class="TableRow" v-for="(el,index) in list">
-					<a class="RowLeft" 
-					:title="el.name"
-					:href="'#'+el.id">{{el.name}}</a>
-					<span class="RowRight">{{el.explain}}</span>
-				</div>
-			</div>	
-			<div>
-				<h4 class="red" id="push">push()</h4>
-				<pre>
+    <!-- 回到顶部 -->
+    <div class="topBtn">
+        <a href="#top">
+            <i class="fa fa-long-arrow-up"></i>
+        </a>
+    </div>
+    <!--右边内容-->
+    <div id="app" class="main animated fadeInRight">
+        <div class="shadow" v-cloak>
+            <div class="Table" v-cloak id="top">
+                <div class="TableRow" v-for="(el,index) in list">
+                    <a class="RowLeft" :title="el.name" :href="'#'+el.id">{{el.name}}</a>
+                    <span class="RowRight">{{el.explain}}</span>
+                </div>
+            </div>
+            <div>
+                <h4 class="red" id="push">push()</h4>
+                <pre>
 	var arr3=["乌龟","王八","甲鱼"];
 	arr.push("千年");  //在数组尾部添加新元素	"千年",改变数组长度	
 			
@@ -38,40 +37,40 @@
 	  console.log(arguments);//['张三','李四','王五']
 	})('张三','李四')		
 				</pre>
-			</div>
-			<div>
-				<h4 class="red" id="unshift">unshift()</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="red" id="unshift">unshift()</h4>
+                <pre>
 	var arr3=["乌龟","王八","甲鱼"];
 	arr.unshift("千年");  //在数组头部添加新元素	"千年",改变数组长度			
 				</pre>
-			</div>
-			<div>
-				<h4 class="red" id="pop">pop()</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="red" id="pop">pop()</h4>
+                <pre>
 	var arr3=["乌龟","王八","甲鱼"];
 	arr.pop();  //在数组尾部删除新元素,改变数组长度			
 				</pre>
-			</div>
-			<div>
-				<h4 class="red" id="shift">shift()</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="red" id="shift">shift()</h4>
+                <pre>
 	var arr3=["乌龟","王八","甲鱼"];
 	arr.shift();  //在数组头部删除新元素,改变数组长度			
 				</pre>
-			</div>
-			<div>
-				<h4 class="red" id="splice">splice()</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="red" id="splice">splice()</h4>
+                <pre>
 	Array.splice(begin, deleteCount, addItem1, addItem2...)				
 	var arr3=["乌龟","王八","甲鱼"];
 	arr.splice(3,0,"养殖龟");  //第一个参数为插入的位置，第二个参数为在从插入位置开始删除元素个数,若是0，则是添加元素	
 	=>	["乌龟","王八","甲鱼","养殖龟"]	
 				</pre>
-			</div>
-			<div>
-				<h4 class="" id="slice">slice()</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="" id="slice">slice()</h4>
+                <pre>
 	var arr2=["a","b","c"];
 	var arr3=arr2.slice();  //在不改变源数组的前提下,进行数组的增删查改	
 			
@@ -82,28 +81,33 @@
 		如果没有指定该参数，那么切分的数组包含从 start 到数组结束的所有元素。
 		如果这个参数是负数，那么它规定的是从数组尾部开始算起的元素。
 				</pre>
-			</div>
-			<div>
-				<h4 class="" id="concat">concat()</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="" id="concat">concat()</h4>
+                <div>
+                    会创建新的空间，性能比push方法低
+                </div>
+                <pre>
 	var arr2=["a","b","c"];
 	var arr3=["乌龟","王八","甲鱼"];
-	var arr4=arr2.concat(arr3);  //合并两个数组,不改变原数组		
+	var arr4=arr2.concat(arr3);  //合并两个数组,不改变原数组	
+  
+  let	 arr6 = arr2.concat(arr3,arr4)
 				</pre>
-			</div>
-			<div>
-				<h4 id="indexOf">indexOf()</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 id="indexOf">indexOf()</h4>
+                <pre>
 	let arr=[1,2,3,45,6]	
 	arr.indexOf(2)	===>1	
 	
 	let arr=[1,2,3,45,6,2,35,2]
 	arr.lastIndexOf(2)	===>7		
 				</pre>
-			</div>
-			<div>
-				<h4 class="" id="reduce">reduce()</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="" id="reduce">reduce()</h4>
+                <pre>
 	Array.reduce()累积器：通过函数,显示每个元素,如果没有返回值,显示下个元素的时候会显示undefined,
 	返回后(return a+b)会显示返回的和(这里的和是指循环到每个位置与之前的和)
 	也可以用于乘法,过程和加法一样,只是把加给为乘.				
@@ -115,18 +119,18 @@
 		return a+b;
 	})	
 				</pre>
-			</div>
-			<div>
-				<h4 class="" id="toString">toString()</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="" id="toString">toString()</h4>
+                <pre>
 	const array1 = [1, 2, 'a', '1a'];
 	console.log(array1.toString());
 	// expected output: "1,2,a,1a"
 				</pre>
-			</div>
-			<div>
-				<h4 class="red" id="sort">sort()</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="red" id="sort">sort()</h4>
+                <pre>
 	Array.sort()：里面第一个参数是直接根据数组的元素值的字符编码，进行正序排列，从小到大，直接更新原数组
 	也可以传入回调来进行高级判断,如果a-b>0，则b在前，a在后，如果a-b==0，则位置不变，如果a-b&lt;0，则b在后，a在前。	
 	
@@ -153,30 +157,30 @@
 		console.log(last);
 		//[{name:"a",age:50},{name:"c",age:40},{name:"d",age:30},{name:"b",age:20},]
 				</pre>
-			</div>
-			<div>
-				<h4 class="red" id="reverse">reverse()</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="red" id="reverse">reverse()</h4>
+                <pre>
 	Array.reverse()：翻转数组
 	
 	var arr=["a","b","c"]
 	arr.reverse()=>   ["c","b","a"]
 				</pre>
-			</div>
-			<div>
-				<h4 class="red" id="max">求数组最大值</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="red" id="max">求数组最大值</h4>
+                <pre>
 	Math.max.apply(null,arr)
 				</pre>
-			</div>
-			<div>
-				<h4 class="red" id="bubbleSort">冒泡排序</h4>
-				<ul>
-					<li>比较两个相邻的元素，若前一个比后一个大，则交换位置</li>
-					<li>第一轮的时候最后一个元素应该是最大的一个</li>
-					<li>对所有的元素重复以上的步骤，除了最后一个</li>
-				</ul>
-				<pre>
+            </div>
+            <div>
+                <h4 class="red" id="bubbleSort">冒泡排序</h4>
+                <ul>
+                    <li>比较两个相邻的元素，若前一个比后一个大，则交换位置</li>
+                    <li>第一轮的时候最后一个元素应该是最大的一个</li>
+                    <li>对所有的元素重复以上的步骤，除了最后一个</li>
+                </ul>
+                <pre>
 	function bubbleSort(arr) {
 	    for(let i=0; i&lt;arr.length; i++) {
 	        for(let j=0; j&lt;arr.length - i - 1; j++) {
@@ -192,14 +196,14 @@
 	console.log(bubbleSort(arr));
 	// [ 1, 3, 6, 7, 12, 44, 77, 99 ]
 				</pre>
-			</div>
-			<div>
-				<h4 class="red" id="quickSort">快速排序</h4>
-				<p>原理：在数组中随机取一个数作中间数A，将剩下的数和A作对比，小的放左边，大的放右边。
-				然后不断递归使用此方法，将数据拼接就是排序好的数组。当然随机取也是可以取第一个数的。
-				对比冒泡排序，快速排序还是优于冒泡排序的。
-				</p>
-				<pre>
+            </div>
+            <div>
+                <h4 class="red" id="quickSort">快速排序</h4>
+                <p>原理：在数组中随机取一个数作中间数A，将剩下的数和A作对比，小的放左边，大的放右边。
+                    然后不断递归使用此方法，将数据拼接就是排序好的数组。当然随机取也是可以取第一个数的。
+                    对比冒泡排序，快速排序还是优于冒泡排序的。
+                </p>
+                <pre>
 	function quickSort(arr) {
 	    if(arr.length &lt;= 1) return arr;
 	    let mid = Math.floor(arr.length / 2);
@@ -219,19 +223,19 @@
 	console.log(quickSort(arr));
 	// [ 1, 3, 6, 7, 12, 44, 77, 99 ]
 				</pre>
-			</div>
-			<div>
-				<h4 class="red" id="merge">数组各项相等</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="red" id="merge">数组各项相等</h4>
+                <pre>
 	const allEqual = arr => arr.every(val => val === arr[0]);
 	
 	allEqual([1, 2, 3, 4, 5, 6]); // false
 	allEqual([1, 1, 1, 1]); //true
 				</pre>
-			</div>
-			<div>
-				<h4 class="red" id="merge">合并数组</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="red" id="merge">合并数组</h4>
+                <pre>
 	let arr1=[1,2,3]; 
 	let arr2=[4,5,6]; 
 	Array.prototype.push.apply(arr1,arr2); //将arr2合并到了arr1中
@@ -241,35 +245,35 @@
 	let food=[...fruits,...meat]
 	console.log(food)	//["apple","banana","beef","fish"]
 				</pre>
-			</div>
-			<div>
-				<h4 class="red" id="fill">用数据填充数组</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 class="red" id="fill">用数据填充数组</h4>
+                <pre>
 	let arr1=new Array(10).fill('1'); 
 	console.log(arr1)	//["1","1","1","1","1","1","1","1","1","1"]
 				</pre>
-			</div>
-			<div>
-				<h4 id="mixed">求两个数组的交集</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 id="mixed">求两个数组的交集</h4>
+                <pre>
 	let num1=[1,5,6,8,7,3]; 
 	let num2=[5,9,48,6,3,1]
 	let newVal=[...new Set(num1)].filter(el=> num2.includes(el))
 	console.log(newVal)	//[1, 5, 6, 3]
 				</pre>
-			</div>
-			<div>
-				<h4 id="count">检测数值出现次数</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 id="count">检测数值出现次数</h4>
+                <pre>
 	const countOccurrences = (arr, val) => {
 	  arr.reduce((a, v) => (v === val ? a + 1 : a), 0)
 	}
 	countOccurrences([1, 1, 2, 1, 2, 3], 1) // 3
 				</pre>
-			</div>
-			<div>
-				<h4 id="nums">统计数组中出现的次数的对象</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 id="nums">统计数组中出现的次数的对象</h4>
+                <pre>
 	const nums = [3, 5, 6, 82, 1, 4, 3, 5, 82]
 	
 	const result = nums.reduce((tally, amt) => {
@@ -300,10 +304,10 @@
 	} 
 	console.log(getRepeatNum())		=>{李: 3, 设: 1, 弟: 2, 生: 2}
 				</pre>
-			</div>
-			<div>
-				<h4 id="pseudo">多维数组降维</h4>
-				<pre>
+            </div>
+            <div>
+                <h4 id="pseudo">多维数组降维</h4>
+                <pre>
 	let nums = [3, [5, 6, [82, 1], [4,[ 3, 5], 82]]]
 	
 		nums = nums.flat(5)
@@ -311,46 +315,46 @@
 	console.log(nums)
 	//[3, 5, 6, 82, 1, 4, 3, 5, 82]
 				</pre>
-			</div>
-		</div>
-	</div>
-	<!--页面加载进度条-->
-	<!-- <script src="https://cdn.bootcdn.net/ajax/libs/pace/0.5.0/pace.min.js"></script> -->
-	<script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js"></script>
-	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.17/vue.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		var app = new Vue({
-			el: "#app",
-			data: function () {
-				return {
-					list:[
-						{name:"push()",id:"push",explain:'尾部添加'},
-						{name:"unshift()",id:"unshift",explain:'头部添加'},
-						{name:"pop()",id:"pop",explain:'尾部删除'},
-						{name:"shift()",id:"shift",explain:'头部删除'},
-						{name:"splice()",id:"splice",explain:'删除从index开始，number个'},
-						{name:"slice()",id:"slice",explain:'复制从start开始到end'},
-						{name:"concat()",id:"concat",explain:'拼接数组，返回新数组'},
-						{name:"indexOf()",id:"indexOf",explain:'获取下标'},
-						{name:"reduce()",id:"reduce",explain:'累积器，常用于统计'},
-						{name:"toString()",id:"toString",explain:'转字符串'},
-						{name:"sort()",id:"sort",explain:'排序'},
-						{name:"reverse()",id:"reverse",explain:'翻转数组'},						
-						{name:"冒泡排序",id:"bubbleSort",explain:'相邻元素对比'},
-						{name:"快速排序",id:"quickSort",explain:'相对sort方法快速排序,默认从小到大排序'},
-						{name:"求数组最大值",id:"max",explain:''},
-						{name:"数组各项相等",id:"allEqual",explain:''},
-						{name:"数组合并",id:"merge",explain:''},
-						{name:"用数据填充数组",id:"fill",explain:''},
-						{name:"求两个数组的交集",id:"mixed",explain:''},
-						{name:"检测数值出现次数",id:"count",explain:''},
-						{name:"统计数组中出现的次数的对象",id:"nums",explain:''},
-						{name:"多维数组降维",id:"pseudo",explain:''},
-					]
-				}
-			},
-		})
-	</script>
+            </div>
+        </div>
+    </div>
+    <!--页面加载进度条-->
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/pace/0.5.0/pace.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.17/vue.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: function() {
+                return {
+                    list: [
+                        { name: "push()", id: "push", explain: '尾部添加' },
+                        { name: "unshift()", id: "unshift", explain: '头部添加' },
+                        { name: "pop()", id: "pop", explain: '尾部删除' },
+                        { name: "shift()", id: "shift", explain: '头部删除' },
+                        { name: "splice()", id: "splice", explain: '删除从index开始，number个' },
+                        { name: "slice()", id: "slice", explain: '复制从start开始到end' },
+                        { name: "concat()", id: "concat", explain: '拼接数组，返回新数组' },
+                        { name: "indexOf()", id: "indexOf", explain: '获取下标' },
+                        { name: "reduce()", id: "reduce", explain: '累积器，常用于统计' },
+                        { name: "toString()", id: "toString", explain: '转字符串' },
+                        { name: "sort()", id: "sort", explain: '排序' },
+                        { name: "reverse()", id: "reverse", explain: '翻转数组' },
+                        { name: "冒泡排序", id: "bubbleSort", explain: '相邻元素对比' },
+                        { name: "快速排序", id: "quickSort", explain: '相对sort方法快速排序,默认从小到大排序' },
+                        { name: "求数组最大值", id: "max", explain: '' },
+                        { name: "数组各项相等", id: "allEqual", explain: '' },
+                        { name: "数组合并", id: "merge", explain: '' },
+                        { name: "用数据填充数组", id: "fill", explain: '' },
+                        { name: "求两个数组的交集", id: "mixed", explain: '' },
+                        { name: "检测数值出现次数", id: "count", explain: '' },
+                        { name: "统计数组中出现的次数的对象", id: "nums", explain: '' },
+                        { name: "多维数组降维", id: "pseudo", explain: '' },
+                    ]
+                }
+            },
+        })
+    </script>
 </body>
 
 </html>
