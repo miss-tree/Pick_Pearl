@@ -1,526 +1,527 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>前端路边拾遗</title>
-		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-		<!-- <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"" rel="stylesheet"> -->
-		<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-		<!-- <link href="./static/css/font-awesome.min.css" rel="stylesheet"> -->
-		<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<!-- <link href="./static/css/animate.css" rel="stylesheet"> -->
-		<link href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.2.3/animate.css" rel="stylesheet">
-		<link href="./static/css/style.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="./static/css/public.css" />
-		<style type="text/css">
-			body {
-				touch-action: none;
-			}
 
-			#refresh_iframe {
-				cursor: pointer;
-			}
-		</style>
-		<script type="text/javascript">
-			window.addEventListener("scroll", function(e) {
-				e.preventDefault()
-			}, {
-				passive: false
-			})
-		</script>
-	</head>
+<head>
+    <meta charset="utf-8">
+    <title>前端路边拾遗</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <!-- <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"" rel="stylesheet"> -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="./static/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link href="./static/css/animate.css" rel="stylesheet"> -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.2.3/animate.css" rel="stylesheet">
+    <link href="./static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./static/css/public.css" />
+    <style type="text/css">
+        body {
+            touch-action: none;
+        }
 
-	<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
-		<div id="wrapper">
-			<!--左侧导航开始-->
-			<nav class="navbar-default navbar-static-side" role="navigation">
-				<div class="nav-close"><i class="fa fa-times-circle"></i>
-				</div>
-				<div class="sidebar-collapse">
-					<ul class="nav" id="side-menu">
-						<li class="nav-header">
-							<div class="dropdown profile-element">
-								<!-- <span><img alt="image" style="width: 70px;" src="./static/img/user.jpg" /></span> -->
-								<a data-toggle="dropdown" class="" href="#">
-									<!-- <span class="clear"dropdown-toggle>
+        #refresh_iframe {
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        window.addEventListener("scroll", function(e) {
+            e.preventDefault()
+        }, {
+            passive: false
+        })
+    </script>
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <!-- <span><img alt="image" style="width: 70px;" src="./static/img/user.jpg" /></span> -->
+                            <a data-toggle="dropdown" class="" href="#">
+                                <!-- <span class="clear"dropdown-toggle>
 						    <span class="block m-t-xs"><strong class="font-bold">Admin</strong></span> -->
-									<span class="text-muted text-xs block">超级管理员</span>
-									<!-- </span> -->
-								</a>
-							</div>
-						</li>
-						<li>
-							<a class="linkhtml" href="#"><i class="fa fa-list"></i>
-								<span class="nav-label">Html</span>
-								<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">html</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Html/labelTag.html">标签列表</a></li>
-										<li><a class="J_menuItem" href="Html/index.html">html基础</a></li>
-										<li><a class="J_menuItem" href="Html/form.html">表单元素</a></li>
-										<li><a class="J_menuItem" href="Html/input.html">input标签</a></li>
-										<li><a class="J_menuItem" href="Html/marquee.html">屏幕滚动标签</a></li>
-										<li><a class="J_menuItem" href="Html/underUse.html">使用少</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle linksvg" href="#">
-										<span class="nav-label">Svg</span>
-										<span class="fa arrow"></span>
-									</a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" id='linksvg' href="Html/svg/aboutSvg.html">关于svg</a></li>
-										<li><a class="J_menuItem" href="Html/svg/attribute.html">常用属性</a></li>
-										<li><a class="J_menuItem" href="Html/svg/text.html">text</a></li>
-										<li><a class="J_menuItem" href="Html/svg/rect.html">rect/polygon</a></li>
-										<li><a class="J_menuItem" href="Html/svg/polyline.html">line/polyline</a></li>
-										<li><a class="J_menuItem" href="Html/svg/circle.html">circle/ellipse</a></li>
-										<li><a class="J_menuItem" id='linkpath' href="Html/svg/path.html">path</a></li>
-										<li><a class="J_menuItem" href="Html/svg/image.html">image</a></li>
-										<li><a class="J_menuItem" href="Html/svg/animate.html">animate</a></li>
-										<li><a class="J_menuItem" href="Html/svg/gradient.html">渐变|滤镜</a></li>
-										<li><a class="J_menuItem" href="Html/svg/usetag.html">其他常用标签</a></li>
-										<li><a class="J_menuItem" href="Html/svg/handlerDom.html">js操作svg</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle linksvgjs" href="#">
-										<span class="nav-label">svg.js使用</span>
-										<span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" id='linksvgjs' href="Html/graph/index.html">常用方法</a></li>
-										<li><a class="J_menuItem" href="Html/graph/methods.html">操作方法</a></li>
-										<li><a class="J_menuItem" href="Html/graph/attrs.html">属性设置</a></li>
-										<li><a class="J_menuItem" href="Html/graph/attrs.html">设置视窗</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">网络安全</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Html/safe/index.html">xss/csrf</a></li>
-									</ul>
-								</li>
-								<li><a class="J_menuItem" href="Html/Meta.html">Meta大全</a></li>
-								<li><a class="J_menuItem" href="Html/character.html">H5新特性</a></li>
-								<li><a class="J_menuItem" href="Html/optimize.html">项目优化</a></li>
-								<li><a class="J_menuItem" href="Html/conection.html">相互了解</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-bullseye"></i> <span class="nav-label">css样式</span><span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a class="J_menuItem" href="Sass/css.html">css基础</a> </li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">常用</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Sass/common.html">常用样式</a></li>
-										<li><a class="J_menuItem" href="Sass/center.html">居中方式</a></li>
-										<li><a class="J_menuItem" href="Sass/mapShape.html">图像热区</a></li>
-										<li><a class="J_menuItem" href="Sass/background.html">背景设置</a></li>
-										<li><a class="J_menuItem" href="Sass/box-shadow.html">box-shadow</a></li>
-										<li><a class="J_menuItem" href="Sass/cssfilter.html">css全站变灰</a></li>
-										<li><a class="J_menuItem" href="Sass/underuse.html">少用样式</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">自定义Css</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Sass/animation/loading.html">常用loading</a></li>
-										<li><a class="J_menuItem" href="Sass/dropDown.html">下拉图标</a></li>
-										<li><a class="J_menuItem" href="Sass/input.html">Input图标</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">进阶</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Sass/Advance/index.html">empty|only-child</a></li>
-										<li><a class="J_menuItem" href="Sass/Advance/Pseudo.html">伪类</a></li>
-										<li><a class="J_menuItem" href="Sass/Advance/selection.html">快速多选</a></li>
-										<li><a class="J_menuItem" href="Sass/Advance/polygon.html">多边形</a></li>
-										<li><a class="J_menuItem" href="Sass/Advance/border.html">边框动画</a></li>
-										<li><a class="J_menuItem" href="Sass/Advance/text.html">文字动画</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">Sass</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Sass/index.html">Sass基础</a></li>
-										<li><a class="J_menuItem" href="Sass/operation.html">Sass使用</a></li>
-										<li><a class="J_menuItem" href="Sass/gulp.html">gulp使用</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">transition</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Sass/transition/index.html">基础</a></li>
-										<li><a class="J_menuItem" href="Sass/transition/hover.html">触碰改变高度</a></li>
-										<li><a class="J_menuItem" href="Sass/transition/hoverDelay.html">触碰改变大小</a></li>
-										<li><a class="J_menuItem" href="Sass/transition/extend.html">触碰延伸</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">animation</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Sass/animation/index.html">animation基础</a></li>
-										<li><a class="J_menuItem" href="Sass/animation/loading.html">6种loading动画</a></li>
-										<li><a class="J_menuItem" href="Sass/animation/scale.html">动画scale</a></li>
-										<li><a class="J_menuItem" href="Sass/animation/Frame.html">边框动画特效</a></li>
-										<li><a class="J_menuItem" href="Sass/animation/clikTarget.html">点击切换背景</a></li>
-										<li><a class="J_menuItem" href="Sass/animation/menu.html">回转下拉菜单</a></li>
-										<li><a class="J_menuItem" href="Sass/animation/horse.html">策马奔腾</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">3D相关属性</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Sass/3D/cube.html">正方体实战</a></li>
-										<li><a class="J_menuItem" href="Sass/3D/card.html">卡牌翻转</a></li>
-										<li><a class="J_menuItem" href="Sass/3D/carousel.html">旋转木马效果</a></li>
-									</ul>
-								</li>
-								<li><a class="J_menuItem" href="Sass/unit.html">单位</a> </li>
-								<li><a class="J_menuItem" href="Sass/usually.html">移动端常用</a> </li>
-								<li><a class="J_menuItem" href="Sass/hole.html">移动端坑点</a> </li>
-							</ul>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-drivers-license-o"></i><span class="nav-label">JavaScript</span><span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">js基础</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/index.html">基础</a></li>
-										<li><a class="J_menuItem" href="JavaScript/start/dataType.html">数据类型</a></li>
-										<li><a class="J_menuItem" href="JavaScript/start/checkType.html">判断类型</a></li>
-										<li><a class="J_menuItem" href="JavaScript/start/operator.html">算术运算符</a></li>
-										<li><a class="J_menuItem" href="JavaScript/start/condition.html">条件语句</a></li>
-										<li><a class="J_menuItem" href="JavaScript/start/condition.html">变量声明</a></li>
-										<li><a class="J_menuItem" href="JavaScript/start/round.html">循环语句</a></li>
-										<li><a class="J_menuItem" href="JavaScript/start/regular.html">正则匹配</a></li>
-										<li><a class="J_menuItem" href="JavaScript/start/formula.html">乘法口诀</a></li>
-										<li><a class="J_menuItem" href="JavaScript/start/Built_in.html">少用内置函数</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">字符串操作</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/string/index.html">基础</a></li>
-										<li><a class="J_menuItem" href="JavaScript/string/methods.html">字符串方法</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">数组操作</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/array/index.html">基础</a></li>
-										<li><a class="J_menuItem" href="JavaScript/array/enumeration.html">数组遍历</a></li>
-										<li><a class="J_menuItem" href="JavaScript/array/Pseudo.html">伪数组</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">数值操作</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/number/index.html">基础</a></li>
-										<li><a class="J_menuItem" href="JavaScript/number/compare.html">比较是否相等</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">对象操作</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/object/testing.html">检测对象</a></li>
-										<li><a class="J_menuItem" href="JavaScript/object/methods.html">对象方法</a></li>
-										<li><a class="J_menuItem" href="JavaScript/object/this.html">this对象</a></li>
-										<li><a class="J_menuItem" href="JavaScript/object/Copy.html">对象拷贝</a></li>
-										<li><a class="J_menuItem" href="JavaScript/object/Date.html">Date()</a></li>
-										<li><a class="J_menuItem" href="JavaScript/object/Math.html">Math对象</a></li>
-										<li><a class="J_menuItem" href="JavaScript/object/Browser.html">浏览器对象</a></li>
-										<li><a class="J_menuItem" href="JavaScript/object/window.html">window对象</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">函数</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/function/index.html">Function</a></li>
-										<li><a class="J_menuItem" href="JavaScript/function/receive.html">继承</a></li>
-										<li><a class="J_menuItem" href="JavaScript/function/callThis.html">call/apply/bind</a></li>
-										<li><a class="J_menuItem" href="JavaScript/function/closure.html">闭包</a></li>
-										<li><a class="J_menuItem" href="JavaScript/function/structure.html">构造函数</a></li>
-										<li><a class="J_menuItem" href="JavaScript/function/AntiShake.html">节流防抖</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">AJAX</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/Ajax/index.html">认识阿贾克斯</a></li>
-										<li><a class="J_menuItem" href="JavaScript/Ajax/request.html">原生Ajax请求</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">Js操作</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/event/index.html">PC端事件</a></li>
-										<li><a class="J_menuItem" href="JavaScript/event/mobileEvents.html">移动端事件</a></li>
-										<li><a class="J_menuItem" href="JavaScript/event/domNode.html">访问DOM节点</a></li>
-										<li><a class="J_menuItem" href="JavaScript/event/handleNode.html">操作DOM节点</a></li>
-										<li><a class="J_menuItem" href="JavaScript/event/scrollTop.html">回到顶部</a></li>
-										<li><a class="J_menuItem" href="JavaScript/event/optimization.html">操作DOM性能优化</a></li>
-										<li><a class="J_menuItem" href="JavaScript/event/draggable.html">draggable拖动</a></li>
-										<li><a class="J_menuItem" href="JavaScript/event/cursor.html">光标操作</a></li>
-										<li><a class="J_menuItem" href="JavaScript/event/Entrust.html">事件委托</a></li>
-										<li><a class="J_menuItem" href="JavaScript/event/compatible.html">浏览器兼容</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">JQ</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/jquery/index.html">了解JQ</a></li>
-										<li><a class="J_menuItem" href="JavaScript/jquery/request.html">Ajax请求</a></li>
-										<li><a class="J_menuItem" href="JavaScript/jquery/carousel.html">熟练</a></li>
-									</ul>
-								</li>
-								<li><a class="J_menuItem" href="JavaScript/mobile/usually.html">移动端常用</a> </li>
-								<li><a class="J_menuItem" href="JavaScript/pc/usually.html">PC端常用</a> </li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">练习</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/exercise/tab.html">选项卡</a></li>
-										<li><a class="J_menuItem" href="JavaScript/exercise/clickVal.html">获取点击值</a></li>
-										<li><a class="J_menuItem" href="JavaScript/exercise/carousel.html">轮播图</a></li>
-										<li><a class="J_menuItem" href="JavaScript/exercise/luckDraw.html">九宫格抽奖</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">问题</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/question/index.html">循环类计算</a></li>
-										<li><a class="J_menuItem" href="JavaScript/question/return.html">return|return false</a></li>
-										<li><a class="J_menuItem" href="JavaScript/question/star.html">循环类计算二</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">WebSocket</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/WebSocket/index.html">WebSocket</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">坑点</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="JavaScript/question/blankNode.html">处理空白节点</a></li>
-										<li><a class="J_menuItem" href="JavaScript/question/handleDom.html">操作DOM坑点</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-connectdevelop"></i> <span class="nav-label">Window对象</span><span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">按键控制</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Window/keycode/index.html">基础</a></li>
-										<!-- <li><a class="J_menuItem" href="Sass/animation/scale.html">xx</a></li> -->
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">鼠标控制</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Window/mousekey/index.html">基础</a></li>
-										<li><a class="J_menuItem" href="Window/mousekey/wheelDelta.html">鼠标滚动</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">浏览器对象</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Window/navigator/navigator.html">基础</a></li>
-										<li><a class="J_menuItem" href="Window/navigator/attribute.html">元素属性</a></li>
-										<li><a class="J_menuItem" href="Window/navigator/document.html">document属性</a></li>
-										<li><a class="J_menuItem" href="Window/navigator/windowEvent.html">浏览器事件</a></li>
-										<li><a class="J_menuItem" href="Window/navigator/cookie.html">cookie</a></li>
-										<li><a class="J_menuItem" href="Window/navigator/printWin.html">打印预览</a></li>
-									</ul>
-								</li>
-								<li><a class="J_menuItem" href="">浏览器对象</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-connectdevelop"></i> <span class="nav-label">插件</span><span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">表格拖拽</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Plugin/table/dragTable.html">表格表头拖动</a></li>
-									</ul>
-								</li>
-								<li><a class="J_menuItem" href="Plugin/Dayjs.html">Dayjs时间插件</a></li>
-								<li><a class="J_menuItem" href="Plugin/BDmap.html">百度地图封装</a></li>
-								<li><a class="J_menuItem" href="Plugin/Cascader.html">三级联动</a></li>
-								<li><a class="J_menuItem" href="Plugin/mouseImages.html">鼠标预览图片</a></li>
-								<li><a class="J_menuItem" href="Plugin/pastImages.html">复制图片粘贴</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-connectdevelop"></i> <span class="nav-label">UI</span><span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">Bootstrap</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Ui/Bootstrap/index.html">基础</a></li>
-										<li><a class="J_menuItem" href="Sass/animation/scale.html">xx</a></li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">layui</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Ui/Bootstrap/index.html">基础</a></li>
-										<li><a class="J_menuItem" href="Sass/animation/scale.html">xx</a></li>
-									</ul>
-								</li>
-								<li><a class="J_menuItem" href="Ui/unit.html"> xx</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-connectdevelop"></i> <span class="nav-label">掘金扩展</span><span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li>
-									<a class="dropdown-toggle" href="#"><span class="nav-label">文件上传下载</span><span class="fa arrow"></span></a>
-									<ul class="animated fadeInRight m-t-xs S_slider">
-										<li><a class="J_menuItem" href="Develop/file/upload.html">文件上传</a></li>
-										<li><a class="J_menuItem" href="Develop/file/imageCompress.html">图片压缩</a></li>
-										<li><a class="J_menuItem" href="Develop/file/download.html">文件下载</a></li>
-										<li><a class="J_menuItem" href="Develop/file/downExcel.html">导出EXCEL</a></li>
-									</ul>
-								</li>
-								<li><a class="J_menuItem" href="Develop/module.html">模块加载</a></li>
-								<li><a class="J_menuItem" href="Develop/Cross.html">跨域方案</a></li>
-								<li><a class="J_menuItem" href="Develop/dialog.html">H5.2特性dialog</a></li>
-								<li><a class="J_menuItem" href="Develop/copy.html">复制粘贴板</a></li>
-								<li><a class="J_menuItem" href="Develop/stringify.html">JSON.stringify()</a></li>
-								<li><a class="J_menuItem" href="Develop/blob.html">Blob 二进制</a></li>
-								<li><a class="J_menuItem" href="Develop/parseParam.html">解析 URL 参数</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</nav>
-			<!--左侧导航结束-->
-			<!--右侧部分开始-->
-			<div id="page-wrapper" class="gray-bg dashbard-1">
-				<div class="row border-bottom" style="position: relative;">
-					<div class="Title">
-						前端路边拾遗
-					</div>
-					<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-						<div class="navbar-header">
-							<a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
-								<i class="fa fa-bars"></i>
-							</a>
-						</div>
-					</nav>
-				</div>
-				<div class="row content-tabs">
-					<button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
-					</button>
-					<nav class="page-tabs J_menuTabs">
-						<div class="page-tabs-content">
-							<a href="javascript:;" class="active J_menuTab" data-id="home.html">首页</a>
-						</div>
-					</nav>
-					<button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
-					</button>
-					<div class="refresh" id="refresh_iframe"><i class="larry-icon larry-shuaxin2"></i><cite>刷新</cite></div>
-					<div class="btn-group roll-nav roll-right">
-						<button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
+                                <span class="text-muted text-xs block">超级管理员</span>
+                                <!-- </span> -->
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="linkhtml" href="#"><i class="fa fa-list"></i>
+                            <span class="nav-label">Html</span>
+                            <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">html</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Html/labelTag.html">标签列表</a></li>
+                                    <li><a class="J_menuItem" href="Html/index.html">html基础</a></li>
+                                    <li><a class="J_menuItem" href="Html/form.html">表单元素</a></li>
+                                    <li><a class="J_menuItem" href="Html/input.html">input标签</a></li>
+                                    <li><a class="J_menuItem" href="Html/marquee.html">屏幕滚动标签</a></li>
+                                    <li><a class="J_menuItem" href="Html/underUse.html">使用少</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle linksvg" href="#">
+                                    <span class="nav-label">Svg</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" id='linksvg' href="Html/svg/aboutSvg.html">关于svg</a></li>
+                                    <li><a class="J_menuItem" href="Html/svg/attribute.html">常用属性</a></li>
+                                    <li><a class="J_menuItem" href="Html/svg/text.html">text</a></li>
+                                    <li><a class="J_menuItem" href="Html/svg/rect.html">rect/polygon</a></li>
+                                    <li><a class="J_menuItem" href="Html/svg/polyline.html">line/polyline</a></li>
+                                    <li><a class="J_menuItem" href="Html/svg/circle.html">circle/ellipse</a></li>
+                                    <li><a class="J_menuItem" id='linkpath' href="Html/svg/path.html">path</a></li>
+                                    <li><a class="J_menuItem" href="Html/svg/image.html">image</a></li>
+                                    <li><a class="J_menuItem" href="Html/svg/animate.html">animate</a></li>
+                                    <li><a class="J_menuItem" href="Html/svg/gradient.html">渐变|滤镜</a></li>
+                                    <li><a class="J_menuItem" href="Html/svg/usetag.html">其他常用标签</a></li>
+                                    <li><a class="J_menuItem" href="Html/svg/handlerDom.html">js操作svg</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle linksvgjs" href="#">
+                                    <span class="nav-label">svg.js使用</span>
+                                    <span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" id='linksvgjs' href="Html/graph/index.html">常用方法</a></li>
+                                    <li><a class="J_menuItem" href="Html/graph/methods.html">操作方法</a></li>
+                                    <li><a class="J_menuItem" href="Html/graph/attrs.html">属性设置</a></li>
+                                    <li><a class="J_menuItem" href="Html/graph/attrs.html">设置视窗</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">网络安全</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Html/safe/index.html">xss/csrf</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="J_menuItem" href="Html/Meta.html">Meta大全</a></li>
+                            <li><a class="J_menuItem" href="Html/character.html">H5新特性</a></li>
+                            <li><a class="J_menuItem" href="Html/optimize.html">项目优化</a></li>
+                            <li><a class="J_menuItem" href="Html/conection.html">相互了解</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bullseye"></i> <span class="nav-label">css样式</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a class="J_menuItem" href="Sass/css.html">css基础</a> </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">常用</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Sass/common.html">常用样式</a></li>
+                                    <li><a class="J_menuItem" href="Sass/center.html">居中方式</a></li>
+                                    <li><a class="J_menuItem" href="Sass/mapShape.html">图像热区</a></li>
+                                    <li><a class="J_menuItem" href="Sass/background.html">背景设置</a></li>
+                                    <li><a class="J_menuItem" href="Sass/box-shadow.html">box-shadow</a></li>
+                                    <li><a class="J_menuItem" href="Sass/cssfilter.html">css全站变灰</a></li>
+                                    <li><a class="J_menuItem" href="Sass/underuse.html">少用样式</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">自定义Css</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Sass/animation/loading.html">常用loading</a></li>
+                                    <li><a class="J_menuItem" href="Sass/dropDown.html">下拉图标</a></li>
+                                    <li><a class="J_menuItem" href="Sass/input.html">Input图标</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">进阶</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Sass/Advance/index.html">empty|only-child</a></li>
+                                    <li><a class="J_menuItem" href="Sass/Advance/Pseudo.html">伪类</a></li>
+                                    <li><a class="J_menuItem" href="Sass/Advance/selection.html">快速多选</a></li>
+                                    <li><a class="J_menuItem" href="Sass/Advance/polygon.html">多边形</a></li>
+                                    <li><a class="J_menuItem" href="Sass/Advance/border.html">边框动画</a></li>
+                                    <li><a class="J_menuItem" href="Sass/Advance/text.html">文字动画</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">Sass</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Sass/index.html">Sass基础</a></li>
+                                    <li><a class="J_menuItem" href="Sass/operation.html">Sass使用</a></li>
+                                    <li><a class="J_menuItem" href="Sass/gulp.html">gulp使用</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">transition</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Sass/transition/index.html">基础</a></li>
+                                    <li><a class="J_menuItem" href="Sass/transition/hover.html">触碰改变高度</a></li>
+                                    <li><a class="J_menuItem" href="Sass/transition/hoverDelay.html">触碰改变大小</a></li>
+                                    <li><a class="J_menuItem" href="Sass/transition/extend.html">触碰延伸</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">animation</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Sass/animation/index.html">animation基础</a></li>
+                                    <li><a class="J_menuItem" href="Sass/animation/loading.html">6种loading动画</a></li>
+                                    <li><a class="J_menuItem" href="Sass/animation/scale.html">动画scale</a></li>
+                                    <li><a class="J_menuItem" href="Sass/animation/Frame.html">边框动画特效</a></li>
+                                    <li><a class="J_menuItem" href="Sass/animation/clikTarget.html">点击切换背景</a></li>
+                                    <li><a class="J_menuItem" href="Sass/animation/menu.html">回转下拉菜单</a></li>
+                                    <li><a class="J_menuItem" href="Sass/animation/horse.html">策马奔腾</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">3D相关属性</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Sass/3D/cube.html">正方体实战</a></li>
+                                    <li><a class="J_menuItem" href="Sass/3D/card.html">卡牌翻转</a></li>
+                                    <li><a class="J_menuItem" href="Sass/3D/carousel.html">旋转木马效果</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="J_menuItem" href="Sass/unit.html">单位</a> </li>
+                            <li><a class="J_menuItem" href="Sass/usually.html">移动端常用</a> </li>
+                            <li><a class="J_menuItem" href="Sass/hole.html">移动端坑点</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-drivers-license-o"></i><span class="nav-label">JavaScript</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">js基础</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/index.html">基础</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/start/dataType.html">数据类型</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/start/checkType.html">判断类型</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/start/operator.html">算术运算符</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/start/condition.html">条件语句</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/start/condition.html">变量声明</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/start/round.html">循环语句</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/start/regular.html">正则匹配</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/start/formula.html">乘法口诀</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/start/Built_in.html">eval内置函数</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/start/encoded.html">编码和解码</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">字符串操作</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/string/index.html">基础</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/string/methods.html">字符串方法</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">数组操作</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/array/index.html">基础</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/array/enumeration.html">数组遍历</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/array/Pseudo.html">伪数组</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">数值操作</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/number/index.html">基础</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/number/compare.html">比较是否相等</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">对象操作</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/object/testing.html">检测对象</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/object/methods.html">对象方法</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/object/this.html">this对象</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/object/Copy.html">对象拷贝</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/object/Date.html">Date()</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/object/Math.html">Math对象</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/object/Browser.html">浏览器对象</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/object/window.html">window对象</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">函数</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/function/index.html">Function</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/function/receive.html">继承</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/function/callThis.html">call/apply/bind</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/function/closure.html">闭包</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/function/structure.html">构造函数</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/function/AntiShake.html">节流防抖</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">AJAX</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/Ajax/index.html">认识阿贾克斯</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/Ajax/request.html">原生Ajax请求</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">Js操作</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/event/index.html">PC端事件</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/event/mobileEvents.html">移动端事件</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/event/domNode.html">访问DOM节点</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/event/handleNode.html">操作DOM节点</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/event/scrollTop.html">回到顶部</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/event/optimization.html">操作DOM性能优化</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/event/draggable.html">draggable拖动</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/event/cursor.html">光标操作</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/event/Entrust.html">事件委托</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/event/compatible.html">浏览器兼容</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">JQ</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/jquery/index.html">了解JQ</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/jquery/request.html">Ajax请求</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/jquery/carousel.html">熟练</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="J_menuItem" href="JavaScript/mobile/usually.html">移动端常用</a> </li>
+                            <li><a class="J_menuItem" href="JavaScript/pc/usually.html">PC端常用</a> </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">练习</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/exercise/tab.html">选项卡</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/exercise/clickVal.html">获取点击值</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/exercise/carousel.html">轮播图</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/exercise/luckDraw.html">九宫格抽奖</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">问题</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/question/index.html">循环类计算</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/question/return.html">return|return false</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/question/star.html">循环类计算二</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">WebSocket</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/WebSocket/index.html">WebSocket</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">坑点</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="JavaScript/question/blankNode.html">处理空白节点</a></li>
+                                    <li><a class="J_menuItem" href="JavaScript/question/handleDom.html">操作DOM坑点</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-connectdevelop"></i> <span class="nav-label">Window对象</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">按键控制</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Window/keycode/index.html">基础</a></li>
+                                    <!-- <li><a class="J_menuItem" href="Sass/animation/scale.html">xx</a></li> -->
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">鼠标控制</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Window/mousekey/index.html">基础</a></li>
+                                    <li><a class="J_menuItem" href="Window/mousekey/wheelDelta.html">鼠标滚动</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">浏览器对象</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Window/navigator/navigator.html">基础</a></li>
+                                    <li><a class="J_menuItem" href="Window/navigator/attribute.html">元素属性</a></li>
+                                    <li><a class="J_menuItem" href="Window/navigator/document.html">document属性</a></li>
+                                    <li><a class="J_menuItem" href="Window/navigator/windowEvent.html">浏览器事件</a></li>
+                                    <li><a class="J_menuItem" href="Window/navigator/cookie.html">cookie</a></li>
+                                    <li><a class="J_menuItem" href="Window/navigator/printWin.html">打印预览</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="J_menuItem" href="">浏览器对象</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-connectdevelop"></i> <span class="nav-label">插件</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">表格拖拽</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Plugin/table/dragTable.html">表格表头拖动</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="J_menuItem" href="Plugin/Dayjs.html">Dayjs时间插件</a></li>
+                            <li><a class="J_menuItem" href="Plugin/BDmap.html">百度地图封装</a></li>
+                            <li><a class="J_menuItem" href="Plugin/Cascader.html">三级联动</a></li>
+                            <li><a class="J_menuItem" href="Plugin/mouseImages.html">鼠标预览图片</a></li>
+                            <li><a class="J_menuItem" href="Plugin/pastImages.html">复制图片粘贴</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-connectdevelop"></i> <span class="nav-label">UI</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">Bootstrap</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Ui/Bootstrap/index.html">基础</a></li>
+                                    <li><a class="J_menuItem" href="Sass/animation/scale.html">xx</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">layui</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Ui/Bootstrap/index.html">基础</a></li>
+                                    <li><a class="J_menuItem" href="Sass/animation/scale.html">xx</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="J_menuItem" href="Ui/unit.html"> xx</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-connectdevelop"></i> <span class="nav-label">掘金扩展</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="dropdown-toggle" href="#"><span class="nav-label">文件上传下载</span><span class="fa arrow"></span></a>
+                                <ul class="animated fadeInRight m-t-xs S_slider">
+                                    <li><a class="J_menuItem" href="Develop/file/upload.html">文件上传</a></li>
+                                    <li><a class="J_menuItem" href="Develop/file/imageCompress.html">图片压缩</a></li>
+                                    <li><a class="J_menuItem" href="Develop/file/download.html">文件下载</a></li>
+                                    <li><a class="J_menuItem" href="Develop/file/downExcel.html">导出EXCEL</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="J_menuItem" href="Develop/module.html">模块加载</a></li>
+                            <li><a class="J_menuItem" href="Develop/Cross.html">跨域方案</a></li>
+                            <li><a class="J_menuItem" href="Develop/dialog.html">H5.2特性dialog</a></li>
+                            <li><a class="J_menuItem" href="Develop/copy.html">复制粘贴板</a></li>
+                            <li><a class="J_menuItem" href="Develop/stringify.html">JSON.stringify()</a></li>
+                            <li><a class="J_menuItem" href="Develop/blob.html">Blob 二进制</a></li>
+                            <li><a class="J_menuItem" href="Develop/parseParam.html">解析 URL 参数</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom" style="position: relative;">
+                <div class="Title">
+                    前端路边拾遗
+                </div>
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+            <div class="row content-tabs">
+                <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
+                </button>
+                <nav class="page-tabs J_menuTabs">
+                    <div class="page-tabs-content">
+                        <a href="javascript:;" class="active J_menuTab" data-id="home.html">首页</a>
+                    </div>
+                </nav>
+                <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
+                </button>
+                <div class="refresh" id="refresh_iframe"><i class="larry-icon larry-shuaxin2"></i><cite>刷新</cite></div>
+                <div class="btn-group roll-nav roll-right">
+                    <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
 
-						</button>
-						<ul role="menu" class="dropdown-menu dropdown-menu-right">
-							<li class="J_tabShowActive"><a>定位当前选项卡</a>
-							</li>
-							<li class="divider"></li>
-							<li class="J_tabCloseAll"><a>关闭全部选项卡</a>
-							</li>
-							<li class="J_tabCloseOther"><a>关闭其他选项卡</a>
-							</li>
-						</ul>
-					</div>
-					<a href="./login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
-				</div>
-				<div class="row J_mainContent" id="content-main">
-					<iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="home.html" frameborder="0" data-id="home.html"
-					 seamless></iframe>
-				</div>
-			</div>
-			<!--右侧部分结束-->
-		</div>
+                    </button>
+                    <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                        <li class="J_tabShowActive"><a>定位当前选项卡</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                        </li>
+                        <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="./login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            </div>
+            <div class="row J_mainContent" id="content-main">
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="home.html" frameborder="0" data-id="home.html" seamless></iframe>
+            </div>
+        </div>
+        <!--右侧部分结束-->
+    </div>
 
-		<!-- 全局js -->
-		<!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.js"></script> -->
-		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.js"></script>
-		<!-- <script src="./static/js/bootstrap.min.js"></script> -->
-		<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		<!--jQuery的导航栏插件-->
-		<!-- <script src="./static/js/plugins/metisMenu/jquery.metisMenu.js"></script> -->
-		<script src="https://cdn.bootcdn.net/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
-		<!-- <script src="./static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script> -->
-		<script src="https://cdn.bootcdn.net/ajax/libs/jQuery-slimScroll/1.3.0/jquery.slimscroll.min.js"></script>
-		<!-- <script src="./static/layui/layui.js" type="text/javascript"></script> -->
-		<script src="https://cdn.bootcdn.net/ajax/libs/layui/2.4.5/layui.js"></script>
-		<script type="text/javascript">
-			$("#side-menu li a").click(function() {
-				return false;
-			})
-		</script>
-		<!-- 自定义js -->
-		<script src="./static/js/hplus.js"></script>
-		<!--点击左边，右侧添加iframe-->
-		<script type="text/javascript" src="./static/js/contabs.js"></script>
+    <!-- 全局js -->
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <!-- <script src="./static/js/bootstrap.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!--jQuery的导航栏插件-->
+    <!-- <script src="./static/js/plugins/metisMenu/jquery.metisMenu.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
+    <!-- <script src="./static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jQuery-slimScroll/1.3.0/jquery.slimscroll.min.js"></script>
+    <!-- <script src="./static/layui/layui.js" type="text/javascript"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/layui/2.4.5/layui.js"></script>
+    <script type="text/javascript">
+        $("#side-menu li a").click(function() {
+            return false;
+        })
+    </script>
+    <!-- 自定义js -->
+    <script src="./static/js/hplus.js"></script>
+    <!--点击左边，右侧添加iframe-->
+    <script type="text/javascript" src="./static/js/contabs.js"></script>
 
-		<!-- 第三方插件 -->
-		<!--页面加载进度条-->
-		<!-- <script src="./static/js/plugins/pace/pace.min.js"></script> -->
-		<script src="https://cdn.bootcdn.net/ajax/libs/pace/0.5.0/pace.min.js"></script>
-		<!-- 判断从其他页面跳转进来 -->
-		<script type="text/javascript">
-			let link = window.location
-			var page = link.search.split('=')[1]; //获取url中"?"符后的字串
-			if (page != null) { //带参数传过来
-				let message = ''
-				let meaun = ''
-				let timer = null
-				switch (page) {
-					case 'svg':
-						message = '正在查看Html下的svg';
-						meaun = 'html'
-						break
-					case 'svgjs':
-						message = '正在查看Svgjs';
-						meaun = 'html'
-					case 'path':
-						message = '正在查看svg下path';
-						meaun = 'html'
-				}
-				let linkMeaun = document.querySelector('.link' + meaun)
-				let linkPage = document.querySelector('#link' + page)
-				let linkbtn = document.querySelector('.link' + page)
-				if (page = 'page') {
-					linkbtn = document.querySelector('.linksvg')
-				}
-				// 手动添加一个点击事件
-				Element.prototype.trigger = function(eventName) {
-					this.dispatchEvent(new Event(eventName));
-				}
-				console.log('linkPage===========>', page, linkPage);
-				timer = setTimeout(() => {
-					linkMeaun.trigger('click')
-					linkbtn.trigger('click') //点击左边菜单按钮
-					linkPage.trigger('click')
-					alert(message)
-					clearTimeout(timer)
-				}, 1000)
-			}
-		</script>
+    <!-- 第三方插件 -->
+    <!--页面加载进度条-->
+    <!-- <script src="./static/js/plugins/pace/pace.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/pace/0.5.0/pace.min.js"></script>
+    <!-- 判断从其他页面跳转进来 -->
+    <script type="text/javascript">
+        let link = window.location
+        var page = link.search.split('=')[1]; //获取url中"?"符后的字串
+        if (page != null) { //带参数传过来
+            let message = ''
+            let meaun = ''
+            let timer = null
+            switch (page) {
+                case 'svg':
+                    message = '正在查看Html下的svg';
+                    meaun = 'html'
+                    break
+                case 'svgjs':
+                    message = '正在查看Svgjs';
+                    meaun = 'html'
+                case 'path':
+                    message = '正在查看svg下path';
+                    meaun = 'html'
+            }
+            let linkMeaun = document.querySelector('.link' + meaun)
+            let linkPage = document.querySelector('#link' + page)
+            let linkbtn = document.querySelector('.link' + page)
+            if (page = 'page') {
+                linkbtn = document.querySelector('.linksvg')
+            }
+            // 手动添加一个点击事件
+            Element.prototype.trigger = function(eventName) {
+                this.dispatchEvent(new Event(eventName));
+            }
+            console.log('linkPage===========>', page, linkPage);
+            timer = setTimeout(() => {
+                linkMeaun.trigger('click')
+                linkbtn.trigger('click') //点击左边菜单按钮
+                linkPage.trigger('click')
+                alert(message)
+                clearTimeout(timer)
+            }, 1000)
+        }
+    </script>
 
-	</body>
+</body>
 
 </html>
