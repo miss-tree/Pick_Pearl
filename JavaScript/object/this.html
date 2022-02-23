@@ -16,6 +16,7 @@
 				<h4 >关于this</h4>
 				<p>不管在工作中还是面试中，我们经常会遇到this指向问题，this的绑定有这么几种方法：
 				new > 显示绑定(apply,call,bind) > 隐式绑定  >  默认绑定。下面先来一道经典的面试题</p>
+        <div>更多this问题参考<a href="https://juejin.cn/post/6844904083707396109#heading-19" target="_blank">掘金</a></div>
 				<pre>
           var name = '李四'
           var foo = {
@@ -25,7 +26,7 @@
             }
           }
           var fooNew = foo.logName;
-          //嵌套函数中的this是不会继承的，指向的就是window 因为 fooNew 是一个单独的指针域 不在foo内， 没有name属性会直接找到 window ，
+          // 因为 fooNew 是一个单独的指针域 不在foo内， 没有name属性会直接找到 window ，
           var fooNewBind = foo.logName.bind(foo);
           fooNew(10)//李四,10
           fooNewBind(11)//张三,11  因为bind改变了fooNewBind里面的this指向				
@@ -43,9 +44,13 @@
 	====>Hello, vue
 	在调用sayHi时,调用位置会使用person的上下文来引用函数，
 	隐式绑定会把函数调用中的this(即此例sayHi函数中的this)绑定到这个上下文对象（即此例中的person）
-	所以显示不是 Hello, Wiliam
-				</pre>
-				<pre>
+	所以显示不是 Hello, miss
+
+
+  如果你把一个函数当成参数传递到另一个函数的时候，也会发生隐式丢失的问题，且与包裹着它的函数的this指向无关。
+  在非严格模式下，会把该函数的this绑定到window上，严格模式下绑定到undefined。
+
+
 	function sayHi(){
 	    console.log('Hello,', this.name);
 	}
@@ -78,8 +83,7 @@
 	==>Hello, miss
 	Hi.call(person, person.sayHi)的确是将this绑定到Hi中的this了。但是在执行fn的时候，
 	相当于直接调用了sayHi方法(记住: person.sayHi已经被赋值给fn了，隐式绑定也丢了)，没有指定this的值，对应的是默认绑定				
-				</pre>
-				<pre>
+	 
 	function sayHi(){
 	    console.log('Hello,', this.name);
 	}
@@ -97,6 +101,22 @@
 				</pre>
 			</div>
 			<div>
+			    <h4>作用域特例</h4>
+			    <pre>
+      let a = 10
+      const b = 20
+
+      function foo () {
+        console.log(this.a)
+        console.log(this.b)
+      }
+      foo(); // undefined  undefined
+      console.log(window.a)
+
+      将上面的 a、b 以 var 定义则打印的是 10 ， 20
+        </pre>
+			</div>
+			<div>
 				<div>又一例</div>
 				<pre>
 		function person(name,age){
@@ -108,6 +128,50 @@
 		因为没有使用new，没有创建一个新对象，构造函数的this指向window		
 				</pre>
 			</div>
+      <div>
+        <h4>函数模式</h4>
+        <pre>
+      var a = 1
+      function foo () {
+        var a = 2
+        console.log(this)
+        console.log(this.a)
+      }
+
+      foo()
+
+      ouput:==> Window{...}
+                1
+      /** 改造下 */
+      var a = 1
+      function foo () {
+        var a = 2
+        function inner () {
+        console.log(this.a)
+        }
+        inner()
+      }
+
+      // 1        foo内部this指向window
+        </pre>
+      </div>
+      <div>
+        <h4>严格模式</h4>
+        <pre>
+          "use strict";
+          var a = 10;
+          function foo () {
+            console.log('this1', this)
+            console.log(window.a)
+            console.log(this.a)
+          }
+          foo();
+          ouput:=> 'this1' undefined
+                    10
+                    Uncaught TypeError: Cannot read property 'a' of undefined
+
+        </pre>
+      </div>
 			<div>
 				所有的对象除基础类型（引用类型）外都有原型，基础对象的原型是null
 			</div>
@@ -138,15 +202,24 @@
           person1.foo1.call(person2) //person2
 
           person1.foo2() //window
+          // person1.foo2 剪头函数外层作用域是window
           person1.foo2.call(person2)  //window
+          // person1.foo2 剪头函数外层作用域是 window，绑定this无效
+          //！！！！***person1.xxx.xxx.foo2 像这样的调用不管是多少层嵌套的剪头函数外层作用域都是window
 
           person1.foo3()()  //window
+          // 相当 person1.foo3 内部函数的执行， 内部函数指向 window ，内部函数指向指向的还是window
           person1.foo3.call(person2)()  //window
+          // 嵌套函数中的this是不会继承的，指向的就是window， person1.foo3()的this虽然指向person2，但是返回是一个函数，
+          // 这个函数没有绑定上下文，执行指向为window
           person1.foo3().call(person2) //person2
 
           person1.foo4()() //person1
           person1.foo4.call(person2)() //person2
+          // 类似上面person1.foo3.call(person2)()结果，但是 返回的剪头函数绑定了上下文
+
           person1.foo4().call(person2) //person1
+          // 开始会执行person1.foo4()函数，打印出person1，但是会对person1.foo4()函数的返回值执行.call(person2)操作，可是我们可以看到person1.foo4()函数的返回值是undefined，因此就会报错
 
         </pre>
       </div>
