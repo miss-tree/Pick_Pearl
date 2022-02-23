@@ -17,18 +17,18 @@
 				<p>不管在工作中还是面试中，我们经常会遇到this指向问题，this的绑定有这么几种方法：
 				new > 显示绑定(apply,call,bind) > 隐式绑定  >  默认绑定。下面先来一道经典的面试题</p>
 				<pre>
-	var name = '李四'
-	    var foo = {
-	   name: "张三",
-	   logName: function(age) {
-	//嵌套函数中的this是不会继承的，指向的就是window 
-	   console.log(this.name, age);//没有age，this指向window
-	   }
-	 }
-	 var fooNew = foo.logName;
-	 var fooNewBind = foo.logName.bind(foo);
-	 fooNew(10)//李四,10
-	 fooNewBind(11)//张三,11  因为bind改变了fooNewBind里面的this指向				
+          var name = '李四'
+          var foo = {
+            name: "张三",
+            logName: function(age) {
+            console.log(this.name, age);
+            }
+          }
+          var fooNew = foo.logName;
+          //嵌套函数中的this是不会继承的，指向的就是window 因为 fooNew 是一个单独的指针域 不在foo内， 没有name属性会直接找到 window ，
+          var fooNewBind = foo.logName.bind(foo);
+          fooNew(10)//李四,10
+          fooNewBind(11)//张三,11  因为bind改变了fooNewBind里面的this指向				
 				</pre>
 				<pre>
 	function sayHi(){
@@ -111,6 +111,45 @@
 			<div>
 				所有的对象除基础类型（引用类型）外都有原型，基础对象的原型是null
 			</div>
+      <div>
+        <h4>综合面试</h4>
+        <pre>
+          var name = 'window'
+          var person1 = {
+            name: 'person1',
+            foo1: function () {
+              console.log(this.name)
+            },
+            foo2: () => console.log(this.name),
+            foo3: function () {
+              return function () {
+                console.log(this.name)
+              }
+            },
+            foo4: function () {
+              return () => {
+                console.log(this.name)
+              }
+            }
+          }
+          var person2 = { name: 'person2' }
+
+          person1.foo1() //person1
+          person1.foo1.call(person2) //person2
+
+          person1.foo2() //window
+          person1.foo2.call(person2)  //window
+
+          person1.foo3()()  //window
+          person1.foo3.call(person2)()  //window
+          person1.foo3().call(person2) //person2
+
+          person1.foo4()() //person1
+          person1.foo4.call(person2)() //person2
+          person1.foo4().call(person2) //person1
+
+        </pre>
+      </div>
 		</div>
 	</div>
 	<!--页面加载进度条-->
