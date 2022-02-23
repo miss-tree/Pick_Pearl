@@ -170,6 +170,16 @@
                     10
                     Uncaught TypeError: Cannot read property 'a' of undefined
 
+          function foo() {
+            console.log( this.a );
+          }
+          var a = 2;
+          (function(){
+            "use strict";
+            foo();
+          })();
+          output:=> 2  foo() 调用的依然是window， 但是使用 this.foo() 就会报错， 因为this是undefined
+
         </pre>
       </div>
 			<div>
